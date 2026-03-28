@@ -1,0 +1,7 @@
+node_modules/
+netlify/
+netlify.toml
+package.json
+package-lock.json
+.surgeignore
+200.html
