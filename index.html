@@ -1,0 +1,2296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!--
+   ______                            __
+  / ____/___  ____ ___  ____  __  __/ /____  _____
+ / /   / __ \/ __ `__ \/ __ \/ / / / __/ _ \/ ___/
+/ /___/ /_/ / / / / / / /_/ / /_/ / /_/  __/ /
+\____/\____/_/ /_/ /_/ .___/\__,_/\__/\___/_/
+                    /_/
+        Created with Perplexity Computer
+        https://www.perplexity.ai/computer
+-->
+
+<!-- Perplexity Computer Attribution — SEO Meta Tags -->
+<meta name="generator" content="Perplexity Computer">
+<meta name="author" content="Perplexity Computer">
+<meta property="og:see_also" content="https://www.perplexity.ai/computer">
+<link rel="author" href="https://www.perplexity.ai/computer">
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Leonidas Lifts — No Steroids. No Shortcuts. No Excuses.</title>
+<meta name="description" content="Leonidas Lifts — 18 years of natural bodybuilding forged into sacred scrolls. Training, Nutrition, and Peptide programs built for warriors.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&display=swap" rel="stylesheet">
+
+<!-- PHASE 2: Change 7 — Stripe script in head -->
+<script src="https://js.stripe.com/v3/"></script>
+
+<style>
+/* ═══════════════════════════════════════════
+   RESET & BASE
+   ═══════════════════════════════════════════ */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --black: #060504;
+  --gold: #C9A84C;
+  --gold-dim: rgba(201, 168, 76, 0.3);
+  --gold-glow: rgba(201, 168, 76, 0.6);
+  --ember: #D4453A;
+  --stone: #2A2418;
+  --green: #5BA85B;
+  --parchment: #1a1610;
+  --parchment-light: #2a2318;
+  --text-primary: #e8dcc8;
+  --text-secondary: rgba(232, 220, 200, 0.7);
+  --text-muted: rgba(232, 220, 200, 0.4);
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  background: var(--black);
+  color: var(--text-primary);
+  overflow-x: hidden;
+  line-height: 1.6;
+}
+
+a { color: var(--gold); text-decoration: none; }
+a:hover { color: #dbb95e; }
+
+img { max-width: 100%; display: block; }
+
+/* ═══════════════════════════════════════════
+   FIRE PARTICLE CANVAS
+   ═══════════════════════════════════════════ */
+#fire-canvas {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw; height: 100vh;
+  z-index: 3;
+  pointer-events: none;
+}
+
+/* ═══════════════════════════════════════════
+   SMOKE WISPS
+   ═══════════════════════════════════════════ */
+.smoke-container {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  z-index: 2;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.smoke-wisp {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+}
+
+.smoke-wisp:nth-child(1) {
+  width: 600px; height: 600px;
+  background: radial-gradient(circle, rgba(201,168,76,0.05) 0%, transparent 70%);
+  top: 10%; left: -10%;
+  animation: smokeDrift1 16s ease-in-out infinite;
+}
+.smoke-wisp:nth-child(2) {
+  width: 500px; height: 500px;
+  background: radial-gradient(circle, rgba(201,168,76,0.04) 0%, transparent 70%);
+  top: 40%; right: -15%;
+  animation: smokeDrift2 20s ease-in-out infinite;
+}
+.smoke-wisp:nth-child(3) {
+  width: 700px; height: 700px;
+  background: radial-gradient(circle, rgba(201,168,76,0.03) 0%, transparent 70%);
+  bottom: 5%; left: 20%;
+  animation: smokeDrift3 14s ease-in-out infinite;
+}
+.smoke-wisp:nth-child(4) {
+  width: 400px; height: 400px;
+  background: radial-gradient(circle, rgba(212,69,58,0.04) 0%, transparent 70%);
+  top: 60%; left: 50%;
+  animation: smokeDrift4 18s ease-in-out infinite;
+}
+
+@keyframes smokeDrift1 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(80px, -40px) scale(1.15); }
+}
+@keyframes smokeDrift2 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(-60px, 50px) scale(1.1); }
+}
+@keyframes smokeDrift3 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(50px, -60px) scale(1.2); }
+}
+@keyframes smokeDrift4 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(-40px, -30px) scale(1.1); }
+}
+
+/* ═══════════════════════════════════════════
+   FILM GRAIN
+   ═══════════════════════════════════════════ */
+.film-grain {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  z-index: 4;
+  pointer-events: none;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 128px 128px;
+}
+
+/* ═══════════════════════════════════════════
+   VIGNETTE
+   ═══════════════════════════════════════════ */
+.vignette {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  z-index: 5;
+  pointer-events: none;
+  background: radial-gradient(ellipse at center, transparent 40%, rgba(6,5,4,0.6) 100%);
+}
+
+/* ═══════════════════════════════════════════
+   MAIN CONTENT (above overlays)
+   ═══════════════════════════════════════════ */
+main, footer {
+  position: relative;
+  z-index: 10;
+}
+
+/* ═══════════════════════════════════════════
+   HERO SECTION
+   ═══════════════════════════════════════════ */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 2rem 1.5rem;
+  overflow: hidden;
+}
+
+.hero-bg {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: url('./assets/hero.jpg') center center / cover no-repeat;
+  z-index: -2;
+}
+
+.hero-bg::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: linear-gradient(
+    to bottom,
+    rgba(6,5,4,0.65) 0%,
+    rgba(6,5,4,0.5) 40%,
+    rgba(6,5,4,0.6) 70%,
+    rgba(6,5,4,0.9) 100%
+  );
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  max-width: 900px;
+}
+
+.hero-lambda {
+  font-family: 'Cinzel', serif;
+  font-weight: 900;
+  font-size: clamp(4rem, 10vw, 8rem);
+  color: var(--gold);
+  line-height: 1;
+  margin-bottom: 0.5rem;
+  animation: lambdaPulse 3s ease-in-out infinite;
+  text-shadow: 0 0 40px rgba(201,168,76,0.4), 0 0 80px rgba(201,168,76,0.2);
+}
+
+@keyframes lambdaPulse {
+  0%, 100% { text-shadow: 0 0 40px rgba(201,168,76,0.3), 0 0 80px rgba(201,168,76,0.15); }
+  50% { text-shadow: 0 0 60px rgba(201,168,76,0.5), 0 0 120px rgba(201,168,76,0.25); }
+}
+
+.hero-title {
+  font-family: 'Cinzel', serif;
+  font-weight: 900;
+  font-size: clamp(2.2rem, 6vw, 4.5rem);
+  letter-spacing: 0.15em;
+  color: var(--text-primary);
+  margin-bottom: 1.5rem;
+  text-transform: uppercase;
+  line-height: 1.1;
+}
+
+.hero-rule {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  margin-bottom: 2rem;
+  width: 100%;
+}
+
+.hero-rule-line {
+  flex: 1;
+  max-width: 120px;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--gold-dim));
+}
+
+.hero-rule-line:last-child {
+  background: linear-gradient(to left, transparent, var(--gold-dim));
+}
+
+.hero-rule-text {
+  font-family: 'Cinzel', serif;
+  font-weight: 700;
+  font-size: clamp(0.55rem, 1.4vw, 0.85rem);
+  letter-spacing: 0.25em;
+  color: var(--gold);
+  padding: 0 1.5rem;
+  white-space: nowrap;
+}
+
+.hero-stats {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem 2.5rem;
+  margin-bottom: 2rem;
+  font-family: 'Cinzel', serif;
+  font-weight: 700;
+  font-size: clamp(0.65rem, 1.2vw, 0.8rem);
+  letter-spacing: 0.2em;
+  color: var(--text-secondary);
+}
+
+.hero-stats span {
+  position: relative;
+}
+
+.hero-stats span:not(:last-child)::after {
+  content: '|';
+  position: absolute;
+  right: -1.35rem;
+  color: var(--gold-dim);
+}
+
+.hero-tagline {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(1rem, 2vw, 1.3rem);
+  font-style: italic;
+  font-weight: 300;
+  color: var(--text-secondary);
+  margin-bottom: 2.5rem;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.cta-enter {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  cursor: pointer;
+  background: none;
+  border: none;
+  color: var(--gold);
+  font-family: 'Cinzel', serif;
+  font-weight: 700;
+  font-size: clamp(0.75rem, 1.4vw, 0.95rem);
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  transition: color 0.3s, transform 0.3s;
+  padding: 0.5rem 1rem;
+  min-height: 44px;
+}
+
+.cta-enter:hover {
+  color: #dbb95e;
+  transform: translateY(-2px);
+}
+
+.cta-enter-arrow {
+  font-size: 1.5rem;
+  animation: bounceDown 2s ease-in-out infinite;
+}
+
+@keyframes bounceDown {
+  0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+  40% { transform: translateY(10px); }
+  60% { transform: translateY(5px); }
+}
+
+/* ═══════════════════════════════════════════
+   ARMORY SECTION
+   ═══════════════════════════════════════════ */
+.armory {
+  position: relative;
+  padding: 6rem 1.5rem;
+  overflow: hidden;
+}
+
+.armory-bg {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: url('./assets/armory.jpg') center center / cover no-repeat;
+  z-index: -2;
+}
+
+.armory-bg::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: linear-gradient(
+    to bottom,
+    rgba(6,5,4,0.92) 0%,
+    rgba(6,5,4,0.85) 50%,
+    rgba(6,5,4,0.92) 100%
+  );
+}
+
+/* Greek Key Border */
+.greek-key-top, .greek-key-bottom {
+  position: absolute;
+  left: 0; width: 100%;
+  height: 12px;
+  z-index: 1;
+  background:
+    repeating-linear-gradient(
+      90deg,
+      var(--gold-dim) 0px, var(--gold-dim) 8px,
+      transparent 8px, transparent 12px,
+      var(--gold-dim) 12px, var(--gold-dim) 20px,
+      transparent 20px, transparent 24px
+    );
+  opacity: 0.5;
+}
+.greek-key-top { top: 0; }
+.greek-key-bottom { bottom: 0; }
+
+/* Pillars */
+.pillar {
+  position: absolute;
+  top: 0; bottom: 0;
+  width: 60px;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.pillar-left { left: 0; }
+.pillar-right { right: 0; }
+
+.pillar-body {
+  position: absolute;
+  top: 80px; bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 30px;
+  background: linear-gradient(90deg,
+    rgba(42,36,24,0.3) 0%,
+    rgba(80,70,50,0.4) 30%,
+    rgba(100,88,60,0.35) 50%,
+    rgba(80,70,50,0.4) 70%,
+    rgba(42,36,24,0.3) 100%
+  );
+  border-left: 1px solid rgba(201,168,76,0.1);
+  border-right: 1px solid rgba(201,168,76,0.1);
+}
+
+.pillar-capital {
+  position: absolute;
+  top: 60px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 46px;
+  height: 20px;
+  background: linear-gradient(180deg, rgba(100,88,60,0.5) 0%, rgba(60,52,36,0.3) 100%);
+  border-radius: 3px 3px 0 0;
+  border: 1px solid rgba(201,168,76,0.15);
+  border-bottom: none;
+}
+
+/* Torch */
+.torch {
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 10px;
+  height: 40px;
+}
+
+.torch-handle {
+  width: 6px;
+  height: 30px;
+  margin: 10px auto 0;
+  background: linear-gradient(180deg, #6b5a3a, #4a3c24);
+  border-radius: 2px;
+}
+
+.torch-flame {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 14px;
+  height: 20px;
+  border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+  background: radial-gradient(ellipse at bottom, #D4453A 0%, #C9A84C 50%, rgba(201,168,76,0.2) 100%);
+  animation: flameFlicker 0.3s ease-in-out infinite alternate;
+  box-shadow: 0 0 12px 4px rgba(201,168,76,0.3), 0 0 30px 8px rgba(212,69,58,0.2);
+}
+
+@keyframes flameFlicker {
+  0% { transform: translateX(-50%) scaleY(1) scaleX(1); opacity: 0.9; }
+  25% { transform: translateX(-50%) scaleY(1.1) scaleX(0.9); opacity: 1; }
+  50% { transform: translateX(-50%) scaleY(0.95) scaleX(1.05); opacity: 0.85; }
+  75% { transform: translateX(-50%) scaleY(1.05) scaleX(0.95); opacity: 1; }
+  100% { transform: translateX(-50%) scaleY(1) scaleX(1); opacity: 0.9; }
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.section-title {
+  font-family: 'Cinzel', serif;
+  font-weight: 900;
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  letter-spacing: 0.15em;
+  color: var(--gold);
+  text-transform: uppercase;
+  margin-bottom: 0.75rem;
+}
+
+.section-subtitle {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(1rem, 2vw, 1.3rem);
+  font-style: italic;
+  font-weight: 300;
+  color: var(--text-secondary);
+}
+
+/* ═══════════════════════════════════════════
+   SCROLL CARDS
+   ═══════════════════════════════════════════ */
+
+/* PHASE 2: Change 1 — Grid layout updated for 4th card (bundle) + Change 2 — perspective */
+.scrolls-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2.5rem;
+  max-width: 1100px;
+  margin: 0 auto 4rem;
+  perspective: 1200px; /* PHASE 2: Change 2 — 3D effect */
+}
+
+/* PHASE 2: Change 2 — 3D cinematic scroll effect */
+.scroll-card {
+  position: relative;
+  cursor: pointer;
+  transition: transform 0.6s cubic-bezier(0.23,1,0.32,1), box-shadow 0.6s, filter 0.4s;
+  opacity: 0;
+  transform: translateY(40px);
+  animation: fadeInUp 0.7s ease forwards;
+  transform-style: preserve-3d;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+  will-change: transform, box-shadow, filter;
+}
+
+.scroll-card:nth-child(1) { animation-delay: 0.1s; }
+.scroll-card:nth-child(2) { animation-delay: 0.3s; }
+.scroll-card:nth-child(3) { animation-delay: 0.5s; }
+/* PHASE 2: Change 1 — 4th card animation delay */
+.scroll-card:nth-child(4) { animation-delay: 0.7s; }
+
+@keyframes fadeInUp {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* PHASE 2: Change 2 — 3D hover: left card tilts right, right card tilts left */
+.scroll-card:hover {
+  transform: rotateY(-8deg) rotateX(3deg) translateZ(30px) scale(1.03);
+  filter: brightness(1.1);
+  box-shadow: -15px 15px 40px rgba(0,0,0,0.5), -5px 5px 20px rgba(201,168,76,0.1);
+}
+
+/* PHASE 2: Change 2 — Middle card (Nutrition) lifts straight */
+.scroll-card:nth-child(2):hover {
+  transform: rotateY(0deg) rotateX(3deg) translateZ(30px) scale(1.03);
+}
+
+/* PHASE 2: Change 2 — Right card (Peptide) tilts opposite */
+.scroll-card:nth-child(3):hover {
+  transform: rotateY(8deg) rotateX(3deg) translateZ(30px) scale(1.03);
+  box-shadow: 15px 15px 40px rgba(0,0,0,0.5), 5px 5px 20px rgba(201,168,76,0.1);
+}
+
+.scroll-roll-top, .scroll-roll-bottom {
+  height: 22px;
+  background: linear-gradient(180deg, #8b7355 0%, #6b5a3a 40%, #5a4a2e 60%, #6b5a3a 100%);
+  border-radius: 6px;
+  position: relative;
+  z-index: 2;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+}
+
+.scroll-roll-top::before, .scroll-roll-top::after,
+.scroll-roll-bottom::before, .scroll-roll-bottom::after {
+  content: '';
+  position: absolute;
+  top: 2px; bottom: 2px;
+  width: 16px;
+  background: linear-gradient(180deg, #a08860, #7a6840);
+  border-radius: 3px;
+  border: 1px solid rgba(201,168,76,0.3);
+}
+
+.scroll-roll-top::before, .scroll-roll-bottom::before { left: 4px; }
+.scroll-roll-top::after, .scroll-roll-bottom::after { right: 4px; }
+
+/* PHASE 2: Change 2 — Parchment texture backgrounds per accent */
+.scroll-face {
+  position: relative;
+  background: var(--parchment);
+  padding: 2rem 1.5rem;
+  text-align: center;
+  border-left: 1px solid rgba(201,168,76,0.08);
+  border-right: 1px solid rgba(201,168,76,0.08);
+}
+
+/* PHASE 2: Change 2 — Parchment textures with ruled line overlay */
+.scroll-card[data-accent="ember"] .scroll-face {
+  background:
+    repeating-linear-gradient(to bottom, transparent, transparent 23px, rgba(201,168,76,0.03) 23px, rgba(201,168,76,0.03) 24px),
+    url('./assets/parchment-ember.jpg') center/cover no-repeat;
+}
+.scroll-card[data-accent="gold"] .scroll-face {
+  background:
+    repeating-linear-gradient(to bottom, transparent, transparent 23px, rgba(201,168,76,0.03) 23px, rgba(201,168,76,0.03) 24px),
+    url('./assets/parchment-gold.jpg') center/cover no-repeat;
+}
+.scroll-card[data-accent="green"] .scroll-face {
+  background:
+    repeating-linear-gradient(to bottom, transparent, transparent 23px, rgba(201,168,76,0.03) 23px, rgba(201,168,76,0.03) 24px),
+    url('./assets/parchment-green.jpg') center/cover no-repeat;
+}
+
+/* Semi-transparent dark overlay for text readability on parchment */
+.scroll-face::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(6,5,4,0.55);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Burn edge overlays */
+.scroll-face::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background:
+    linear-gradient(to bottom, rgba(6,5,4,0.5) 0%, transparent 30px),
+    linear-gradient(to top, rgba(6,5,4,0.5) 0%, transparent 30px);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* PHASE 2: Text elements above overlays for readability */
+.scroll-icon,
+.scroll-name,
+.scroll-tagline,
+.scroll-prices,
+.scroll-cta {
+  position: relative;
+  z-index: 2;
+}
+
+.scroll-icon {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  display: block;
+}
+
+.scroll-name {
+  font-family: 'Cinzel', serif;
+  font-weight: 700;
+  font-size: 1rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  font-variant: small-caps;
+  margin-bottom: 0.5rem;
+}
+
+.scroll-tagline {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-weight: 300;
+  font-size: 1rem;
+  color: var(--text-secondary);
+  margin-bottom: 1.25rem;
+}
+
+.scroll-prices {
+  font-family: 'Cinzel', serif;
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+  color: var(--text-secondary);
+  margin-bottom: 1.5rem;
+}
+
+.scroll-prices strong {
+  color: var(--text-primary);
+  font-weight: 700;
+}
+
+.scroll-cta {
+  display: inline-block;
+  font-family: 'Cinzel', serif;
+  font-weight: 700;
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  padding: 0.75rem 2rem;
+  border: 1px solid;
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.3s;
+  color: var(--text-primary);
+  min-height: 44px;
+  min-width: 44px;
+}
+
+.scroll-cta:hover {
+  background: rgba(201,168,76,0.1);
+  box-shadow: 0 0 20px rgba(201,168,76,0.2);
+}
+
+/* Accent colors for each scroll */
+.scroll-card[data-accent="ember"] .scroll-icon { color: var(--ember); filter: drop-shadow(0 0 8px rgba(212,69,58,0.4)); }
+.scroll-card[data-accent="ember"] .scroll-name { color: var(--ember); }
+.scroll-card[data-accent="ember"] .scroll-cta { border-color: var(--ember); }
+.scroll-card[data-accent="ember"] .scroll-cta:hover { border-color: #e8574b; background: rgba(212,69,58,0.1); box-shadow: 0 0 20px rgba(212,69,58,0.2); }
+
+.scroll-card[data-accent="gold"] .scroll-icon { color: var(--gold); filter: drop-shadow(0 0 8px rgba(201,168,76,0.4)); }
+.scroll-card[data-accent="gold"] .scroll-name { color: var(--gold); }
+.scroll-card[data-accent="gold"] .scroll-cta { border-color: var(--gold); }
+.scroll-card[data-accent="gold"] .scroll-cta:hover { border-color: #dbb95e; background: rgba(201,168,76,0.1); box-shadow: 0 0 20px rgba(201,168,76,0.2); }
+
+.scroll-card[data-accent="green"] .scroll-icon { color: var(--green); filter: drop-shadow(0 0 8px rgba(91,168,91,0.4)); }
+.scroll-card[data-accent="green"] .scroll-name { color: var(--green); }
+.scroll-card[data-accent="green"] .scroll-cta { border-color: var(--green); }
+.scroll-card[data-accent="green"] .scroll-cta:hover { border-color: #6dba6d; background: rgba(91,168,91,0.1); box-shadow: 0 0 20px rgba(91,168,91,0.2); }
+
+/* ═══════════════════════════════════════════
+   PHASE 2: Change 1 — Bundle as 4th scroll card
+   Bundle glow ring + wrapper
+   ═══════════════════════════════════════════ */
+.bundle-scroll-wrapper {
+  position: relative;
+  grid-column: 2;
+}
+
+.bundle-scroll-wrapper .bundle-glow-ring {
+  position: absolute;
+  top: 50%; left: 50%;
+  width: 110%; height: 120%;
+  transform: translate(-50%, -50%);
+  border-radius: 16px;
+  background: conic-gradient(from 0deg, rgba(201,168,76,0.15), rgba(201,168,76,0.05), rgba(201,168,76,0.2), rgba(201,168,76,0.05), rgba(201,168,76,0.15));
+  animation: spinGlow 8s linear infinite;
+  filter: blur(12px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+@keyframes spinGlow {
+  to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+.bundle-scroll-card {
+  position: relative;
+  z-index: 1;
+}
+
+/* ═══════════════════════════════════════════
+   PHASE 2: Change 3 — Scroll unroll animation keyframes
+   ═══════════════════════════════════════════ */
+@keyframes scrollUnroll {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-20px); }
+  100% { transform: translateY(-20px); }
+}
+@keyframes scrollUnrollBottom {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(20px); }
+  100% { transform: translateY(20px); }
+}
+@keyframes scrollExpand {
+  0% { padding-top: 2rem; padding-bottom: 2rem; }
+  50% { padding-top: 2.5rem; padding-bottom: 2.5rem; }
+  100% { padding-top: 2.5rem; padding-bottom: 2.5rem; }
+}
+@keyframes goldenFlash {
+  0% { box-shadow: inset 0 0 0 rgba(201,168,76,0); }
+  40% { box-shadow: inset 0 0 60px rgba(201,168,76,0.3); }
+  100% { box-shadow: inset 0 0 0 rgba(201,168,76,0); }
+}
+
+/* PHASE 2: Change 3 — Unrolling class animations */
+.scroll-card.unrolling .scroll-roll-top {
+  animation: scrollUnroll 0.6s ease-out forwards;
+}
+.scroll-card.unrolling .scroll-roll-bottom {
+  animation: scrollUnrollBottom 0.6s ease-out forwards;
+}
+.scroll-card.unrolling .scroll-face {
+  animation: scrollExpand 0.6s ease-out forwards, goldenFlash 0.6s ease-out forwards;
+}
+
+/* ═══════════════════════════════════════════
+   INSTAGRAM SECTION
+   ═══════════════════════════════════════════ */
+.instagram-section {
+  position: relative;
+  padding: 6rem 1.5rem;
+  background: linear-gradient(to bottom, var(--black), rgba(42,36,24,0.15), var(--black));
+}
+
+.ig-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.ig-header .section-title {
+  margin-bottom: 0.5rem;
+}
+
+.ig-handle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: 'Cinzel', serif;
+  font-weight: 700;
+  font-size: 0.85rem;
+  letter-spacing: 0.2em;
+  color: var(--gold);
+  transition: color 0.3s;
+  min-height: 44px;
+}
+
+.ig-handle:hover { color: #dbb95e; }
+
+.ig-handle svg {
+  width: 20px;
+  height: 20px;
+  fill: currentColor;
+}
+
+.ig-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.75rem;
+  max-width: 900px;
+  margin: 0 auto 3rem;
+}
+
+.ig-thumb {
+  position: relative;
+  aspect-ratio: 1;
+  overflow: hidden;
+  border-radius: 4px;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: border-color 0.3s, transform 0.3s;
+}
+
+.ig-thumb:hover {
+  border-color: var(--gold-dim);
+  transform: scale(1.03);
+}
+
+.ig-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s;
+}
+
+.ig-thumb:hover img {
+  transform: scale(1.08);
+}
+
+.ig-follow-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-family: 'Cinzel', serif;
+  font-weight: 700;
+  font-size: 0.8rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  border: 1px solid var(--gold-dim);
+  padding: 0.85rem 2.5rem;
+  transition: all 0.3s;
+  min-height: 44px;
+  cursor: pointer;
+  text-decoration: none;
+  background: transparent;
+}
+
+.ig-follow-cta:hover {
+  border-color: var(--gold);
+  background: rgba(201,168,76,0.08);
+  color: #dbb95e;
+  box-shadow: 0 0 20px rgba(201,168,76,0.15);
+}
+
+.ig-cta-wrap {
+  text-align: center;
+}
+
+/* ═══════════════════════════════════════════
+   FOUNDER QUOTE
+   ═══════════════════════════════════════════ */
+.founder-section {
+  position: relative;
+  padding: 6rem 1.5rem;
+  overflow: hidden;
+}
+
+.founder-bg {
+  position: absolute;
+  top: 0; right: 0;
+  width: 45%;
+  height: 100%;
+  background: url('./assets/warrior.jpg') center center / cover no-repeat;
+  opacity: 0.15;
+  mask-image: linear-gradient(to left, rgba(0,0,0,0.3) 0%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to left, rgba(0,0,0,0.3) 0%, transparent 100%);
+  z-index: 0;
+}
+
+.founder-content {
+  position: relative;
+  z-index: 1;
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.founder-quote-mark {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 5rem;
+  color: var(--gold);
+  opacity: 0.2;
+  line-height: 1;
+  margin-bottom: -1rem;
+  display: block;
+}
+
+.founder-quote {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(1.3rem, 3vw, 2rem);
+  font-style: italic;
+  font-weight: 300;
+  color: var(--text-primary);
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+.founder-attribution {
+  font-family: 'Cinzel', serif;
+  font-weight: 700;
+  font-size: 0.8rem;
+  letter-spacing: 0.2em;
+  color: var(--gold);
+}
+
+/* ═══════════════════════════════════════════
+   INSIDER INTELLIGENCE GATEWAY
+   ═══════════════════════════════════════════ */
+.ii-gateway {
+  padding: 3rem 1.5rem;
+  text-align: center;
+  position: relative;
+}
+
+.ii-gateway::before, .ii-gateway::after {
+  content: '';
+  display: block;
+  width: 200px;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--gold-dim), transparent);
+  margin: 0 auto 2rem;
+}
+
+.ii-gateway::after {
+  margin: 2rem auto 0;
+}
+
+.ii-gateway-btn {
+  background: none;
+  border: 1px solid var(--gold-dim);
+  color: var(--gold);
+  font-family: 'Cinzel', serif;
+  font-weight: 700;
+  font-size: 0.75rem;
+  letter-spacing: 0.25em;
+  padding: 1rem 2rem;
+  cursor: pointer;
+  opacity: 0.35;
+  transition: opacity 0.4s, border-color 0.4s, box-shadow 0.4s;
+  min-height: 44px;
+}
+
+.ii-gateway-btn:hover {
+  opacity: 1;
+  border-color: var(--gold);
+  box-shadow: 0 0 20px rgba(201,168,76,0.15);
+}
+
+/* ═══════════════════════════════════════════
+   INSIDER INTELLIGENCE WORLD
+   ═══════════════════════════════════════════ */
+.ii-world {
+  display: none;
+  padding: 4rem 1.5rem 6rem;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.ii-world.active {
+  display: block;
+  animation: fadeInUp 0.6s ease forwards;
+}
+
+.ii-back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: none;
+  border: none;
+  color: var(--gold);
+  font-family: 'Cinzel', serif;
+  font-weight: 700;
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  cursor: pointer;
+  margin-bottom: 3rem;
+  padding: 0.5rem 0;
+  transition: color 0.3s;
+  min-height: 44px;
+}
+
+.ii-back-btn:hover { color: #dbb95e; }
+
+.ii-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.ii-sigil {
+  font-size: 2.5rem;
+  color: var(--gold);
+  margin-bottom: 1rem;
+  display: block;
+}
+
+.ii-title {
+  font-family: 'Cinzel', serif;
+  font-weight: 900;
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  letter-spacing: 0.15em;
+  color: var(--gold);
+  margin-bottom: 0.5rem;
+}
+
+.ii-classified {
+  font-family: 'Cinzel', serif;
+  font-weight: 700;
+  font-size: 0.75rem;
+  letter-spacing: 0.3em;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  margin-bottom: 2rem;
+}
+
+.ii-vision {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(1.1rem, 2vw, 1.4rem);
+  font-style: italic;
+  font-weight: 300;
+  color: var(--text-secondary);
+  max-width: 700px;
+  margin: 0 auto 1.5rem;
+  text-align: center;
+}
+
+.ii-description {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.05rem;
+  color: var(--text-secondary);
+  max-width: 700px;
+  margin: 0 auto 3rem;
+  text-align: center;
+  line-height: 1.7;
+}
+
+/* Tier cards */
+.tier-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+  margin-bottom: 4rem;
+}
+
+.tier-card {
+  background: rgba(26,22,16,0.8);
+  border: 1px solid var(--gold-dim);
+  border-radius: 8px;
+  padding: 2rem;
+  text-align: center;
+}
+
+.tier-card-title {
+  font-family: 'Cinzel', serif;
+  font-weight: 900;
+  font-size: 1.1rem;
+  letter-spacing: 0.15em;
+  color: var(--gold);
+  margin-bottom: 1.5rem;
+}
+
+.tier-card-detail {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  line-height: 1.8;
+}
+
+.tier-card-detail strong {
+  color: var(--text-primary);
+}
+
+/* Token section */
+.ii-sub-section {
+  text-align: center;
+  margin-bottom: 3rem;
+  padding: 2rem 0;
+  border-top: 1px solid rgba(201,168,76,0.1);
+}
+
+.ii-sub-title {
+  font-family: 'Cinzel', serif;
+  font-weight: 900;
+  font-size: 1.2rem;
+  letter-spacing: 0.15em;
+  color: var(--gold);
+  margin-bottom: 1rem;
+}
+
+.ii-sub-desc {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1rem;
+  color: var(--text-secondary);
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.7;
+}
+
+/* Giveaway cards */
+.giveaway-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-top: 2rem;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.giveaway-card {
+  background: rgba(26,22,16,0.6);
+  border: 1px solid rgba(201,168,76,0.15);
+  border-radius: 6px;
+  padding: 1.5rem 1rem;
+  text-align: center;
+}
+
+.giveaway-card-title {
+  font-family: 'Cinzel', serif;
+  font-weight: 700;
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  color: var(--gold);
+  margin-bottom: 0.75rem;
+}
+
+.giveaway-card-amount {
+  font-family: 'Cinzel', serif;
+  font-weight: 900;
+  font-size: 1.3rem;
+  color: var(--text-primary);
+}
+
+/* PHASE 2: Change 6 — Seats bar CSS removed, Treasury Teaser CSS added */
+.treasury-title {
+  animation: treasuryPulse 3s ease-in-out infinite;
+}
+@keyframes treasuryPulse {
+  0%, 100% { text-shadow: 0 0 10px rgba(201,168,76,0.2), 0 0 20px rgba(201,168,76,0.1); }
+  50% { text-shadow: 0 0 20px rgba(201,168,76,0.5), 0 0 40px rgba(201,168,76,0.25); }
+}
+
+/* II email capture */
+.ii-email-form {
+  max-width: 500px;
+  margin: 2rem auto 0;
+  display: flex;
+  gap: 0;
+}
+
+.ii-email-form input {
+  flex: 1;
+  background: rgba(26,22,16,0.8);
+  border: 1px solid var(--gold-dim);
+  border-right: none;
+  padding: 0.85rem 1rem;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1rem;
+  color: var(--text-primary);
+  border-radius: 4px 0 0 4px;
+  outline: none;
+  min-height: 44px;
+}
+
+.ii-email-form input::placeholder {
+  color: var(--text-muted);
+}
+
+.ii-email-form input:focus {
+  border-color: var(--gold);
+}
+
+.ii-email-form button {
+  background: var(--gold);
+  border: 1px solid var(--gold);
+  color: var(--black);
+  font-family: 'Cinzel', serif;
+  font-weight: 700;
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  padding: 0.85rem 1.5rem;
+  cursor: pointer;
+  border-radius: 0 4px 4px 0;
+  transition: background 0.3s;
+  white-space: nowrap;
+  min-height: 44px;
+}
+
+.ii-email-form button:hover {
+  background: #dbb95e;
+}
+
+.ii-footer-note {
+  text-align: center;
+  margin-top: 3rem;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+/* ═══════════════════════════════════════════
+   EMAIL CAPTURE MODAL
+   ═══════════════════════════════════════════ */
+.modal-overlay {
+  display: none;
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(6,5,4,0.85);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 1000;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+}
+
+.modal-overlay.active {
+  display: flex;
+}
+
+.modal-card {
+  position: relative;
+  background: var(--parchment);
+  border: 1px solid var(--gold-dim);
+  border-radius: 12px;
+  padding: 3rem 2.5rem;
+  max-width: 460px;
+  width: 100%;
+  text-align: center;
+  overflow: hidden;
+}
+
+.modal-card::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--ember), var(--gold), var(--ember));
+}
+
+.modal-close {
+  position: absolute;
+  top: 1rem; right: 1rem;
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-size: 1.5rem;
+  cursor: pointer;
+  min-width: 44px;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.3s;
+}
+
+.modal-close:hover { color: var(--text-primary); }
+
+.modal-icon {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  display: block;
+}
+
+.modal-plan-name {
+  font-family: 'Cinzel', serif;
+  font-weight: 900;
+  font-size: 1.1rem;
+  letter-spacing: 0.15em;
+  margin-bottom: 0.75rem;
+}
+
+.modal-prices {
+  font-family: 'Cinzel', serif;
+  font-size: 0.85rem;
+  letter-spacing: 0.1em;
+  color: var(--text-secondary);
+  margin-bottom: 2rem;
+}
+
+.modal-email-input {
+  width: 100%;
+  background: rgba(6,5,4,0.6);
+  border: 1px solid var(--gold-dim);
+  padding: 0.85rem 1rem;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.05rem;
+  color: var(--text-primary);
+  border-radius: 6px;
+  margin-bottom: 1rem;
+  outline: none;
+  min-height: 44px;
+}
+
+.modal-email-input::placeholder {
+  color: var(--text-muted);
+}
+
+.modal-email-input:focus {
+  border-color: var(--gold);
+}
+
+.modal-submit {
+  width: 100%;
+  background: var(--gold);
+  border: none;
+  color: var(--black);
+  font-family: 'Cinzel', serif;
+  font-weight: 900;
+  font-size: 0.8rem;
+  letter-spacing: 0.2em;
+  padding: 1rem;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: background 0.3s;
+  min-height: 44px;
+}
+
+.modal-submit:hover {
+  background: #dbb95e;
+}
+
+/* Modal success state */
+.modal-success {
+  display: none;
+}
+
+.modal-success.active {
+  display: block;
+}
+
+.modal-form-state {
+  display: block;
+}
+
+.modal-form-state.hidden {
+  display: none;
+}
+
+.modal-success-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  display: block;
+}
+
+.modal-success-title {
+  font-family: 'Cinzel', serif;
+  font-weight: 900;
+  font-size: 1.3rem;
+  letter-spacing: 0.15em;
+  color: var(--gold);
+  margin-bottom: 0.5rem;
+}
+
+.modal-success-sub {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  color: var(--text-secondary);
+}
+
+/* ═══════════════════════════════════════════
+   PHASE 2: Change 7 — Payment step + BTC step styles
+   ═══════════════════════════════════════════ */
+.modal-payment-step, .modal-btc-step {
+  display: none;
+}
+.modal-payment-step.active, .modal-btc-step.active {
+  display: block;
+  animation: fadeInUp 0.4s ease;
+}
+.payment-buttons {
+  display: flex;
+  gap: 1rem;
+}
+.pay-btn {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1.25rem 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-family: 'Cinzel', serif;
+  font-weight: 700;
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  transition: all 0.3s;
+  min-height: 44px;
+}
+.pay-btn-icon {
+  font-size: 1.5rem;
+}
+.pay-btn-card {
+  background: transparent;
+  border: 1px solid var(--gold);
+  color: var(--gold);
+}
+.pay-btn-card:hover {
+  background: rgba(201,168,76,0.1);
+  box-shadow: 0 0 20px rgba(201,168,76,0.2);
+}
+.pay-btn-btc {
+  background: transparent;
+  border: 1px solid #F7931A;
+  color: #F7931A;
+}
+.pay-btn-btc:hover {
+  background: rgba(247,147,26,0.1);
+  box-shadow: 0 0 20px rgba(247,147,26,0.2);
+}
+.btc-address-box {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(6,5,4,0.6);
+  border: 1px solid rgba(247,147,26,0.3);
+  border-radius: 6px;
+  padding: 0.75rem 1rem;
+  margin-bottom: 1.5rem;
+}
+.btc-address {
+  flex: 1;
+  font-size: 0.7rem;
+  color: #F7931A;
+  word-break: break-all;
+  font-family: monospace;
+}
+.btc-copy-btn {
+  background: rgba(247,147,26,0.15);
+  border: 1px solid rgba(247,147,26,0.3);
+  color: #F7931A;
+  font-family: 'Cinzel', serif;
+  font-weight: 700;
+  font-size: 0.6rem;
+  letter-spacing: 0.1em;
+  padding: 0.4rem 0.8rem;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: all 0.3s;
+  white-space: nowrap;
+}
+.btc-copy-btn:hover {
+  background: rgba(247,147,26,0.25);
+}
+.btc-qr-placeholder {
+  width: 160px;
+  height: 160px;
+  margin: 0 auto;
+  background: rgba(6,5,4,0.6);
+  border: 1px solid rgba(201,168,76,0.15);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ═══════════════════════════════════════════
+   FOOTER
+   ═══════════════════════════════════════════ */
+.site-footer {
+  padding: 4rem 1.5rem 2rem;
+  text-align: center;
+  border-top: 1px solid rgba(201,168,76,0.1);
+}
+
+.footer-lambda {
+  font-family: 'Cinzel', serif;
+  font-weight: 900;
+  font-size: 2.5rem;
+  color: var(--gold);
+  margin-bottom: 1rem;
+  display: block;
+}
+
+.footer-brand {
+  font-family: 'Cinzel', serif;
+  font-weight: 700;
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  color: var(--text-secondary);
+  margin-bottom: 0.75rem;
+}
+
+.footer-tagline {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  margin-bottom: 1.5rem;
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.footer-attribution {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.footer-attribution a {
+  color: var(--text-muted);
+  transition: color 0.3s;
+}
+
+.footer-attribution a:hover {
+  color: var(--gold);
+}
+
+/* ═══════════════════════════════════════════
+   RESPONSIVE
+   ═══════════════════════════════════════════ */
+@media (max-width: 900px) {
+  .scrolls-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  /* PHASE 2: Change 1 — Bundle wrapper centered at tablet */
+  .bundle-scroll-wrapper { grid-column: 1 / -1; max-width: 340px; margin: 0 auto; }
+  .tier-grid {
+    grid-template-columns: 1fr;
+  }
+  .giveaway-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .pillar { display: none; }
+}
+
+@media (max-width: 600px) {
+  .scrolls-grid {
+    grid-template-columns: 1fr;
+    max-width: 380px;
+  }
+  /* PHASE 2: Change 1 — Bundle wrapper single column on mobile */
+  .bundle-scroll-wrapper { grid-column: 1; max-width: 380px; }
+  .hero-stats span:not(:last-child)::after {
+    display: none;
+  }
+  .hero-stats {
+    gap: 0.5rem 1.5rem;
+  }
+  .ig-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .founder-bg {
+    display: none;
+  }
+  .giveaway-grid {
+    grid-template-columns: 1fr;
+    max-width: 320px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .ii-email-form {
+    flex-direction: column;
+  }
+  .ii-email-form input {
+    border-right: 1px solid var(--gold-dim);
+    border-radius: 4px;
+  }
+  .ii-email-form input:focus {
+    border-color: var(--gold);
+  }
+  .ii-email-form button {
+    border-radius: 4px;
+  }
+  .modal-card {
+    padding: 2rem 1.5rem;
+  }
+  /* PHASE 2: Change 7 — Payment buttons stack on mobile */
+  .payment-buttons {
+    flex-direction: column;
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- Atmospheric layers -->
+<canvas id="fire-canvas" aria-hidden="true"></canvas>
+<div class="smoke-container" aria-hidden="true">
+  <div class="smoke-wisp"></div>
+  <div class="smoke-wisp"></div>
+  <div class="smoke-wisp"></div>
+  <div class="smoke-wisp"></div>
+</div>
+<div class="film-grain" aria-hidden="true"></div>
+<div class="vignette" aria-hidden="true"></div>
+
+<main>
+
+  <!-- ═══════════════════════════════════════
+       SECTION 1: HERO
+       ═══════════════════════════════════════ -->
+  <header class="hero" id="hero">
+    <div class="hero-bg" aria-hidden="true"></div>
+    <div class="hero-content">
+      <span class="hero-lambda" aria-label="Lambda — Spartan shield mark">Λ</span>
+      <h1 class="hero-title">Leonidas Lifts</h1>
+      <div class="hero-rule">
+        <span class="hero-rule-line" aria-hidden="true"></span>
+        <span class="hero-rule-text">NO STEROIDS · NO SHORTCUTS · NO EXCUSES</span>
+        <span class="hero-rule-line" aria-hidden="true"></span>
+      </div>
+      <div class="hero-stats" aria-label="Achievements">
+        <span>18 YEARS NATURAL</span>
+      </div>
+      <p class="hero-tagline">Built for warriors 18 and older. The scrolls await those who earn them.</p>
+      <button class="cta-enter" onclick="document.getElementById('armory').scrollIntoView({behavior:'smooth'})" aria-label="Scroll to armory section">
+        ENTER THE ARMORY
+        <span class="cta-enter-arrow" aria-hidden="true">↓</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ═══════════════════════════════════════
+       SECTION 2: ARMORY — THE SACRED SCROLLS
+       ═══════════════════════════════════════ -->
+  <section class="armory" id="armory">
+    <div class="armory-bg" aria-hidden="true"></div>
+    <div class="greek-key-top" aria-hidden="true"></div>
+    <div class="greek-key-bottom" aria-hidden="true"></div>
+
+    <!-- Left pillar -->
+    <div class="pillar pillar-left" aria-hidden="true">
+      <div class="torch">
+        <div class="torch-flame"></div>
+        <div class="torch-handle"></div>
+      </div>
+      <div class="pillar-capital"></div>
+      <div class="pillar-body"></div>
+    </div>
+
+    <!-- Right pillar -->
+    <div class="pillar pillar-right" aria-hidden="true">
+      <div class="torch">
+        <div class="torch-flame"></div>
+        <div class="torch-handle"></div>
+      </div>
+      <div class="pillar-capital"></div>
+      <div class="pillar-body"></div>
+    </div>
+
+    <div class="section-header">
+      <h2 class="section-title">The Sacred Scrolls</h2>
+      <p class="section-subtitle">Choose your weapon. Claim your path.</p>
+    </div>
+
+    <div class="scrolls-grid">
+      <!-- Scroll 1: Training -->
+      <div class="scroll-card" data-accent="ember" data-scroll="training" onclick="openModal('training')">
+        <div class="scroll-roll-top" aria-hidden="true"></div>
+        <div class="scroll-face">
+          <span class="scroll-icon" aria-hidden="true">⚔</span>
+          <h3 class="scroll-name">The Training Scroll</h3>
+          <p class="scroll-tagline">18 years forged into one program</p>
+          <p class="scroll-prices"><strong>$79.99</strong> &nbsp;/&nbsp; ₿ <strong>$49.99</strong></p>
+          <span class="scroll-cta" role="button" tabindex="0">CLAIM SCROLL</span>
+        </div>
+        <div class="scroll-roll-bottom" aria-hidden="true"></div>
+      </div>
+
+      <!-- Scroll 2: Nutrition -->
+      <div class="scroll-card" data-accent="gold" data-scroll="nutrition" onclick="openModal('nutrition')">
+        <div class="scroll-roll-top" aria-hidden="true"></div>
+        <div class="scroll-face">
+          <span class="scroll-icon" aria-hidden="true">◆</span>
+          <h3 class="scroll-name">The Nutrition Scroll</h3>
+          <p class="scroll-tagline">Preserve 95% of your strength while losing 40lbs</p>
+          <p class="scroll-prices"><strong>$79.99</strong> &nbsp;/&nbsp; ₿ <strong>$49.99</strong></p>
+          <span class="scroll-cta" role="button" tabindex="0">CLAIM SCROLL</span>
+        </div>
+        <div class="scroll-roll-bottom" aria-hidden="true"></div>
+      </div>
+
+      <!-- Scroll 3: Peptide -->
+      <div class="scroll-card" data-accent="green" data-scroll="peptide" onclick="openModal('peptide')">
+        <div class="scroll-roll-top" aria-hidden="true"></div>
+        <div class="scroll-face">
+          <span class="scroll-icon" aria-hidden="true">☤</span>
+          <h3 class="scroll-name">The Peptide Scroll</h3>
+          <p class="scroll-tagline">The Leonidas Peptide Stack</p>
+          <p class="scroll-prices"><strong>$79.99</strong> &nbsp;/&nbsp; ₿ <strong>$49.99</strong></p>
+          <span class="scroll-cta" role="button" tabindex="0">CLAIM SCROLL</span>
+        </div>
+        <div class="scroll-roll-bottom" aria-hidden="true"></div>
+      </div>
+
+      <!-- PHASE 2: Change 1 — Bundle as 4th scroll card -->
+      <div class="bundle-scroll-wrapper" role="group" aria-label="Spartan Bundle offer">
+        <div class="bundle-glow-ring" aria-hidden="true"></div>
+        <div class="scroll-card bundle-scroll-card" data-accent="gold" data-scroll="bundle" onclick="openModal('bundle')">
+          <div class="scroll-roll-top" aria-hidden="true"></div>
+          <div class="scroll-face">
+            <span class="scroll-icon" aria-hidden="true">⚔</span>
+            <h3 class="scroll-name">Spartan Bundle</h3>
+            <p class="scroll-tagline">All three scrolls. The complete arsenal.</p>
+            <p class="scroll-prices"><strong>$150</strong> &nbsp;/&nbsp; ₿ <strong>$129.99</strong></p>
+            <span class="scroll-cta" role="button" tabindex="0" aria-label="Claim Spartan Bundle">CLAIM BUNDLE</span>
+          </div>
+          <div class="scroll-roll-bottom" aria-hidden="true"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       SECTION 3: INSTAGRAM FEED
+       ═══════════════════════════════════════ -->
+  <section class="instagram-section" id="instagram">
+    <div class="ig-header">
+      <!-- PHASE 2: Change 4 — Renamed from "From the Battlefield" to "Battle Tested" -->
+      <h2 class="section-title">Battle Tested</h2>
+      <a href="https://www.instagram.com/modernday_leonidas/" target="_blank" rel="noopener noreferrer" class="ig-handle" aria-label="Follow @modernday_leonidas on Instagram">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+        @MODERNDAY_LEONIDAS
+      </a>
+    </div>
+
+    <!-- Top 6 posts by engagement: ordered by likes -->
+    <div class="ig-grid">
+      <a href="https://www.instagram.com/modernday_leonidas/reel/DITbu2Hxw-p/" target="_blank" rel="noopener noreferrer" class="ig-thumb" aria-label="136 likes — 99% of workouts done alone, raw discipline">
+        <img src="./assets/ig1.jpg" alt="@modernday_leonidas — back day, decade of consistent effort" loading="lazy">
+      </a>
+      <a href="https://www.instagram.com/modernday_leonidas/reel/DAQq1ytv2ct/" target="_blank" rel="noopener noreferrer" class="ig-thumb" aria-label="119 likes — persisting through wrist injury, relentless consistency">
+        <img src="./assets/ig2.jpg" alt="@modernday_leonidas — ANAKIN, discipline moves mountains" loading="lazy">
+      </a>
+      <a href="https://www.instagram.com/modernday_leonidas/reel/DGtX4HsS7Md/" target="_blank" rel="noopener noreferrer" class="ig-thumb" aria-label="103 likes — focus shapes your reality">
+        <img src="./assets/ig3.jpg" alt="@modernday_leonidas — guard your circle like a fortress" loading="lazy">
+      </a>
+      <a href="https://www.instagram.com/modernday_leonidas/reel/DGN7vYCp6pm/" target="_blank" rel="noopener noreferrer" class="ig-thumb" aria-label="100 likes — eliminate those who hinder your growth">
+        <img src="./assets/ig4.jpg" alt="@modernday_leonidas — Tune Squad, relentless effort and discipline" loading="lazy">
+      </a>
+      <a href="https://www.instagram.com/modernday_leonidas/reel/DJ4AaxsRUJY/" target="_blank" rel="noopener noreferrer" class="ig-thumb" aria-label="98 likes — I have had an effect here">
+        <img src="./assets/ig5.jpg" alt="@modernday_leonidas — move with purpose, lead with heart" loading="lazy">
+      </a>
+      <a href="https://www.instagram.com/modernday_leonidas/reel/DGa7ezivRRk/" target="_blank" rel="noopener noreferrer" class="ig-thumb" aria-label="71 likes — INDESTRUCTIBLE, true power rises from the core">
+        <img src="./assets/ig6.jpg" alt="@modernday_leonidas — shattered before your true power can rise" loading="lazy">
+      </a>
+    </div>
+
+    <div class="ig-cta-wrap">
+      <a href="https://www.instagram.com/modernday_leonidas/" target="_blank" rel="noopener noreferrer" class="ig-follow-cta">FOLLOW THE WARRIOR</a>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       SECTION 4: FOUNDER QUOTE
+       ═══════════════════════════════════════ -->
+  <section class="founder-section" id="founder">
+    <div class="founder-bg" aria-hidden="true"></div>
+    <div class="founder-content">
+      <span class="founder-quote-mark" aria-hidden="true">"</span>
+      <blockquote class="founder-quote">
+        I trained naturally for seventeen years before I ever touched a peptide. Your ceiling is higher than you think.
+      </blockquote>
+      <cite class="founder-attribution">— @MODERNDAY_LEONIDAS</cite>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       SECTION 5: INSIDER INTELLIGENCE GATEWAY
+       ═══════════════════════════════════════ -->
+  <section class="ii-gateway" id="ii-gateway">
+    <button class="ii-gateway-btn" onclick="enterIIWorld()" aria-label="Enter the Intelligence Network">
+      ◆ ENTER THE INTELLIGENCE NETWORK
+    </button>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       SECTION 6: INSIDER INTELLIGENCE WORLD
+       ═══════════════════════════════════════ -->
+  <section class="ii-world" id="ii-world">
+    <button class="ii-back-btn" onclick="exitIIWorld()">
+      ← RETURN TO THE ARMORY
+    </button>
+
+    <div class="ii-header">
+      <span class="ii-sigil" aria-hidden="true">◆</span>
+      <h2 class="ii-title">Insider Intelligence</h2>
+      <p class="ii-classified">CLASSIFIED NETWORK</p>
+    </div>
+
+    <p class="ii-vision">Join the intelligence network that compounds your mind and your money.</p>
+
+    <p class="ii-description">
+      A members-only newsletter and community that goes beyond training. Market analysis, wealth-building strategies, 
+      discipline frameworks, and insider insights — delivered with the same intensity that built a 405 bench naturally. 
+      This isn't content. This is intelligence.
+    </p>
+
+    <!-- Tier Cards -->
+    <div class="tier-grid">
+      <div class="tier-card">
+        <h3 class="tier-card-title">FOUNDING 50</h3>
+        <div class="tier-card-detail">
+          <p><strong>Month 1:</strong> $4</p>
+          <p><strong>Month 2:</strong> $7</p>
+          <p><strong>Month 3+:</strong> $20/mo</p>
+          <p style="margin-top:1rem; border-top: 1px solid rgba(201,168,76,0.1); padding-top: 1rem;">
+            <strong>Lifetime Cap:</strong> $600
+          </p>
+          <p style="margin-top:0.75rem; color: var(--gold); font-style: italic;">
+            Or skip the line — <strong>$500 one-time</strong>
+          </p>
+        </div>
+      </div>
+      <!-- PHASE 2: Change 5 — Updated second tier card pricing (Members 51–100 Early Adopters + Standard) -->
+      <div class="tier-card">
+        <h3 class="tier-card-title">MEMBERS 51–5,000</h3>
+        <div class="tier-card-detail">
+          <p style="font-family:'Cinzel',serif; font-weight:700; font-size:0.75rem; letter-spacing:0.15em; color:var(--gold); margin-bottom:0.75rem;">EARLY ADOPTERS (51–100)</p>
+          <p><strong>Month 1:</strong> $7</p>
+          <p><strong>Month 2:</strong> $10</p>
+          <p><strong>Month 3+:</strong> $30/mo</p>
+          <p><strong>Lifetime Cap:</strong> $800</p>
+          <div style="border-top: 1px solid rgba(201,168,76,0.1); margin: 1.25rem 0; padding-top: 1.25rem;">
+            <p style="font-family:'Cinzel',serif; font-weight:700; font-size:0.75rem; letter-spacing:0.15em; color:var(--text-secondary); margin-bottom:0.75rem;">STANDARD (101–5,000)</p>
+            <p style="color:var(--text-muted); font-style:italic;">Pricing announced when seats open</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- The Token -->
+    <div class="ii-sub-section">
+      <h3 class="ii-sub-title">THE TOKEN</h3>
+      <p class="ii-sub-desc">
+        At 1,000 members, a membership token is minted. Maximum supply: 5,000 tokens. 
+        Your membership becomes an asset — tradeable, transferable, and forever tied to the network.
+      </p>
+      <p class="ii-sub-desc" style="margin-top:1rem; color:var(--text-muted); font-style:italic;">
+        Token blueprint and full roadmap coming soon.
+      </p>
+    </div>
+
+    <!-- The Giveaway -->
+    <div class="ii-sub-section">
+      <h3 class="ii-sub-title">THE GIVEAWAY</h3>
+      <p class="ii-sub-desc">$10,000 in Bitcoin distributed at the 1,000th member milestone.</p>
+      <div class="giveaway-grid">
+        <div class="giveaway-card">
+          <div class="giveaway-card-title">FOUNDING 50</div>
+          <div class="giveaway-card-amount">$5,000</div>
+        </div>
+        <div class="giveaway-card">
+          <div class="giveaway-card-title">MEMBERS 51–250</div>
+          <div class="giveaway-card-amount">$2,500</div>
+        </div>
+        <div class="giveaway-card">
+          <div class="giveaway-card-title">MEMBERS 251–1,000</div>
+          <div class="giveaway-card-amount">$2,500</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PHASE 2: Change 6 — Seats bar removed, Treasury Teaser added -->
+    <div class="treasury-teaser ii-sub-section">
+      <h3 class="ii-sub-title treasury-title">THE TREASURY</h3>
+      <p class="ii-sub-desc">
+        5% of all Insider Intelligence revenue flows directly into the treasury — 
+        building the war chest that backs the token at launch. 
+        Every membership strengthens the network.
+      </p>
+    </div>
+
+    <!-- Email form -->
+    <div style="text-align:center;">
+      <h3 class="ii-sub-title" style="border-top: none; padding-top: 0; margin-bottom: 0.5rem;">REQUEST ACCESS</h3>
+      <p class="ii-sub-desc" style="margin-bottom: 1rem;">Enter your email to join the intelligence waitlist.</p>
+      <form class="ii-email-form" onsubmit="handleIIEmail(event)">
+        <input type="email" placeholder="warrior@email.com" required aria-label="Email address for waitlist">
+        <button type="submit">REQUEST ACCESS</button>
+      </form>
+      <div class="ii-email-success" style="display:none; margin-top:1.5rem;">
+        <p style="font-family:'Cinzel',serif; font-weight:700; color:var(--gold); letter-spacing:0.15em;">ACCESS REQUESTED</p>
+        <p style="font-family:'Cormorant Garamond',serif; font-style:italic; color:var(--text-secondary); margin-top:0.5rem;">The network will contact you when your seat is ready.</p>
+      </div>
+    </div>
+
+    <p class="ii-footer-note">Intelligence is earned, not given. Membership is a privilege.</p>
+  </section>
+
+</main>
+
+<!-- ═══════════════════════════════════════
+     EMAIL CAPTURE MODAL
+     ═══════════════════════════════════════ -->
+<div class="modal-overlay" id="email-modal" role="dialog" aria-modal="true" aria-label="Claim your scroll">
+  <div class="modal-card">
+    <button class="modal-close" onclick="closeModal()" aria-label="Close modal">&times;</button>
+    
+    <div class="modal-form-state" id="modal-form-state">
+      <span class="modal-icon" id="modal-icon" aria-hidden="true"></span>
+      <h3 class="modal-plan-name" id="modal-plan-name"></h3>
+      <p class="modal-prices" id="modal-prices"></p>
+      <form onsubmit="handleModalSubmit(event)">
+        <input type="email" class="modal-email-input" placeholder="warrior@email.com" required aria-label="Your email address" id="modal-email">
+        <button type="submit" class="modal-submit">CLAIM YOUR SCROLL</button>
+      </form>
+    </div>
+
+    <div class="modal-success" id="modal-success">
+      <span class="modal-success-icon" aria-hidden="true">⚔️</span>
+      <h3 class="modal-success-title">THE SCROLL IS YOURS</h3>
+      <p class="modal-success-sub">Check your inbox, warrior. The path begins now.</p>
+    </div>
+
+    <!-- PHASE 2: Change 7 — Payment step (after email) -->
+    <div class="modal-payment-step" id="modal-payment-step" role="region" aria-label="Payment options">
+      <span class="modal-icon" id="modal-pay-icon" aria-hidden="true"></span>
+      <h3 class="modal-plan-name" id="modal-pay-name" style="margin-bottom:0.5rem;"></h3>
+      <p class="modal-prices" id="modal-pay-prices" style="margin-bottom:2rem;"></p>
+      <div class="payment-buttons">
+        <button class="pay-btn pay-btn-card" onclick="payWithCard()" aria-label="Pay with credit card">
+          <span class="pay-btn-icon">💳</span>
+          PAY WITH CARD
+        </button>
+        <button class="pay-btn pay-btn-btc" onclick="showBTCPayment()" aria-label="Pay with Bitcoin">
+          <span class="pay-btn-icon">₿</span>
+          PAY WITH BITCOIN
+        </button>
+      </div>
+    </div>
+
+    <!-- PHASE 2: Change 7 — BTC payment step -->
+    <div class="modal-btc-step" id="modal-btc-step" role="region" aria-label="Bitcoin payment details">
+      <h3 class="modal-plan-name" style="color:var(--gold); margin-bottom:1.5rem;">BITCOIN PAYMENT</h3>
+      <p style="font-family:'Cinzel',serif; font-size:0.65rem; letter-spacing:0.15em; color:var(--text-muted); margin-bottom:1rem;">PAYMENT WALLET (95%)</p>
+      <div class="btc-address-box">
+        <code class="btc-address" id="btc-address-display"></code>
+        <button class="btc-copy-btn" onclick="copyBTCAddress()" aria-label="Copy Bitcoin address">COPY</button>
+      </div>
+      <p style="font-family:'Cinzel',serif; font-size:0.65rem; letter-spacing:0.15em; color:var(--text-muted); margin:1rem 0 0.5rem;">TREASURY WALLET (5%)</p>
+      <div class="btc-address-box" style="border-color:rgba(201,168,76,0.3);">
+        <code class="btc-address" id="btc-treasury-display"></code>
+        <button class="btc-copy-btn" onclick="copyTreasuryAddress()" aria-label="Copy treasury wallet address">COPY</button>
+      </div>
+      <div class="btc-qr-placeholder" id="btc-qr" aria-label="QR code placeholder">
+        <p style="color:var(--text-muted); font-style:italic; font-size:0.9rem;">QR code loads here</p>
+      </div>
+      <p style="font-size:0.85rem; color:var(--text-secondary); margin-top:1rem; font-style:italic;">
+        Send 95% to the payment wallet and 5% to the treasury. Confirmation may take 10-30 minutes.
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     FOOTER
+     ═══════════════════════════════════════ -->
+<footer class="site-footer">
+  <span class="footer-lambda" aria-hidden="true">Λ</span>
+  <p class="footer-brand">LEONIDAS LIFTS · @MODERNDAY_LEONIDAS</p>
+  <p class="footer-tagline">Built on 18 years of iron · Governed by discipline · Executed with purpose</p>
+  <p class="footer-attribution">
+    <a href="https://www.perplexity.ai/computer" target="_blank" rel="noopener noreferrer">Created with Perplexity Computer</a>
+  </p>
+</footer>
+
+<script>
+/* ═══════════════════════════════════════════
+   BACKEND API
+   ═══════════════════════════════════════════ */
+var API_BASE = '';  // Email capture handled via Stripe customer creation
+
+// Stripe Payment Links (direct checkout — no backend needed)
+var PAYMENT_LINKS = {
+  'THE TRAINING SCROLL': 'https://buy.stripe.com/test_5kQ7sKgXVeNcd3E2mH43S01',
+  'THE NUTRITION SCROLL': 'https://buy.stripe.com/test_14AaEWgXV9sS0gSgdx43S03',
+  'THE PEPTIDE SCROLL': 'https://buy.stripe.com/test_eVq28qgXV7kKaVwgdx43S05',
+  'SPARTAN BUNDLE': 'https://buy.stripe.com/test_bJeaEWfTR9sS9Rsf9t43S07'
+};
+
+/* PHASE 2: Change 7 — Stripe + BTC payment config */
+// Replace with your Stripe publishable key
+const STRIPE_PUBLISHABLE_KEY = 'pk_test_51T9wFnCIZKWlU2wBojxkmc4cLBCmftMp1qFrL5iGhguL7ByTHVxfwndrg6emjMb6GURq2W5LTm2spdhqyAxQFvgI00TkeyGCgW';
+// Primary wallet — receives 95% of BTC payments
+const BTC_WALLET_ADDRESS = 'bc1q_YOUR_WALLET_ADDRESS';
+// Treasury wallet — receives 5% of all revenue (Insider Intelligence)
+const BTC_TREASURY_WALLET = 'bc1q_TREASURY_WALLET_ADDRESS';
+// NOTE: For Stripe, configure the 5% treasury split via Stripe Connect
+// or a Transfer to a separate connected account after each charge.
+// The 5% treasury allocation applies to ALL Insider Intelligence revenue.
+
+/* ═══════════════════════════════════════════
+   FIRE PARTICLE SYSTEM (Canvas 2D)
+   ═══════════════════════════════════════════ */
+(function() {
+  const canvas = document.getElementById('fire-canvas');
+  const ctx = canvas.getContext('2d');
+  let particles = [];
+  const MAX_PARTICLES = 40;
+  let animId;
+
+  function resize() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+  window.addEventListener('resize', resize);
+  resize();
+
+  class Particle {
+    constructor() {
+      this.reset();
+    }
+    reset() {
+      this.x = Math.random() * canvas.width;
+      this.y = canvas.height + 10;
+      this.size = Math.random() * 3 + 1;
+      this.speedY = -(Math.random() * 1.5 + 0.5);
+      this.speedX = (Math.random() - 0.5) * 0.8;
+      this.life = 1;
+      this.decay = Math.random() * 0.008 + 0.003;
+      // Color: mix of ember red, orange, gold
+      const colorChoice = Math.random();
+      if (colorChoice < 0.3) {
+        this.r = 212; this.g = 69; this.b = 58; // ember
+      } else if (colorChoice < 0.6) {
+        this.r = 220; this.g = 140; this.b = 40; // orange
+      } else {
+        this.r = 201; this.g = 168; this.b = 76; // gold
+      }
+    }
+    update() {
+      this.x += this.speedX + (Math.random() - 0.5) * 0.3;
+      this.y += this.speedY;
+      this.life -= this.decay;
+      this.size *= 0.999;
+      if (this.life <= 0 || this.y < -10) {
+        this.reset();
+      }
+    }
+    draw() {
+      ctx.save();
+      ctx.globalAlpha = this.life * 0.7;
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+      ctx.fillStyle = `rgb(${this.r},${this.g},${this.b})`;
+      ctx.shadowColor = `rgba(${this.r},${this.g},${this.b},0.5)`;
+      ctx.shadowBlur = 8;
+      ctx.fill();
+      ctx.restore();
+    }
+  }
+
+  // Initialize particles
+  for (let i = 0; i < MAX_PARTICLES; i++) {
+    const p = new Particle();
+    p.y = Math.random() * canvas.height; // Spread initial positions
+    p.life = Math.random();
+    particles.push(p);
+  }
+
+  function animate() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    for (let i = 0; i < particles.length; i++) {
+      particles[i].update();
+      particles[i].draw();
+    }
+    animId = requestAnimationFrame(animate);
+  }
+  animate();
+})();
+
+/* ═══════════════════════════════════════════
+   MODAL LOGIC
+   ═══════════════════════════════════════════ */
+const scrollData = {
+  training: {
+    icon: '⚔',
+    name: 'THE TRAINING SCROLL',
+    usd: '$79.99',
+    btc: '₿ $49.99',
+    color: '#D4453A'
+  },
+  nutrition: {
+    icon: '◆',
+    name: 'THE NUTRITION SCROLL',
+    usd: '$79.99',
+    btc: '₿ $49.99',
+    color: '#C9A84C'
+  },
+  peptide: {
+    icon: '☤',
+    name: 'THE PEPTIDE SCROLL',
+    usd: '$79.99',
+    btc: '₿ $49.99',
+    color: '#5BA85B'
+  },
+  bundle: {
+    icon: '⚔',
+    name: 'SPARTAN BUNDLE',
+    usd: '$150',
+    btc: '₿ $129.99',
+    color: '#C9A84C'
+  }
+};
+
+/* PHASE 2: Change 3 — Scroll unroll animation before opening modal */
+function openModal(scrollType) {
+  const data = scrollData[scrollType];
+  if (!data) return;
+  
+  // Find the clicked scroll card
+  const card = document.querySelector('.scroll-card[data-scroll="' + scrollType + '"]')
+    || document.querySelector('.bundle-scroll-card');
+  
+  if (card) {
+    card.classList.add('unrolling');
+    setTimeout(function() {
+      card.classList.remove('unrolling');
+      showModal(scrollType, data);
+    }, 600);
+  } else {
+    showModal(scrollType, data);
+  }
+}
+
+function showModal(scrollType, data) {
+  document.getElementById('modal-icon').textContent = data.icon;
+  document.getElementById('modal-icon').style.color = data.color;
+  document.getElementById('modal-plan-name').textContent = data.name;
+  document.getElementById('modal-plan-name').style.color = data.color;
+  document.getElementById('modal-prices').innerHTML = data.usd + ' &nbsp;/&nbsp; ' + data.btc;
+  
+  // Reset states
+  document.getElementById('modal-form-state').classList.remove('hidden');
+  document.getElementById('modal-success').classList.remove('active');
+  document.getElementById('modal-payment-step').classList.remove('active');
+  document.getElementById('modal-btc-step').classList.remove('active');
+  document.getElementById('modal-email').value = '';
+  
+  // Store current scroll type for payment
+  document.getElementById('email-modal').dataset.scrollType = scrollType;
+
+  document.getElementById('email-modal').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+/* PHASE 2: Change 7 — Updated closeModal to reset payment steps */
+function closeModal() {
+  document.getElementById('email-modal').classList.remove('active');
+  document.body.style.overflow = '';
+  // Reset all steps
+  document.getElementById('modal-payment-step').classList.remove('active');
+  document.getElementById('modal-btc-step').classList.remove('active');
+}
+
+/* handleModalSubmit — capture email and transition to payment step */
+function handleModalSubmit(e) {
+  e.preventDefault();
+  var email = document.getElementById('modal-email').value;
+  if (!email) return;
+  
+  // Store email for payment prefill
+  window._checkoutEmail = email;
+  
+  var scrollType = document.getElementById('email-modal').dataset.scrollType;
+  var data = scrollData[scrollType];
+  
+  // Transition to payment step
+  document.getElementById('modal-form-state').classList.add('hidden');
+  document.getElementById('modal-pay-icon').textContent = data.icon;
+  document.getElementById('modal-pay-icon').style.color = data.color;
+  document.getElementById('modal-pay-name').textContent = data.name;
+  document.getElementById('modal-pay-name').style.color = data.color;
+  document.getElementById('modal-pay-prices').innerHTML = data.usd + ' &nbsp;/&nbsp; ' + data.btc;
+  document.getElementById('modal-payment-step').classList.add('active');
+}
+
+/* PHASE 2: Change 7 — Stripe card payment via Payment Links */
+function payWithCard() {
+  var scrollType = document.getElementById('email-modal').dataset.scrollType;
+  var data = scrollData[scrollType];
+  var email = window._checkoutEmail;
+  var paymentUrl = PAYMENT_LINKS[data.name];
+  
+  if (paymentUrl) {
+    // Append email as prefill
+    var url = paymentUrl + '?prefilled_email=' + encodeURIComponent(email);
+    window.open(url, '_blank');
+  } else {
+    alert('Payment not available for this product.');
+  }
+}
+
+/* PHASE 2: Change 7 — Show BTC payment step */
+function showBTCPayment() {
+  document.getElementById('modal-payment-step').classList.remove('active');
+  document.getElementById('btc-address-display').textContent = BTC_WALLET_ADDRESS;
+  document.getElementById('btc-treasury-display').textContent = BTC_TREASURY_WALLET;
+  document.getElementById('modal-btc-step').classList.add('active');
+}
+
+/* PHASE 2: Change 7 — Copy BTC address */
+function copyBTCAddress() {
+  navigator.clipboard.writeText(BTC_WALLET_ADDRESS).then(function() {
+    var btn = document.getElementById('btc-address-display').parentElement.querySelector('.btc-copy-btn');
+    btn.textContent = 'COPIED';
+    setTimeout(function() { btn.textContent = 'COPY'; }, 2000);
+  });
+}
+
+/* Copy treasury BTC address */
+function copyTreasuryAddress() {
+  navigator.clipboard.writeText(BTC_TREASURY_WALLET).then(function() {
+    var btn = document.getElementById('btc-treasury-display').parentElement.querySelector('.btc-copy-btn');
+    btn.textContent = 'COPIED';
+    setTimeout(function() { btn.textContent = 'COPY'; }, 2000);
+  });
+}
+
+// Close modal on overlay click
+document.getElementById('email-modal').addEventListener('click', function(e) {
+  if (e.target === this) closeModal();
+});
+
+// Close modal on Escape
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') closeModal();
+});
+
+/* ═══════════════════════════════════════════
+   INSIDER INTELLIGENCE TOGGLE
+   ═══════════════════════════════════════════ */
+function enterIIWorld() {
+  document.getElementById('ii-gateway').style.display = 'none';
+  document.getElementById('ii-world').classList.add('active');
+  document.getElementById('ii-world').scrollIntoView({ behavior: 'smooth' });
+}
+
+function exitIIWorld() {
+  document.getElementById('ii-world').classList.remove('active');
+  document.getElementById('ii-gateway').style.display = '';
+  document.getElementById('armory').scrollIntoView({ behavior: 'smooth' });
+}
+
+function handleIIEmail(e) {
+  e.preventDefault();
+  var form = e.target;
+  form.style.display = 'none';
+  form.parentElement.querySelector('.ii-email-success').style.display = 'block';
+}
+
+/* ═══════════════════════════════════════════
+   KEYBOARD A11Y: scroll cards & bundle
+   ═══════════════════════════════════════════ */
+document.querySelectorAll('.scroll-cta').forEach(function(el) {
+  el.addEventListener('keydown', function(e) {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      el.click();
+    }
+  });
+});
+</script>
+
+</body>
+</html>
