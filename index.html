@@ -1397,10 +1397,10 @@ main, footer {
 /* ═══════════════════════════════════════════
    PHASE 2: Change 7 — Payment step + BTC step styles
    ═══════════════════════════════════════════ */
-.modal-payment-step, .modal-btc-step {
+.modal-payment-step {
   display: none;
 }
-.modal-payment-step.active, .modal-btc-step.active {
+.modal-payment-step.active {
   display: block;
   animation: fadeInUp 0.4s ease;
 }
@@ -1445,51 +1445,7 @@ main, footer {
   background: rgba(247,147,26,0.1);
   box-shadow: 0 0 20px rgba(247,147,26,0.2);
 }
-.btc-address-box {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  background: rgba(6,5,4,0.6);
-  border: 1px solid rgba(247,147,26,0.3);
-  border-radius: 6px;
-  padding: 0.75rem 1rem;
-  margin-bottom: 1.5rem;
-}
-.btc-address {
-  flex: 1;
-  font-size: 0.7rem;
-  color: #F7931A;
-  word-break: break-all;
-  font-family: monospace;
-}
-.btc-copy-btn {
-  background: rgba(247,147,26,0.15);
-  border: 1px solid rgba(247,147,26,0.3);
-  color: #F7931A;
-  font-family: 'Cinzel', serif;
-  font-weight: 700;
-  font-size: 0.6rem;
-  letter-spacing: 0.1em;
-  padding: 0.4rem 0.8rem;
-  cursor: pointer;
-  border-radius: 4px;
-  transition: all 0.3s;
-  white-space: nowrap;
-}
-.btc-copy-btn:hover {
-  background: rgba(247,147,26,0.25);
-}
-.btc-qr-placeholder {
-  width: 160px;
-  height: 160px;
-  margin: 0 auto;
-  background: rgba(6,5,4,0.6);
-  border: 1px solid rgba(201,168,76,0.15);
-  border-radius: 8px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
+/* Old BTC modal CSS removed — new BTC modal uses inline styles */
 
 /* ═══════════════════════════════════════════
    FOOTER
@@ -1925,33 +1881,14 @@ main, footer {
           <span class="pay-btn-icon">💳</span>
           PAY WITH CARD
         </button>
-        <button class="pay-btn pay-btn-btc" onclick="showBTCPayment()" aria-label="Pay with Bitcoin">
+        <button class="pay-btn pay-btn-btc" onclick="payWithBitcoin()" aria-label="Pay with Bitcoin">
           <span class="pay-btn-icon">₿</span>
           PAY WITH BITCOIN
         </button>
       </div>
     </div>
 
-    <!-- PHASE 2: Change 7 — BTC payment step -->
-    <div class="modal-btc-step" id="modal-btc-step" role="region" aria-label="Bitcoin payment details">
-      <h3 class="modal-plan-name" style="color:var(--gold); margin-bottom:1.5rem;">BITCOIN PAYMENT</h3>
-      <p style="font-family:'Cinzel',serif; font-size:0.65rem; letter-spacing:0.15em; color:var(--text-muted); margin-bottom:1rem;">PAYMENT WALLET (95%)</p>
-      <div class="btc-address-box">
-        <code class="btc-address" id="btc-address-display"></code>
-        <button class="btc-copy-btn" onclick="copyBTCAddress()" aria-label="Copy Bitcoin address">COPY</button>
-      </div>
-      <p style="font-family:'Cinzel',serif; font-size:0.65rem; letter-spacing:0.15em; color:var(--text-muted); margin:1rem 0 0.5rem;">TREASURY WALLET (5%)</p>
-      <div class="btc-address-box" style="border-color:rgba(201,168,76,0.3);">
-        <code class="btc-address" id="btc-treasury-display"></code>
-        <button class="btc-copy-btn" onclick="copyTreasuryAddress()" aria-label="Copy treasury wallet address">COPY</button>
-      </div>
-      <div class="btc-qr-placeholder" id="btc-qr" aria-label="QR code placeholder">
-        <p style="color:var(--text-muted); font-style:italic; font-size:0.9rem;">QR code loads here</p>
-      </div>
-      <p style="font-size:0.85rem; color:var(--text-secondary); margin-top:1rem; font-style:italic;">
-        Send 95% to the payment wallet and 5% to the treasury. Confirmation may take 10-30 minutes.
-      </p>
-    </div>
+
   </div>
 </div>
 
@@ -1982,13 +1919,6 @@ var PAYMENT_LINKS = {
 };
 
 /* Stripe Payment Links handle checkout directly — no publishable key needed in frontend */
-// Primary wallet — receives 95% of BTC payments
-const BTC_WALLET_ADDRESS = 'bc1q_YOUR_WALLET_ADDRESS';
-// Treasury wallet — receives 5% of all revenue (Insider Intelligence)
-const BTC_TREASURY_WALLET = 'bc1q_TREASURY_WALLET_ADDRESS';
-// NOTE: For Stripe, configure the 5% treasury split via Stripe Connect
-// or a Transfer to a separate connected account after each charge.
-// The 5% treasury allocation applies to ALL Insider Intelligence revenue.
 
 /* ═══════════════════════════════════════════
    FIRE PARTICLE SYSTEM (Canvas 2D)
@@ -2135,7 +2065,6 @@ function showModal(scrollType, data) {
   document.getElementById('modal-form-state').classList.remove('hidden');
   document.getElementById('modal-success').classList.remove('active');
   document.getElementById('modal-payment-step').classList.remove('active');
-  document.getElementById('modal-btc-step').classList.remove('active');
   document.getElementById('modal-email').value = '';
   
   // Store current scroll type for payment
@@ -2151,7 +2080,6 @@ function closeModal() {
   document.body.style.overflow = '';
   // Reset all steps
   document.getElementById('modal-payment-step').classList.remove('active');
-  document.getElementById('modal-btc-step').classList.remove('active');
 }
 
 /* handleModalSubmit — capture email and transition to payment step */
@@ -2192,30 +2120,12 @@ function payWithCard() {
   }
 }
 
-/* PHASE 2: Change 7 — Show BTC payment step */
-function showBTCPayment() {
-  document.getElementById('modal-payment-step').classList.remove('active');
-  document.getElementById('btc-address-display').textContent = BTC_WALLET_ADDRESS;
-  document.getElementById('btc-treasury-display').textContent = BTC_TREASURY_WALLET;
-  document.getElementById('modal-btc-step').classList.add('active');
-}
-
-/* PHASE 2: Change 7 — Copy BTC address */
-function copyBTCAddress() {
-  navigator.clipboard.writeText(BTC_WALLET_ADDRESS).then(function() {
-    var btn = document.getElementById('btc-address-display').parentElement.querySelector('.btc-copy-btn');
-    btn.textContent = 'COPIED';
-    setTimeout(function() { btn.textContent = 'COPY'; }, 2000);
-  });
-}
-
-/* Copy treasury BTC address */
-function copyTreasuryAddress() {
-  navigator.clipboard.writeText(BTC_TREASURY_WALLET).then(function() {
-    var btn = document.getElementById('btc-treasury-display').parentElement.querySelector('.btc-copy-btn');
-    btn.textContent = 'COPIED';
-    setTimeout(function() { btn.textContent = 'COPY'; }, 2000);
-  });
+/* BTC payment — open the standalone BTC modal */
+function payWithBitcoin() {
+  var scrollType = document.getElementById('email-modal').dataset.scrollType;
+  var keyMap = { 'training': 'training_scroll', 'nutrition': 'nutrition_scroll', 'peptide': 'peptide_scroll', 'bundle': 'spartan_bundle' };
+  closeModal();
+  openBtcModal(keyMap[scrollType] || scrollType);
 }
 
 // Close modal on overlay click
@@ -2293,6 +2203,63 @@ document.querySelectorAll('.scroll-cta').forEach(function(el) {
     window.history.replaceState({}, '', window.location.pathname);
   }
 })();
+</script>
+
+<!-- BTC Payment Modal -->
+<div id="btcModal" style="display:none;position:fixed;inset:0;background:rgba(6,5,4,0.95);z-index:10000;align-items:center;justify-content:center;">
+  <div style="background:#12110E;border:1px solid #2A2418;border-radius:8px;max-width:480px;width:90%;padding:32px;text-align:center;position:relative;">
+    <button onclick="closeBtcModal()" style="position:absolute;top:12px;right:16px;background:none;border:none;color:#5A5548;font-size:20px;cursor:pointer;min-height:44px;min-width:44px;">✕</button>
+    <div style="font-size:36px;margin-bottom:12px;">₿</div>
+    <h3 id="btcProductName" style="color:#C9A84C;font-family:'Cinzel',serif;font-size:18px;letter-spacing:3px;margin-bottom:8px;"></h3>
+    <div id="btcPrice" style="color:#EDE5D0;font-size:28px;font-weight:700;font-family:'Cormorant Garamond',serif;margin-bottom:20px;"></div>
+    <p style="color:#8A8070;font-size:13px;margin-bottom:12px;letter-spacing:1px;">SEND TO THIS WALLET ADDRESS</p>
+    <div style="background:#1A1710;border:1px solid rgba(201,168,76,0.2);border-radius:6px;padding:12px 16px;margin-bottom:12px;">
+      <code id="btcWallet" style="color:#EDE5D0;font-family:'Courier New',monospace;font-size:13px;word-break:break-all;line-height:1.6;"></code>
+    </div>
+    <button id="btcCopyBtn" onclick="copyBtcAddress()" style="background:rgba(201,168,76,0.07);border:1px solid rgba(201,168,76,0.25);color:#C9A84C;font-family:'Cinzel',serif;font-size:12px;letter-spacing:2px;padding:12px 28px;border-radius:4px;cursor:pointer;min-height:44px;width:100%;max-width:220px;margin-bottom:20px;">
+      COPY ADDRESS
+    </button>
+    <p style="color:#8A8070;font-size:13px;line-height:1.7;margin-bottom:8px;">
+      Send the exact BTC equivalent of the amount shown to this wallet address. Your PDF will be delivered within 24 hours once payment is verified.
+    </p>
+    <p style="color:#5A5548;font-size:12px;">Questions? DM <a href="https://instagram.com/modernday_leonidas" target="_blank" style="color:#C9A84C;text-decoration:none;">@Modernday_Leonidas</a> on Instagram.</p>
+  </div>
+</div>
+
+<script>
+var BTC_WALLET = 'bc1q44mawpd7dh3jyxt650nl5jcrwluzd7lrvt9fem';
+var btcProducts = {
+  'training_scroll': { name: 'The Training Scroll', price: '$49.99' },
+  'nutrition_scroll': { name: 'The Nutrition Scroll', price: '$49.99' },
+  'peptide_scroll':  { name: 'The Peptide Scroll',  price: '$49.99' },
+  'spartan_bundle':  { name: 'Spartan Bundle',      price: '$129.99' }
+};
+
+function openBtcModal(productKey) {
+  var product = btcProducts[productKey];
+  if (!product) return;
+  document.getElementById('btcProductName').textContent = product.name;
+  document.getElementById('btcPrice').textContent = '\u20bf ' + product.price;
+  document.getElementById('btcWallet').textContent = BTC_WALLET;
+  document.getElementById('btcCopyBtn').textContent = 'COPY ADDRESS';
+  document.getElementById('btcModal').style.display = 'flex';
+}
+
+function closeBtcModal() {
+  document.getElementById('btcModal').style.display = 'none';
+}
+
+function copyBtcAddress() {
+  navigator.clipboard.writeText(BTC_WALLET).then(function() {
+    var btn = document.getElementById('btcCopyBtn');
+    btn.textContent = '\u2713 COPIED';
+    setTimeout(function() { btn.textContent = 'COPY ADDRESS'; }, 2000);
+  });
+}
+
+document.getElementById('btcModal').addEventListener('click', function(e) {
+  if (e.target === this) closeBtcModal();
+});
 </script>
 
 </body>
