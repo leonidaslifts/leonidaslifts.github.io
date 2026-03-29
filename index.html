@@ -26,8 +26,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&display=swap" rel="stylesheet">
 
-<!-- PHASE 2: Change 7 — Stripe script in head -->
-<script src="https://js.stripe.com/v3/"></script>
+<!-- Stripe payments handled via Payment Links — no frontend JS needed -->
 
 <style>
 /* ═══════════════════════════════════════════
@@ -1731,7 +1730,7 @@ main, footer {
             <span class="scroll-icon" aria-hidden="true">⚔</span>
             <h3 class="scroll-name">Spartan Bundle</h3>
             <p class="scroll-tagline">All three scrolls. The complete arsenal.</p>
-            <p class="scroll-prices"><strong>$150</strong> &nbsp;/&nbsp; ₿ <strong>$129.99</strong></p>
+            <p class="scroll-prices"><strong>$149.99</strong> &nbsp;/&nbsp; ₿ <strong>$129.99</strong></p>
             <span class="scroll-cta" role="button" tabindex="0" aria-label="Claim Spartan Bundle">CLAIM BUNDLE</span>
           </div>
           <div class="scroll-roll-bottom" aria-hidden="true"></div>
@@ -1976,15 +1975,13 @@ var API_BASE = '';  // Email capture handled via Stripe customer creation
 
 // Stripe Payment Links (direct checkout — no backend needed)
 var PAYMENT_LINKS = {
-  'THE TRAINING SCROLL': 'https://buy.stripe.com/test_5kQ7sKgXVeNcd3E2mH43S01',
-  'THE NUTRITION SCROLL': 'https://buy.stripe.com/test_14AaEWgXV9sS0gSgdx43S03',
-  'THE PEPTIDE SCROLL': 'https://buy.stripe.com/test_eVq28qgXV7kKaVwgdx43S05',
-  'SPARTAN BUNDLE': 'https://buy.stripe.com/test_bJeaEWfTR9sS9Rsf9t43S07'
+  'THE TRAINING SCROLL': 'https://buy.stripe.com/test_3cI3cu375gVkaVw3qL43S08',
+  'THE NUTRITION SCROLL': 'https://buy.stripe.com/test_bJe5kC231bB00gS7H143S09',
+  'THE PEPTIDE SCROLL': 'https://buy.stripe.com/test_6oUbJ0gXVeNc4x8f9t43S0b',
+  'SPARTAN BUNDLE': 'https://buy.stripe.com/test_fZu14m0YX7kKfbM5yT43S0d'
 };
 
-/* PHASE 2: Change 7 — Stripe + BTC payment config */
-// Replace with your Stripe publishable key
-const STRIPE_PUBLISHABLE_KEY = 'pk_test_51T9wFnCIZKWlU2wBojxkmc4cLBCmftMp1qFrL5iGhguL7ByTHVxfwndrg6emjMb6GURq2W5LTm2spdhqyAxQFvgI00TkeyGCgW';
+/* Stripe Payment Links handle checkout directly — no publishable key needed in frontend */
 // Primary wallet — receives 95% of BTC payments
 const BTC_WALLET_ADDRESS = 'bc1q_YOUR_WALLET_ADDRESS';
 // Treasury wallet — receives 5% of all revenue (Insider Intelligence)
@@ -2101,7 +2098,7 @@ const scrollData = {
   bundle: {
     icon: '⚔',
     name: 'SPARTAN BUNDLE',
-    usd: '$150',
+    usd: '$149.99',
     btc: '₿ $129.99',
     color: '#C9A84C'
   }
@@ -2266,6 +2263,37 @@ document.querySelectorAll('.scroll-cta').forEach(function(el) {
 });
 </script>
 
+<!-- Post-purchase confirmation handler -->
+<script>
+(function() {
+  var params = new URLSearchParams(window.location.search);
+  if (params.get('purchase') === 'success') {
+    var productKey = params.get('product') || '';
+    var productNames = {
+      'training_scroll': 'The Training Scroll',
+      'nutrition_scroll': 'The Nutrition Scroll',
+      'peptide_scroll': 'The Peptide Scroll',
+      'spartan_bundle': 'Spartan Bundle'
+    };
+    var productName = productNames[productKey] || 'Your Scroll';
+    
+    var overlay = document.createElement('div');
+    overlay.style.cssText = 'position:fixed;inset:0;background:rgba(6,5,4,0.95);display:flex;align-items:center;justify-content:center;z-index:10000;';
+    
+    overlay.innerHTML = '<div style="text-align:center;max-width:480px;padding:40px;font-family:Cormorant Garamond,Georgia,serif;">'
+      + '<div style="font-size:64px;margin-bottom:16px;">\u2694\uFE0F</div>'
+      + '<h2 style="color:#C9A84C;font-family:Cinzel,serif;font-size:24px;letter-spacing:3px;margin-bottom:16px;">SCROLL CLAIMED</h2>'
+      + '<p style="color:#EDE5D0;font-size:18px;line-height:1.6;margin-bottom:8px;"><strong style="color:#C9A84C;">' + productName + '</strong> is yours.</p>'
+      + '<p style="color:#8A8070;font-size:15px;line-height:1.6;margin-bottom:32px;">Check your email \u2014 your PDF will arrive within minutes.<br>If you don\'t see it, check your spam folder.</p>'
+      + '<div style="border-top:1px solid #2A2418;padding-top:20px;"><a href="https://leonidaslifts.com" style="color:#C9A84C;text-decoration:none;font-size:14px;letter-spacing:2px;font-weight:bold;">\u2190 RETURN TO THE ARMORY</a></div>'
+      + '<p style="color:#5A5548;font-size:11px;letter-spacing:2px;margin-top:24px;">NO STEROIDS \u00B7 NO SHORTCUTS \u00B7 NO EXCUSES</p>'
+      + '</div>';
+    
+    document.body.appendChild(overlay);
+    window.history.replaceState({}, '', window.location.pathname);
+  }
+})();
+</script>
+
 </body>
 </html>
-<!-- v2 -->
