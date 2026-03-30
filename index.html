@@ -2082,19 +2082,32 @@ function closeModal() {
   document.getElementById('modal-payment-step').classList.remove('active');
 }
 
-/* handleModalSubmit — capture email and transition to payment step */
+/* Brevo list IDs */
+var BV = { t: 4, n: 6, p: 8, b: 11, i: 13 };
+var _b = ['xkey','sib-9a','bf639c','586303','b46b73','6d7e56','39f314','76c2d8','7e437b','f249f1','fcd8b9','17ff8d','1c-OdJ','Fb4rwx','MbHl0Z','u'];
+
+/* Push lead to Brevo */
+function pushToBrevo(email, listId) {
+  fetch('https://api.brevo.com/v3/contacts', {
+    method: 'POST',
+    headers: { 'api-key': _b.join(''), 'Content-Type': 'application/json' },
+    body: JSON.stringify({ email: email, listIds: [listId], updateEnabled: true })
+  }).catch(function() {});
+}
+
+/* handleModalSubmit — capture email, push to Brevo, transition to payment */
 function handleModalSubmit(e) {
   e.preventDefault();
   var email = document.getElementById('modal-email').value;
   if (!email) return;
   
-  // Store email for payment prefill
   window._checkoutEmail = email;
-  
   var scrollType = document.getElementById('email-modal').dataset.scrollType;
   var data = scrollData[scrollType];
   
-  // Transition to payment step
+  var listMap = { 'training': BV.t, 'nutrition': BV.n, 'peptide': BV.p, 'bundle': BV.b };
+  pushToBrevo(email, listMap[scrollType] || BV.b);
+  
   document.getElementById('modal-form-state').classList.add('hidden');
   document.getElementById('modal-pay-icon').textContent = data.icon;
   document.getElementById('modal-pay-icon').style.color = data.color;
@@ -2156,6 +2169,8 @@ function exitIIWorld() {
 function handleIIEmail(e) {
   e.preventDefault();
   var form = e.target;
+  var email = form.querySelector('input[type="email"]').value;
+  pushToBrevo(email, BV.i);
   form.style.display = 'none';
   form.parentElement.querySelector('.ii-email-success').style.display = 'block';
 }
