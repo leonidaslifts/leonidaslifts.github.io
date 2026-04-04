@@ -1996,6 +1996,17 @@ main, footer {
           </div>
           <p style="font-family:'Cormorant Garamond',serif;color:#5A5548;font-size:12px;margin:8px 0 0;text-align:center;">Not sure? Most people are a blend. Pick the one closest to your natural build before training.</p>
         </div>
+
+        <!-- Peptide Enhancement Checkbox -->
+        <div style="grid-column:1/-1;margin-top:8px;">
+          <label style="display:flex;align-items:flex-start;gap:10px;cursor:pointer;">
+            <input type="checkbox" id="ffmi-peptide" onchange="calcFFMI()" style="accent-color:#C9A84C;margin-top:3px;width:18px;height:18px;flex-shrink:0;">
+            <div>
+              <span style="font-family:'Cormorant Garamond',serif;color:#EDE5D0;font-size:15px;">Peptide &amp; Supplementation Enhanced</span>
+              <p style="font-family:'Cormorant Garamond',serif;color:#5A5548;font-size:12px;margin:4px 0 0;line-height:1.4;">Check if using GH peptides, GLP-1 agonists, or active fat loss compounds. These support metabolic load and allow a slightly lower caloric floor.</p>
+            </div>
+          </label>
+        </div>
       </div>
 
       <!-- Calculate Button -->
@@ -2137,9 +2148,11 @@ main, footer {
     } else {
       bmr = 10 * weightKg + 6.25 * heightCm - 5 * age - 161;
     }
-    /* Activity multiplier by body type */
-    var activityMult = { ecto: 1.8, meso: 1.725, endo: 1.65 };
-    var tdee = Math.round(bmr * (activityMult[_bodyType] || 1.725));
+    /* Activity multiplier by body type (calibrated for lifters, not cardio athletes) */
+    var activityMult = { ecto: 1.475, meso: 1.4, endo: 1.325 };
+    var tdee = Math.round(bmr * (activityMult[_bodyType] || 1.4));
+    var peptideEnhanced = document.getElementById('ffmi-peptide') && document.getElementById('ffmi-peptide').checked;
+    var peptideMult = peptideEnhanced ? 0.92 : 1.0;
 
     /* Show results */
     if (showResults) {
@@ -2167,28 +2180,28 @@ main, footer {
     }
 
     /* TDEE display */
-    document.getElementById('ffmi-tdee-display').textContent = 'Estimated TDEE (6-day split): ' + tdee.toLocaleString() + ' cal/day · BMR: ' + Math.round(bmr).toLocaleString() + ' cal';
+    document.getElementById('ffmi-tdee-display').textContent = 'Estimated TDEE: ' + tdee.toLocaleString() + ' cal/day · BMR: ' + Math.round(bmr).toLocaleString() + ' cal' + (peptideEnhanced ? ' · Peptide-adjusted (-8%)' : '');
 
     /* Macro cards */
-    /* Macro profiles by body type */
+    /* Macro profiles by body type — ranges account for daily variation */
     var btProfiles = {
       ecto: [
-        { name: 'GAIN', sub: 'Clean Bulk', cal: tdee + 500, protMult: 1.1, fatMult: 0.4, color: '#5BA85B' },
-        { name: 'MAINTAIN', sub: 'Hold Weight', cal: tdee, protMult: 1.1, fatMult: 0.35, color: '#C9A84C' },
-        { name: 'CUT', sub: 'Lose 0.5 lb/wk', cal: tdee - 250, protMult: 1.2, fatMult: 0.3, color: '#dbb95e' },
-        { name: 'CUT', sub: 'Lose 1 lb/wk', cal: tdee - 500, protMult: 1.2, fatMult: 0.25, color: '#D4453A' }
+        { name: 'GAIN', sub: 'Clean Bulk', loOff: 200, hiOff: 500, protMult: 1.1, fatMult: 0.4, color: '#5BA85B' },
+        { name: 'MAINTAIN', sub: 'Hold Weight', loOff: -150, hiOff: 150, protMult: 1.1, fatMult: 0.35, color: '#C9A84C' },
+        { name: 'CUT', sub: 'Lose 0.5 lb/wk', loOff: -400, hiOff: -100, protMult: 1.2, fatMult: 0.3, color: '#dbb95e' },
+        { name: 'CUT', sub: 'Lose 1 lb/wk', loOff: -650, hiOff: -350, protMult: 1.2, fatMult: 0.25, color: '#D4453A' }
       ],
       meso: [
-        { name: 'GAIN', sub: 'Clean Bulk', cal: tdee + 400, protMult: 1.0, fatMult: 0.35, color: '#5BA85B' },
-        { name: 'MAINTAIN', sub: 'Hold Weight', cal: tdee, protMult: 1.0, fatMult: 0.35, color: '#C9A84C' },
-        { name: 'CUT', sub: 'Lose 0.5 lb/wk', cal: tdee - 250, protMult: 1.2, fatMult: 0.3, color: '#dbb95e' },
-        { name: 'CUT', sub: 'Lose 1 lb/wk', cal: tdee - 500, protMult: 1.2, fatMult: 0.25, color: '#D4453A' }
+        { name: 'GAIN', sub: 'Clean Bulk', loOff: 200, hiOff: 500, protMult: 1.0, fatMult: 0.35, color: '#5BA85B' },
+        { name: 'MAINTAIN', sub: 'Hold Weight', loOff: -150, hiOff: 150, protMult: 1.0, fatMult: 0.35, color: '#C9A84C' },
+        { name: 'CUT', sub: 'Lose 0.5 lb/wk', loOff: -400, hiOff: -100, protMult: 1.2, fatMult: 0.3, color: '#dbb95e' },
+        { name: 'CUT', sub: 'Lose 1 lb/wk', loOff: -650, hiOff: -350, protMult: 1.2, fatMult: 0.25, color: '#D4453A' }
       ],
       endo: [
-        { name: 'GAIN', sub: 'Clean Bulk', cal: tdee + 300, protMult: 1.2, fatMult: 0.3, color: '#5BA85B' },
-        { name: 'MAINTAIN', sub: 'Hold Weight', cal: tdee, protMult: 1.2, fatMult: 0.3, color: '#C9A84C' },
-        { name: 'CUT', sub: 'Lose 0.5 lb/wk', cal: tdee - 300, protMult: 1.2, fatMult: 0.3, color: '#dbb95e' },
-        { name: 'CUT', sub: 'Lose 1 lb/wk', cal: tdee - 550, protMult: 1.2, fatMult: 0.25, color: '#D4453A' }
+        { name: 'GAIN', sub: 'Clean Bulk', loOff: 200, hiOff: 500, protMult: 1.2, fatMult: 0.3, color: '#5BA85B' },
+        { name: 'MAINTAIN', sub: 'Hold Weight', loOff: -150, hiOff: 150, protMult: 1.2, fatMult: 0.3, color: '#C9A84C' },
+        { name: 'CUT', sub: 'Lose 0.5 lb/wk', loOff: -400, hiOff: -100, protMult: 1.2, fatMult: 0.3, color: '#dbb95e' },
+        { name: 'CUT', sub: 'Lose 1 lb/wk', loOff: -650, hiOff: -350, protMult: 1.2, fatMult: 0.25, color: '#D4453A' }
       ]
     };
     var modes = btProfiles[_bodyType] || btProfiles.meso;
@@ -2196,17 +2209,20 @@ main, footer {
     var cardsHtml = '';
     for (var i = 0; i < modes.length; i++) {
       var m = modes[i];
+      var calLo = Math.round((tdee + m.loOff) * peptideMult);
+      var calHi = Math.round((tdee + m.hiOff) * peptideMult);
+      var calMid = Math.round((calLo + calHi) / 2);
       var prot = Math.round(m.protMult * weightLbs);
       var fat = Math.round(m.fatMult * weightLbs);
       var protCal = prot * 4;
       var fatCal = fat * 9;
-      var carbCal = Math.max(0, m.cal - protCal - fatCal);
+      var carbCal = Math.max(0, calMid - protCal - fatCal);
       var carbs = Math.round(carbCal / 4);
 
       cardsHtml += '<div style="background:#0a0908;border:1px solid rgba(201,168,76,0.1);border-radius:6px;padding:16px;text-align:center;border-top:3px solid ' + m.color + ';">'
         + '<p style="font-family:\'Cinzel\',serif;color:' + m.color + ';font-size:12px;letter-spacing:2px;margin:0 0 2px;">' + m.name + '</p>'
         + '<p style="font-family:\'Cormorant Garamond\',serif;color:#8A8070;font-size:12px;margin:0 0 12px;">' + m.sub + '</p>'
-        + '<p style="font-family:\'Cormorant Garamond\',serif;color:#EDE5D0;font-size:1.8rem;font-weight:700;margin:0;">' + m.cal.toLocaleString() + '</p>'
+        + '<p style="font-family:\'Cormorant Garamond\',serif;color:#EDE5D0;font-size:1.5rem;font-weight:700;margin:0;line-height:1.2;">' + calLo.toLocaleString() + ' <span style="color:#5A5548;font-size:0.9rem;">-</span> ' + calHi.toLocaleString() + '</p>'
         + '<p style="font-family:\'Cormorant Garamond\',serif;color:#8A8070;font-size:12px;margin:0 0 12px;">calories/day</p>'
         + '<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:4px;font-family:\'Cormorant Garamond\',serif;font-size:13px;">'
         + '<div><span style="color:#C9A84C;font-weight:700;">' + prot + 'g</span><br><span style="color:#5A5548;">protein</span></div>'
