@@ -1893,6 +1893,264 @@ main, footer {
 </div>
 
 <!-- ═══════════════════════════════════════
+     FFMI CALCULATOR + CALORIC GUIDE
+     ═══════════════════════════════════════ -->
+<section id="ffmi-calculator" style="padding:5rem 1.5rem;background:#0a0908;border-top:1px solid rgba(201,168,76,0.15);">
+  <div style="max-width:800px;margin:0 auto;">
+    <div style="text-align:center;margin-bottom:3rem;">
+      <h2 style="font-family:'Cinzel',serif;color:#C9A84C;font-size:clamp(1.4rem,3vw,2rem);letter-spacing:4px;margin-bottom:0.5rem;">KNOW YOUR NUMBERS</h2>
+      <p style="font-family:'Cormorant Garamond',serif;color:#8A8070;font-size:1.1rem;letter-spacing:1px;">Fat-Free Mass Index &amp; Caloric Blueprint</p>
+    </div>
+
+    <!-- INPUTS -->
+    <div style="background:#111110;border:1px solid rgba(201,168,76,0.12);border-radius:8px;padding:2rem;margin-bottom:2rem;">
+      <!-- Unit Toggle -->
+      <div style="display:flex;justify-content:center;gap:1rem;margin-bottom:1.5rem;">
+        <button id="ffmi-imperial" onclick="setFFMIUnits('imperial')" style="background:#C9A84C;color:#0a0908;font-family:'Cinzel',serif;font-size:11px;letter-spacing:2px;padding:8px 20px;border:1px solid #C9A84C;border-radius:4px;cursor:pointer;font-weight:700;">IMPERIAL</button>
+        <button id="ffmi-metric" onclick="setFFMIUnits('metric')" style="background:transparent;color:#C9A84C;font-family:'Cinzel',serif;font-size:11px;letter-spacing:2px;padding:8px 20px;border:1px solid rgba(201,168,76,0.3);border-radius:4px;cursor:pointer;">METRIC</button>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;" id="ffmi-inputs-grid">
+        <!-- Height -->
+        <div id="ffmi-height-imperial">
+          <label style="font-family:'Cormorant Garamond',serif;color:#8A8070;font-size:13px;letter-spacing:1px;display:block;margin-bottom:6px;">HEIGHT</label>
+          <div style="display:flex;gap:8px;">
+            <input type="number" id="ffmi-feet" placeholder="5" min="4" max="7" style="flex:1;background:#1a1918;border:1px solid rgba(201,168,76,0.15);border-radius:4px;padding:12px;color:#EDE5D0;font-family:'Cormorant Garamond',serif;font-size:16px;text-align:center;" oninput="calcFFMI()">
+            <span style="color:#5A5548;align-self:center;font-size:13px;">ft</span>
+            <input type="number" id="ffmi-inches" placeholder="10" min="0" max="11" style="flex:1;background:#1a1918;border:1px solid rgba(201,168,76,0.15);border-radius:4px;padding:12px;color:#EDE5D0;font-family:'Cormorant Garamond',serif;font-size:16px;text-align:center;" oninput="calcFFMI()">
+            <span style="color:#5A5548;align-self:center;font-size:13px;">in</span>
+          </div>
+        </div>
+        <div id="ffmi-height-metric" style="display:none;">
+          <label style="font-family:'Cormorant Garamond',serif;color:#8A8070;font-size:13px;letter-spacing:1px;display:block;margin-bottom:6px;">HEIGHT (cm)</label>
+          <input type="number" id="ffmi-cm" placeholder="178" min="120" max="230" style="width:100%;background:#1a1918;border:1px solid rgba(201,168,76,0.15);border-radius:4px;padding:12px;color:#EDE5D0;font-family:'Cormorant Garamond',serif;font-size:16px;text-align:center;box-sizing:border-box;" oninput="calcFFMI()">
+        </div>
+
+        <!-- Weight -->
+        <div>
+          <label style="font-family:'Cormorant Garamond',serif;color:#8A8070;font-size:13px;letter-spacing:1px;display:block;margin-bottom:6px;" id="ffmi-weight-label">WEIGHT (lbs)</label>
+          <input type="number" id="ffmi-weight" placeholder="200" min="80" max="500" style="width:100%;background:#1a1918;border:1px solid rgba(201,168,76,0.15);border-radius:4px;padding:12px;color:#EDE5D0;font-family:'Cormorant Garamond',serif;font-size:16px;text-align:center;box-sizing:border-box;" oninput="calcFFMI()">
+        </div>
+
+        <!-- Body Fat % -->
+        <div style="grid-column:1/-1;">
+          <label style="font-family:'Cormorant Garamond',serif;color:#8A8070;font-size:13px;letter-spacing:1px;display:block;margin-bottom:6px;">BODY FAT % <span style="color:#5A5548;font-size:11px;">(optional)</span></label>
+          <input type="number" id="ffmi-bf" placeholder="15" min="3" max="50" step="0.5" style="width:100%;max-width:200px;background:#1a1918;border:1px solid rgba(201,168,76,0.15);border-radius:4px;padding:12px;color:#EDE5D0;font-family:'Cormorant Garamond',serif;font-size:16px;text-align:center;box-sizing:border-box;" oninput="calcFFMI()">
+          <p id="ffmi-bf-hint" style="display:none;margin:8px 0 0;font-family:'Cormorant Garamond',serif;color:#8A8070;font-size:14px;">Don't know your body fat %? <a href="#" onclick="openModal('nutrition');return false;" style="color:#C9A84C;text-decoration:none;font-weight:700;">Start with our Nutrition Scroll</a> for a guided approach.</p>
+        </div>
+
+        <!-- Gender for BMR -->
+        <div style="grid-column:1/-1;">
+          <label style="font-family:'Cormorant Garamond',serif;color:#8A8070;font-size:13px;letter-spacing:1px;display:block;margin-bottom:6px;">BIOLOGICAL SEX <span style="color:#5A5548;font-size:11px;">(for BMR calculation)</span></label>
+          <div style="display:flex;gap:1rem;">
+            <label style="color:#EDE5D0;font-family:'Cormorant Garamond',serif;cursor:pointer;font-size:15px;"><input type="radio" name="ffmi-sex" value="male" checked onchange="calcFFMI()" style="accent-color:#C9A84C;margin-right:6px;">Male</label>
+            <label style="color:#EDE5D0;font-family:'Cormorant Garamond',serif;cursor:pointer;font-size:15px;"><input type="radio" name="ffmi-sex" value="female" onchange="calcFFMI()" style="accent-color:#C9A84C;margin-right:6px;">Female</label>
+          </div>
+        </div>
+
+        <!-- Age for BMR -->
+        <div style="grid-column:1/-1;">
+          <label style="font-family:'Cormorant Garamond',serif;color:#8A8070;font-size:13px;letter-spacing:1px;display:block;margin-bottom:6px;">AGE</label>
+          <input type="number" id="ffmi-age" placeholder="28" min="16" max="80" style="width:100%;max-width:200px;background:#1a1918;border:1px solid rgba(201,168,76,0.15);border-radius:4px;padding:12px;color:#EDE5D0;font-family:'Cormorant Garamond',serif;font-size:16px;text-align:center;box-sizing:border-box;" oninput="calcFFMI()">
+        </div>
+      </div>
+
+      <!-- Calculate Button -->
+      <div style="text-align:center;margin-top:1.5rem;">
+        <button onclick="calcFFMI(true)" style="background:#C9A84C;color:#0a0908;font-family:'Cinzel',serif;font-size:13px;letter-spacing:3px;padding:14px 40px;border:none;border-radius:4px;cursor:pointer;font-weight:700;min-height:44px;">CALCULATE</button>
+      </div>
+    </div>
+
+    <!-- RESULTS (hidden until calculated) -->
+    <div id="ffmi-results" style="display:none;">
+
+      <!-- FFMI Score -->
+      <div style="background:#111110;border:1px solid rgba(201,168,76,0.12);border-radius:8px;padding:2rem;margin-bottom:1.5rem;text-align:center;">
+        <p style="font-family:'Cinzel',serif;color:#8A8070;font-size:11px;letter-spacing:3px;margin:0 0 8px;">YOUR FAT-FREE MASS INDEX</p>
+        <p id="ffmi-score" style="font-family:'Cormorant Garamond',serif;color:#C9A84C;font-size:3.5rem;font-weight:700;margin:0;line-height:1;"></p>
+        <p id="ffmi-label" style="font-family:'Cormorant Garamond',serif;color:#EDE5D0;font-size:1.1rem;margin:8px 0 16px;"></p>
+
+        <!-- Visual Scale -->
+        <div style="max-width:500px;margin:0 auto;">
+          <div style="position:relative;height:8px;background:#1a1918;border-radius:4px;overflow:hidden;">
+            <div id="ffmi-bar" style="height:100%;border-radius:4px;transition:width 0.6s ease;"></div>
+          </div>
+          <div style="display:flex;justify-content:space-between;margin-top:6px;">
+            <span style="font-size:10px;color:#5A5548;font-family:'Cormorant Garamond',serif;">Below Avg</span>
+            <span style="font-size:10px;color:#5A5548;font-family:'Cormorant Garamond',serif;">Average</span>
+            <span style="font-size:10px;color:#5A5548;font-family:'Cormorant Garamond',serif;">Advanced</span>
+            <span style="font-size:10px;color:#5A5548;font-family:'Cormorant Garamond',serif;">Elite</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Caloric Guide -->
+      <div style="background:#111110;border:1px solid rgba(201,168,76,0.12);border-radius:8px;padding:2rem;margin-bottom:1.5rem;">
+        <p style="font-family:'Cinzel',serif;color:#C9A84C;font-size:12px;letter-spacing:3px;text-align:center;margin:0 0 4px;">YOUR CALORIC BLUEPRINT</p>
+        <p id="ffmi-tdee-display" style="font-family:'Cormorant Garamond',serif;color:#8A8070;font-size:14px;text-align:center;margin:0 0 1.5rem;"></p>
+
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px;" id="ffmi-macro-cards">
+          <!-- Cards injected by JS -->
+        </div>
+      </div>
+
+      <!-- CTA -->
+      <div style="background:linear-gradient(135deg,#111110,#1a1510);border:1px solid rgba(201,168,76,0.2);border-radius:8px;padding:2rem;text-align:center;margin-bottom:1.5rem;">
+        <p style="font-family:'Cormorant Garamond',serif;color:#EDE5D0;font-size:1.05rem;line-height:1.6;margin:0 0 1.2rem;">Get the complete system — macros, meal timing, supplement stack, and 18 years of nutrition research.</p>
+        <button onclick="openModal('nutrition')" style="background:#C9A84C;color:#0a0908;font-family:'Cinzel',serif;font-size:12px;letter-spacing:2px;padding:14px 32px;border:none;border-radius:4px;cursor:pointer;font-weight:700;min-height:44px;">CLAIM THE NUTRITION SCROLL</button>
+      </div>
+
+      <!-- Disclaimer -->
+      <p style="font-family:'Cormorant Garamond',serif;color:#5A5548;font-size:12px;text-align:center;line-height:1.5;margin:0;">These are estimates. Individual results vary based on metabolism, activity level, and genetics. This is not medical advice.</p>
+    </div>
+  </div>
+</section>
+
+<script>
+(function(){
+  var _ffmiUnit = 'imperial';
+
+  window.setFFMIUnits = function(unit) {
+    _ffmiUnit = unit;
+    var impBtn = document.getElementById('ffmi-imperial');
+    var metBtn = document.getElementById('ffmi-metric');
+    var impH = document.getElementById('ffmi-height-imperial');
+    var metH = document.getElementById('ffmi-height-metric');
+    var wLabel = document.getElementById('ffmi-weight-label');
+
+    if (unit === 'metric') {
+      metBtn.style.background = '#C9A84C'; metBtn.style.color = '#0a0908'; metBtn.style.fontWeight = '700'; metBtn.style.borderColor = '#C9A84C';
+      impBtn.style.background = 'transparent'; impBtn.style.color = '#C9A84C'; impBtn.style.fontWeight = 'normal'; impBtn.style.borderColor = 'rgba(201,168,76,0.3)';
+      impH.style.display = 'none'; metH.style.display = 'block';
+      wLabel.textContent = 'WEIGHT (kg)';
+    } else {
+      impBtn.style.background = '#C9A84C'; impBtn.style.color = '#0a0908'; impBtn.style.fontWeight = '700'; impBtn.style.borderColor = '#C9A84C';
+      metBtn.style.background = 'transparent'; metBtn.style.color = '#C9A84C'; metBtn.style.fontWeight = 'normal'; metBtn.style.borderColor = 'rgba(201,168,76,0.3)';
+      impH.style.display = 'block'; metH.style.display = 'none';
+      wLabel.textContent = 'WEIGHT (lbs)';
+    }
+    calcFFMI();
+  };
+
+  window.calcFFMI = function(showResults) {
+    var heightCm, weightKg, weightLbs, bf, age, sex;
+    var w = parseFloat(document.getElementById('ffmi-weight').value);
+    bf = parseFloat(document.getElementById('ffmi-bf').value);
+    age = parseFloat(document.getElementById('ffmi-age').value);
+    sex = document.querySelector('input[name="ffmi-sex"]:checked').value;
+
+    if (_ffmiUnit === 'imperial') {
+      var ft = parseFloat(document.getElementById('ffmi-feet').value) || 0;
+      var inch = parseFloat(document.getElementById('ffmi-inches').value) || 0;
+      heightCm = (ft * 12 + inch) * 2.54;
+      weightKg = w * 0.453592;
+      weightLbs = w;
+    } else {
+      heightCm = parseFloat(document.getElementById('ffmi-cm').value);
+      weightKg = w;
+      weightLbs = w * 2.20462;
+    }
+
+    /* Body fat hint */
+    var bfHint = document.getElementById('ffmi-bf-hint');
+    if (!bf && bf !== 0) {
+      bfHint.style.display = 'block';
+    } else {
+      bfHint.style.display = 'none';
+    }
+
+    if (!heightCm || !weightKg || heightCm < 100 || weightKg < 30) return;
+    if (!age) age = 28; /* default */
+
+    var heightM = heightCm / 100;
+
+    /* FFMI calculation (requires body fat %) */
+    var ffmi = null, adjFfmi = null, ffmiLabel = '', ffmiColor = '';
+    if (bf > 0 && bf < 50) {
+      var leanMass = weightKg * (1 - bf / 100);
+      ffmi = leanMass / (heightM * heightM);
+      adjFfmi = ffmi + 6.1 * (1.8 - heightM); /* normalized to 1.8m */
+
+      if (adjFfmi < 18) { ffmiLabel = 'Below Average'; ffmiColor = '#8A8070'; }
+      else if (adjFfmi < 20) { ffmiLabel = 'Average'; ffmiColor = '#a08860'; }
+      else if (adjFfmi < 22) { ffmiLabel = 'Above Average'; ffmiColor = '#C9A84C'; }
+      else if (adjFfmi < 25) { ffmiLabel = 'Advanced — Natural limit approaching'; ffmiColor = '#dbb95e'; }
+      else { ffmiLabel = 'Elite / Likely Enhanced'; ffmiColor = '#D4453A'; }
+    }
+
+    /* Mifflin-St Jeor BMR */
+    var bmr;
+    if (sex === 'male') {
+      bmr = 10 * weightKg + 6.25 * heightCm - 5 * age + 5;
+    } else {
+      bmr = 10 * weightKg + 6.25 * heightCm - 5 * age - 161;
+    }
+    var tdee = Math.round(bmr * 1.725); /* 6-day training split */
+
+    /* Show results */
+    if (showResults) {
+      document.getElementById('ffmi-results').style.display = 'block';
+      document.getElementById('ffmi-results').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+    if (document.getElementById('ffmi-results').style.display === 'none') return;
+
+    /* FFMI display */
+    if (adjFfmi !== null) {
+      document.getElementById('ffmi-score').textContent = adjFfmi.toFixed(1);
+      document.getElementById('ffmi-score').style.color = ffmiColor;
+      document.getElementById('ffmi-label').textContent = ffmiLabel;
+      document.getElementById('ffmi-label').style.color = ffmiColor;
+      var pct = Math.min(100, Math.max(5, ((adjFfmi - 14) / 16) * 100));
+      var bar = document.getElementById('ffmi-bar');
+      bar.style.width = pct + '%';
+      bar.style.background = 'linear-gradient(90deg, #8A8070, ' + ffmiColor + ')';
+    } else {
+      document.getElementById('ffmi-score').textContent = '—';
+      document.getElementById('ffmi-score').style.color = '#5A5548';
+      document.getElementById('ffmi-label').textContent = 'Enter body fat % to see your FFMI';
+      document.getElementById('ffmi-label').style.color = '#5A5548';
+      document.getElementById('ffmi-bar').style.width = '0%';
+    }
+
+    /* TDEE display */
+    document.getElementById('ffmi-tdee-display').textContent = 'Estimated TDEE (6-day split): ' + tdee.toLocaleString() + ' cal/day · BMR: ' + Math.round(bmr).toLocaleString() + ' cal';
+
+    /* Macro cards */
+    var modes = [
+      { name: 'GAIN', sub: 'Clean Bulk', cal: tdee + 400, protMult: 1.0, fatMult: 0.4, color: '#5BA85B' },
+      { name: 'MAINTAIN', sub: 'Hold Weight', cal: tdee, protMult: 1.0, fatMult: 0.35, color: '#C9A84C' },
+      { name: 'CUT', sub: 'Lose 0.5 lb/wk', cal: tdee - 250, protMult: 1.2, fatMult: 0.3, color: '#dbb95e' },
+      { name: 'CUT', sub: 'Lose 1 lb/wk', cal: tdee - 500, protMult: 1.2, fatMult: 0.25, color: '#D4453A' }
+    ];
+
+    var cardsHtml = '';
+    for (var i = 0; i < modes.length; i++) {
+      var m = modes[i];
+      var prot = Math.round(m.protMult * weightLbs);
+      var fat = Math.round(m.fatMult * weightLbs);
+      var protCal = prot * 4;
+      var fatCal = fat * 9;
+      var carbCal = Math.max(0, m.cal - protCal - fatCal);
+      var carbs = Math.round(carbCal / 4);
+
+      cardsHtml += '<div style="background:#0a0908;border:1px solid rgba(201,168,76,0.1);border-radius:6px;padding:16px;text-align:center;border-top:3px solid ' + m.color + ';">'
+        + '<p style="font-family:\'Cinzel\',serif;color:' + m.color + ';font-size:12px;letter-spacing:2px;margin:0 0 2px;">' + m.name + '</p>'
+        + '<p style="font-family:\'Cormorant Garamond\',serif;color:#8A8070;font-size:12px;margin:0 0 12px;">' + m.sub + '</p>'
+        + '<p style="font-family:\'Cormorant Garamond\',serif;color:#EDE5D0;font-size:1.8rem;font-weight:700;margin:0;">' + m.cal.toLocaleString() + '</p>'
+        + '<p style="font-family:\'Cormorant Garamond\',serif;color:#8A8070;font-size:12px;margin:0 0 12px;">calories/day</p>'
+        + '<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:4px;font-family:\'Cormorant Garamond\',serif;font-size:13px;">'
+        + '<div><span style="color:#C9A84C;font-weight:700;">' + prot + 'g</span><br><span style="color:#5A5548;">protein</span></div>'
+        + '<div><span style="color:#C9A84C;font-weight:700;">' + carbs + 'g</span><br><span style="color:#5A5548;">carbs</span></div>'
+        + '<div><span style="color:#C9A84C;font-weight:700;">' + fat + 'g</span><br><span style="color:#5A5548;">fats</span></div>'
+        + '</div></div>';
+    }
+    document.getElementById('ffmi-macro-cards').innerHTML = cardsHtml;
+  };
+})();
+</script>
+
+
+<!-- ═══════════════════════════════════════
      FOOTER
      ═══════════════════════════════════════ -->
 <footer class="site-footer">
