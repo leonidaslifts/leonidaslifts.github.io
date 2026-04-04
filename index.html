@@ -1953,6 +1953,49 @@ main, footer {
           <label style="font-family:'Cormorant Garamond',serif;color:#8A8070;font-size:13px;letter-spacing:1px;display:block;margin-bottom:6px;">AGE</label>
           <input type="number" id="ffmi-age" placeholder="28" min="16" max="80" style="width:100%;max-width:200px;background:#1a1918;border:1px solid rgba(201,168,76,0.15);border-radius:4px;padding:12px;color:#EDE5D0;font-family:'Cormorant Garamond',serif;font-size:16px;text-align:center;box-sizing:border-box;" oninput="calcFFMI()">
         </div>
+
+        <!-- Body Type Selector -->
+        <div style="grid-column:1/-1;margin-top:8px;">
+          <label style="font-family:'Cormorant Garamond',serif;color:#8A8070;font-size:13px;letter-spacing:1px;display:block;margin-bottom:10px;">BODY TYPE</label>
+          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;" id="ffmi-bodytype-grid">
+            <button type="button" onclick="setBodyType('ecto')" id="bt-ecto" class="ffmi-bt-btn" style="background:#1a1918;border:1px solid rgba(201,168,76,0.15);border-radius:6px;padding:14px 8px;cursor:pointer;text-align:center;transition:border-color 0.2s;">
+              <svg width="40" height="64" viewBox="0 0 40 64" fill="none" style="display:block;margin:0 auto 8px;">
+                <circle cx="20" cy="8" r="6" stroke="#C9A84C" stroke-width="1.5" fill="none"/>
+                <line x1="20" y1="14" x2="20" y2="38" stroke="#C9A84C" stroke-width="1.5"/>
+                <line x1="10" y1="22" x2="30" y2="22" stroke="#C9A84C" stroke-width="1.5"/>
+                <line x1="20" y1="38" x2="12" y2="58" stroke="#C9A84C" stroke-width="1.5"/>
+                <line x1="20" y1="38" x2="28" y2="58" stroke="#C9A84C" stroke-width="1.5"/>
+              </svg>
+              <span style="font-family:'Cinzel',serif;color:#C9A84C;font-size:11px;letter-spacing:1px;display:block;">ECTOMORPH</span>
+              <span style="font-family:'Cormorant Garamond',serif;color:#5A5548;font-size:11px;display:block;margin-top:4px;line-height:1.3;">Naturally thin<br>Fast metabolism</span>
+            </button>
+            <button type="button" onclick="setBodyType('meso')" id="bt-meso" class="ffmi-bt-btn" style="background:#1a1918;border:2px solid #C9A84C;border-radius:6px;padding:14px 8px;cursor:pointer;text-align:center;transition:border-color 0.2s;">
+              <svg width="40" height="64" viewBox="0 0 40 64" fill="none" style="display:block;margin:0 auto 8px;">
+                <circle cx="20" cy="8" r="6" stroke="#C9A84C" stroke-width="1.5" fill="none"/>
+                <path d="M16 14 L14 24 L12 38 L16 38 L18 28 L22 28 L24 38 L28 38 L26 24 L24 14 Z" stroke="#C9A84C" stroke-width="1.5" fill="none"/>
+                <line x1="8" y1="22" x2="14" y2="24" stroke="#C9A84C" stroke-width="1.5"/>
+                <line x1="26" y1="24" x2="32" y2="22" stroke="#C9A84C" stroke-width="1.5"/>
+                <line x1="16" y1="38" x2="10" y2="58" stroke="#C9A84C" stroke-width="1.5"/>
+                <line x1="24" y1="38" x2="30" y2="58" stroke="#C9A84C" stroke-width="1.5"/>
+              </svg>
+              <span style="font-family:'Cinzel',serif;color:#C9A84C;font-size:11px;letter-spacing:1px;display:block;">MESOMORPH</span>
+              <span style="font-family:'Cormorant Garamond',serif;color:#5A5548;font-size:11px;display:block;margin-top:4px;line-height:1.3;">Athletic build<br>Gains easily</span>
+            </button>
+            <button type="button" onclick="setBodyType('endo')" id="bt-endo" class="ffmi-bt-btn" style="background:#1a1918;border:1px solid rgba(201,168,76,0.15);border-radius:6px;padding:14px 8px;cursor:pointer;text-align:center;transition:border-color 0.2s;">
+              <svg width="40" height="64" viewBox="0 0 40 64" fill="none" style="display:block;margin:0 auto 8px;">
+                <circle cx="20" cy="8" r="6" stroke="#C9A84C" stroke-width="1.5" fill="none"/>
+                <ellipse cx="20" cy="28" rx="12" ry="14" stroke="#C9A84C" stroke-width="1.5" fill="none"/>
+                <line x1="6" y1="24" x2="10" y2="20" stroke="#C9A84C" stroke-width="1.5"/>
+                <line x1="30" y1="20" x2="34" y2="24" stroke="#C9A84C" stroke-width="1.5"/>
+                <line x1="14" y1="40" x2="8" y2="58" stroke="#C9A84C" stroke-width="1.5"/>
+                <line x1="26" y1="40" x2="32" y2="58" stroke="#C9A84C" stroke-width="1.5"/>
+              </svg>
+              <span style="font-family:'Cinzel',serif;color:#C9A84C;font-size:11px;letter-spacing:1px;display:block;">ENDOMORPH</span>
+              <span style="font-family:'Cormorant Garamond',serif;color:#5A5548;font-size:11px;display:block;margin-top:4px;line-height:1.3;">Stocky build<br>Stores fat easily</span>
+            </button>
+          </div>
+          <p style="font-family:'Cormorant Garamond',serif;color:#5A5548;font-size:12px;margin:8px 0 0;text-align:center;">Not sure? Most people are a blend. Pick the one closest to your natural build before training.</p>
+        </div>
       </div>
 
       <!-- Calculate Button -->
@@ -2009,6 +2052,15 @@ main, footer {
 <script>
 (function(){
   var _ffmiUnit = 'imperial';
+  var _bodyType = 'meso';
+
+  window.setBodyType = function(type) {
+    _bodyType = type;
+    var btns = document.querySelectorAll('.ffmi-bt-btn');
+    btns.forEach(function(b) { b.style.border = '1px solid rgba(201,168,76,0.15)'; });
+    document.getElementById('bt-' + type).style.border = '2px solid #C9A84C';
+    calcFFMI();
+  };
 
   window.setFFMIUnits = function(unit) {
     _ffmiUnit = unit;
@@ -2085,7 +2137,9 @@ main, footer {
     } else {
       bmr = 10 * weightKg + 6.25 * heightCm - 5 * age - 161;
     }
-    var tdee = Math.round(bmr * 1.725); /* 6-day training split */
+    /* Activity multiplier by body type */
+    var activityMult = { ecto: 1.8, meso: 1.725, endo: 1.65 };
+    var tdee = Math.round(bmr * (activityMult[_bodyType] || 1.725));
 
     /* Show results */
     if (showResults) {
@@ -2116,12 +2170,28 @@ main, footer {
     document.getElementById('ffmi-tdee-display').textContent = 'Estimated TDEE (6-day split): ' + tdee.toLocaleString() + ' cal/day · BMR: ' + Math.round(bmr).toLocaleString() + ' cal';
 
     /* Macro cards */
-    var modes = [
-      { name: 'GAIN', sub: 'Clean Bulk', cal: tdee + 400, protMult: 1.0, fatMult: 0.4, color: '#5BA85B' },
-      { name: 'MAINTAIN', sub: 'Hold Weight', cal: tdee, protMult: 1.0, fatMult: 0.35, color: '#C9A84C' },
-      { name: 'CUT', sub: 'Lose 0.5 lb/wk', cal: tdee - 250, protMult: 1.2, fatMult: 0.3, color: '#dbb95e' },
-      { name: 'CUT', sub: 'Lose 1 lb/wk', cal: tdee - 500, protMult: 1.2, fatMult: 0.25, color: '#D4453A' }
-    ];
+    /* Macro profiles by body type */
+    var btProfiles = {
+      ecto: [
+        { name: 'GAIN', sub: 'Clean Bulk', cal: tdee + 500, protMult: 1.1, fatMult: 0.4, color: '#5BA85B' },
+        { name: 'MAINTAIN', sub: 'Hold Weight', cal: tdee, protMult: 1.1, fatMult: 0.35, color: '#C9A84C' },
+        { name: 'CUT', sub: 'Lose 0.5 lb/wk', cal: tdee - 250, protMult: 1.2, fatMult: 0.3, color: '#dbb95e' },
+        { name: 'CUT', sub: 'Lose 1 lb/wk', cal: tdee - 500, protMult: 1.2, fatMult: 0.25, color: '#D4453A' }
+      ],
+      meso: [
+        { name: 'GAIN', sub: 'Clean Bulk', cal: tdee + 400, protMult: 1.0, fatMult: 0.35, color: '#5BA85B' },
+        { name: 'MAINTAIN', sub: 'Hold Weight', cal: tdee, protMult: 1.0, fatMult: 0.35, color: '#C9A84C' },
+        { name: 'CUT', sub: 'Lose 0.5 lb/wk', cal: tdee - 250, protMult: 1.2, fatMult: 0.3, color: '#dbb95e' },
+        { name: 'CUT', sub: 'Lose 1 lb/wk', cal: tdee - 500, protMult: 1.2, fatMult: 0.25, color: '#D4453A' }
+      ],
+      endo: [
+        { name: 'GAIN', sub: 'Clean Bulk', cal: tdee + 300, protMult: 1.2, fatMult: 0.3, color: '#5BA85B' },
+        { name: 'MAINTAIN', sub: 'Hold Weight', cal: tdee, protMult: 1.2, fatMult: 0.3, color: '#C9A84C' },
+        { name: 'CUT', sub: 'Lose 0.5 lb/wk', cal: tdee - 300, protMult: 1.2, fatMult: 0.3, color: '#dbb95e' },
+        { name: 'CUT', sub: 'Lose 1 lb/wk', cal: tdee - 550, protMult: 1.2, fatMult: 0.25, color: '#D4453A' }
+      ]
+    };
+    var modes = btProfiles[_bodyType] || btProfiles.meso;
 
     var cardsHtml = '';
     for (var i = 0; i < modes.length; i++) {
