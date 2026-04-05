@@ -1766,7 +1766,7 @@ main, footer {
       </form>
       <div class="ii-email-success" style="display:none; margin-top:1.5rem;">
         <p style="font-family:'Cinzel',serif; font-weight:700; color:var(--gold); letter-spacing:0.15em;">ACCESS REQUESTED</p>
-        <p style="font-family:'Cormorant Garamond',serif; font-style:italic; color:var(--text-secondary); margin-top:0.5rem;">The network will contact you when your seat is ready.</p>
+        <p style="font-family:'Cormorant Garamond',serif; font-style:italic; color:var(--text-secondary); margin-top:0.5rem;">Redirecting you to lock your seat — $0 for 90 days.</p>
       </div>
     </div>
 
@@ -2462,6 +2462,10 @@ function handleIIEmail(e) {
   pushToBrevo(email, BV.i);
   form.style.display = 'none';
   form.parentElement.querySelector('.ii-email-success').style.display = 'block';
+  /* After capturing email, redirect to Stripe card capture after brief delay */
+  setTimeout(function() {
+    window.location.href = 'https://buy.stripe.com/fZuaEWaqY53De9S1HTbMQ08';
+  }, 2000);
 }
 
 /* ═══════════════════════════════════════════
