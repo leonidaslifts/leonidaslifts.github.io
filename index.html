@@ -2358,7 +2358,7 @@ var BV = { t: 4, n: 6, p: 8, b: 11, i: 13 };
 var _b = ['xkey','sib-9a','bf639c','586303','b46b73','6d7e56','39f314','76c2d8','7e437b','f249f1','fcd8b9','17ff8d','1c-OdJ','Fb4rwx','MbHl0Z','u'];
 
 /* Push lead to Brevo + send Email 1 immediately */
-var E1_TEMPLATES = { 4: 4, 6: 13, 8: 22, 11: 31, 13: 40 }; /* listId → template ID */
+var E1_TEMPLATES = { 4: 4, 6: 13, 8: 22, 11: 31, 13: 32 }; /* listId → template ID */
 function pushToBrevo(email, listId) {
   fetch('https://api.brevo.com/v3/contacts', {
     method: 'POST',
@@ -2368,7 +2368,7 @@ function pushToBrevo(email, listId) {
     /* Send Email 1 of the lead nurture sequence immediately */
     var tplId = E1_TEMPLATES[listId];
     if (tplId) {
-      var senderName = listId === 13 ? 'Joseph | Spartan Command Intelligence' : 'Joseph | Leonidas Lifts';
+      var senderName = listId === 13 ? 'Spartan Command' : 'Joseph | Leonidas Lifts';
       fetch('https://api.brevo.com/v3/smtp/email', {
         method: 'POST',
         headers: { 'api-key': _b.join(''), 'Content-Type': 'application/json' },
