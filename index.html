@@ -2462,10 +2462,9 @@ function handleIIEmail(e) {
   pushToBrevo(email, BV.i);
   form.style.display = 'none';
   form.parentElement.querySelector('.ii-email-success').style.display = 'block';
-  /* After capturing email, redirect to Stripe card capture after brief delay */
-  /* PLACEHOLDER: Replace URL below with new SCI Stripe payment link */
+  /* After capturing email, redirect to SCI Stripe card capture after brief delay */
   setTimeout(function() {
-    window.location.href = 'https://leonidaslifts.com';
+    window.location.href = 'https://buy.stripe.com/5kQeVd3s5cNugXeennafS00';
   }, 2000);
 }
 
