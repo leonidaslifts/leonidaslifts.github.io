@@ -1,22 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!--
-   ______                            __
-  / ____/___  ____ ___  ____  __  __/ /____  _____
- / /   / __ \/ __ `__ \/ __ \/ / / / __/ _ \/ ___/
-/ /___/ /_/ / / / / / / /_/ / /_/ / /_/  __/ /
-\____/\____/_/ /_/ /_/ .___/\__,_/\__/\___/_/
-                    /_/
-        Created with Perplexity Computer
-        https://www.perplexity.ai/computer
--->
 
-<!-- Perplexity Computer Attribution — SEO Meta Tags -->
-<meta name="generator" content="Perplexity Computer">
-<meta name="author" content="Perplexity Computer">
-<meta property="og:see_also" content="https://www.perplexity.ai/computer">
-<link rel="author" href="https://www.perplexity.ai/computer">
+
 
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -1766,7 +1752,7 @@ main, footer {
       </form>
       <div class="ii-email-success" style="display:none; margin-top:1.5rem;">
         <p style="font-family:'Cinzel',serif; font-weight:700; color:var(--gold); letter-spacing:0.15em;">ACCESS REQUESTED</p>
-        <p style="font-family:'Cormorant Garamond',serif; font-style:italic; color:var(--text-secondary); margin-top:0.5rem;">Redirecting you to lock your seat — $0 for 90 days.</p>
+        <p style="font-family:'Cormorant Garamond',serif; font-style:italic; color:var(--text-secondary); margin-top:0.5rem;">You're on the list. Stand by for orders.</p>
       </div>
     </div>
 
@@ -2460,10 +2446,7 @@ function handleIIEmail(e) {
   pushToBrevo(email, BV.i);
   form.style.display = 'none';
   form.parentElement.querySelector('.ii-email-success').style.display = 'block';
-  /* After capturing email, redirect to SCI Stripe card capture after brief delay */
-  setTimeout(function() {
-    window.location.href = 'https://buy.stripe.com/5kQeVd3s5cNugXeennafS00';
-  }, 2000);
+
 }
 
 /* ═══════════════════════════════════════════
