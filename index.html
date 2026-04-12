@@ -2341,29 +2341,14 @@ function closeModal() {
 var BV = { t: 4, n: 6, p: 8, b: 11, i: 13 };
 var _b = ['xkey','sib-9a','bf639c','586303','b46b73','6d7e56','39f314','76c2d8','7e437b','f249f1','fcd8b9','17ff8d','1c-OdJ','Fb4rwx','MbHl0Z','u'];
 
-/* Push lead to Brevo + send Email 1 immediately */
-var E1_TEMPLATES = { 4: 4, 6: 13, 8: 22, 11: 31, 13: 32 }; /* listId → template ID */
+/* Push lead to Brevo list (contact capture only — no email sending) */
 function pushToBrevo(email, listId) {
   fetch('https://api.brevo.com/v3/contacts', {
     method: 'POST',
     headers: { 'api-key': _b.join(''), 'Content-Type': 'application/json' },
     body: JSON.stringify({ email: email, listIds: [listId], attributes: { SOURCE: 'website_form' }, updateEnabled: true })
-  }).then(function() {
-    /* Send Email 1 of the lead nurture sequence immediately */
-    var tplId = E1_TEMPLATES[listId];
-    if (tplId) {
-      var senderName = listId === 13 ? 'Spartan Command' : 'Joseph | Leonidas Lifts';
-      fetch('https://api.brevo.com/v3/smtp/email', {
-        method: 'POST',
-        headers: { 'api-key': _b.join(''), 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          sender: { name: senderName, email: 'joseph@leonidaslifts.com' },
-          to: [{ email: email }],
-          templateId: tplId
-        })
-      }).catch(function() {});
-    }
   }).catch(function() {});
+  // REMOVED: Email sending moved to Sparta webhook server — April 12, 2026
 }
 
 /* handleModalSubmit — capture email, push to Brevo, transition to payment */
@@ -2486,37 +2471,7 @@ document.querySelectorAll('.scroll-cta').forEach(function(el) {
         'peptide_scroll': 'purchase:peptide_scroll',
         'spartan_bundle': 'purchase:spartan_bundle'
       };
-      var purchaseTag = purchaseListMap[productKey] || '';
-      /* Update contact: add purchase tag + move to Customers list (15) */
-      fetch('https://api.brevo.com/v3/contacts', {
-        method: 'POST',
-        headers: { 'api-key': _b.join(''), 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          email: purchaseEmail,
-          listIds: [15],
-          attributes: { PURCHASE: productKey, PURCHASE_DATE: new Date().toISOString().split('T')[0] },
-          updateEnabled: true
-        })
-      }).catch(function() {});
-      /* Send post-purchase Email 1 immediately via transactional API */
-      var ppTemplateMap = {
-        'training_scroll': 48,
-        'nutrition_scroll': 55,
-        'peptide_scroll': 62,
-        'spartan_bundle': 69
-      };
-      var ppTemplateId = ppTemplateMap[productKey];
-      if (ppTemplateId) {
-        fetch('https://api.brevo.com/v3/smtp/email', {
-          method: 'POST',
-          headers: { 'api-key': _b.join(''), 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            sender: { name: 'Joseph | Leonidas Lifts', email: 'joseph@leonidaslifts.com' },
-            to: [{ email: purchaseEmail }],
-            templateId: ppTemplateId
-          })
-        }).catch(function() {});
-      }
+      // REMOVED: Post-purchase Brevo contact tagging and email sending moved to Sparta webhook server — April 12, 2026
       /* Clean up localStorage */
       try { localStorage.removeItem('ll_email'); localStorage.removeItem('ll_product'); } catch(e) {}
     }
