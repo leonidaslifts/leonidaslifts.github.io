@@ -2337,18 +2337,13 @@ function closeModal() {
   document.getElementById('modal-payment-step').classList.remove('active');
 }
 
-/* Brevo list IDs */
-var BV = { t: 4, n: 6, p: 8, b: 11, i: 13 };
-var _b = ['xkey','sib-9a','bf639c','586303','b46b73','6d7e56','39f314','76c2d8','7e437b','f249f1','fcd8b9','17ff8d','1c-OdJ','Fb4rwx','MbHl0Z','u'];
-
-/* Push lead to Brevo list (contact capture only — no email sending) */
-function pushToBrevo(email, listId) {
-  fetch('https://api.brevo.com/v3/contacts', {
+/* Push lead to server-side webhook (no API keys in client) */
+function pushLead(email, product) {
+  fetch('https://webhook.leonidaslifts.com/webhook/lead', {
     method: 'POST',
-    headers: { 'api-key': _b.join(''), 'Content-Type': 'application/json' },
-    body: JSON.stringify({ email: email, listIds: [listId], attributes: { SOURCE: 'website_form' }, updateEnabled: true })
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ email: email, product: product })
   }).catch(function() {});
-  // REMOVED: Email sending moved to Sparta webhook server — April 12, 2026
 }
 
 /* handleModalSubmit — capture email, push to Brevo, transition to payment */
@@ -2363,8 +2358,7 @@ function handleModalSubmit(e) {
   try { localStorage.setItem('ll_product', scrollType); } catch(e) {}
   var data = scrollData[scrollType];
   
-  var listMap = { 'training': BV.t, 'nutrition': BV.n, 'peptide': BV.p, 'bundle': BV.b };
-  pushToBrevo(email, listMap[scrollType] || BV.b);
+  pushLead(email, scrollType);
   
   document.getElementById('modal-form-state').classList.add('hidden');
   document.getElementById('modal-pay-icon').textContent = data.icon;
@@ -2428,7 +2422,7 @@ function handleIIEmail(e) {
   e.preventDefault();
   var form = e.target;
   var email = form.querySelector('input[type="email"]').value;
-  pushToBrevo(email, BV.i);
+  pushLead(email, 'sci');
   form.style.display = 'none';
   form.parentElement.querySelector('.ii-email-success').style.display = 'block';
 
