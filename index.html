@@ -1631,7 +1631,7 @@ main, footer {
           <span class="scroll-icon" aria-hidden="true">⚔</span>
           <h3 class="scroll-name">The Training Scroll</h3>
           <p class="scroll-tagline">18 years forged into one program</p>
-          <p class="scroll-prices"><strong>$79.99</strong> &nbsp;/&nbsp; ₿ <strong>$49.99</strong></p>
+          <p class="scroll-prices"><strong>$79.99</strong> &nbsp;/&nbsp; ₿ <strong>$71.99</strong></p>
           <span class="scroll-cta" role="button" tabindex="0">CLAIM SCROLL</span>
         </div>
         <div class="scroll-roll-bottom" aria-hidden="true"></div>
@@ -1644,7 +1644,7 @@ main, footer {
           <span class="scroll-icon" aria-hidden="true">◆</span>
           <h3 class="scroll-name">The Nutrition Scroll</h3>
           <p class="scroll-tagline">Preserve 95% of your strength while losing 40lbs</p>
-          <p class="scroll-prices"><strong>$79.99</strong> &nbsp;/&nbsp; ₿ <strong>$49.99</strong></p>
+          <p class="scroll-prices"><strong>$79.99</strong> &nbsp;/&nbsp; ₿ <strong>$71.99</strong></p>
           <span class="scroll-cta" role="button" tabindex="0">CLAIM SCROLL</span>
         </div>
         <div class="scroll-roll-bottom" aria-hidden="true"></div>
@@ -1657,7 +1657,33 @@ main, footer {
           <span class="scroll-icon" aria-hidden="true">☤</span>
           <h3 class="scroll-name">The Peptide Scroll</h3>
           <p class="scroll-tagline">The Leonidas Peptide Stack</p>
-          <p class="scroll-prices"><strong>$79.99</strong> &nbsp;/&nbsp; ₿ <strong>$49.99</strong></p>
+          <p class="scroll-prices"><strong>$79.99</strong> &nbsp;/&nbsp; ₿ <strong>$71.99</strong></p>
+          <span class="scroll-cta" role="button" tabindex="0">CLAIM SCROLL</span>
+        </div>
+        <div class="scroll-roll-bottom" aria-hidden="true"></div>
+      </div>
+
+      <!-- Scroll 4: Annual Longevity Peptide Stack -->
+      <div class="scroll-card" data-accent="green" data-scroll="longevity" onclick="openModal('longevity')">
+        <div class="scroll-roll-top" aria-hidden="true"></div>
+        <div class="scroll-face">
+          <span class="scroll-icon" aria-hidden="true">☤</span>
+          <h3 class="scroll-name">Annual Longevity Peptide Stack</h3>
+          <p class="scroll-tagline">Yearly longevity peptide protocol</p>
+          <p class="scroll-prices"><strong>$39.99</strong> &nbsp;/&nbsp; ₿ <strong>$35.99</strong></p>
+          <span class="scroll-cta" role="button" tabindex="0">CLAIM SCROLL</span>
+        </div>
+        <div class="scroll-roll-bottom" aria-hidden="true"></div>
+      </div>
+
+      <!-- Scroll 5: Physique Blueprint -->
+      <div class="scroll-card" data-accent="ember" data-scroll="physique" onclick="openModal('physique')">
+        <div class="scroll-roll-top" aria-hidden="true"></div>
+        <div class="scroll-face">
+          <span class="scroll-icon" aria-hidden="true">◆</span>
+          <h3 class="scroll-name">Physique Blueprint</h3>
+          <p class="scroll-tagline">Proportions, symmetry, conditioning roadmap</p>
+          <p class="scroll-prices"><strong>$39.99</strong> &nbsp;/&nbsp; ₿ <strong>$35.99</strong></p>
           <span class="scroll-cta" role="button" tabindex="0">CLAIM SCROLL</span>
         </div>
         <div class="scroll-roll-bottom" aria-hidden="true"></div>
@@ -1672,11 +1698,24 @@ main, footer {
             <span class="scroll-icon" aria-hidden="true">⚔</span>
             <h3 class="scroll-name">Spartan Bundle</h3>
             <p class="scroll-tagline">All three scrolls. The complete arsenal.</p>
-            <p class="scroll-prices"><strong>$149.99</strong> &nbsp;/&nbsp; ₿ <strong>$129.99</strong></p>
+            <p class="scroll-prices"><strong>$149.99</strong> &nbsp;/&nbsp; ₿ <strong>$134.99</strong></p>
             <span class="scroll-cta" role="button" tabindex="0" aria-label="Claim Spartan Bundle">CLAIM BUNDLE</span>
           </div>
           <div class="scroll-roll-bottom" aria-hidden="true"></div>
         </div>
+      </div>
+
+      <!-- Free: Starter Supplement Stack (Top 5 Supplements) -->
+      <div class="scroll-card" data-accent="green" onclick="window.open('https://spartancommandintelligence.com/playbook/ll-starter-supplement-stack-tKAAK33f6uF.pdf','_blank','noopener')">
+        <div class="scroll-roll-top" aria-hidden="true"></div>
+        <div class="scroll-face">
+          <span class="scroll-icon" aria-hidden="true">⚕</span>
+          <h3 class="scroll-name">Top 5 Supplements</h3>
+          <p class="scroll-tagline">The 5 compounds I'd take if I started over — free</p>
+          <p class="scroll-prices"><strong>FREE</strong></p>
+          <span class="scroll-cta" role="button" tabindex="0">READ THE PDF</span>
+        </div>
+        <div class="scroll-roll-bottom" aria-hidden="true"></div>
       </div>
     </div>
   </section>
@@ -2170,7 +2209,9 @@ var PAYMENT_LINKS = {
   'THE TRAINING SCROLL': 'https://buy.stripe.com/aFa8wObv253DfdW5Y9bMQ01',
   'THE NUTRITION SCROLL': 'https://buy.stripe.com/cNi9ASaqYcw53ve9albMQ03',
   'THE PEPTIDE SCROLL': 'https://buy.stripe.com/fZu5kCeHe3Zz5DmcmxbMQ06',
-  'SPARTAN BUNDLE': 'https://buy.stripe.com/3cIcN456E2Vvgi00DPbMQ07'
+  'SPARTAN BUNDLE': 'https://buy.stripe.com/3cIcN456E2Vvgi00DPbMQ07',
+  'ANNUAL LONGEVITY PEPTIDE STACK': 'https://buy.stripe.com/5kQ14n7IleVCbCU1ABafS01',
+  'PHYSIQUE BLUEPRINT': 'https://buy.stripe.com/00w14naUxfZGfTadjjafS0g'
 };
 
 /* Stripe Payment Links handle checkout directly — no publishable key needed in frontend */
@@ -2263,29 +2304,43 @@ const scrollData = {
     icon: '⚔',
     name: 'THE TRAINING SCROLL',
     usd: '$79.99',
-    btc: '₿ $49.99',
+    btc: '₿ $71.99',
     color: '#D4453A'
   },
   nutrition: {
     icon: '◆',
     name: 'THE NUTRITION SCROLL',
     usd: '$79.99',
-    btc: '₿ $49.99',
+    btc: '₿ $71.99',
     color: '#C9A84C'
   },
   peptide: {
     icon: '☤',
     name: 'THE PEPTIDE SCROLL',
     usd: '$79.99',
-    btc: '₿ $49.99',
+    btc: '₿ $71.99',
     color: '#5BA85B'
   },
   bundle: {
     icon: '⚔',
     name: 'SPARTAN BUNDLE',
     usd: '$149.99',
-    btc: '₿ $129.99',
+    btc: '₿ $134.99',
     color: '#C9A84C'
+  },
+  longevity: {
+    icon: '☤',
+    name: 'ANNUAL LONGEVITY PEPTIDE STACK',
+    usd: '$39.99',
+    btc: '₿ $35.99',
+    color: '#5BA85B'
+  },
+  physique: {
+    icon: '◆',
+    name: 'PHYSIQUE BLUEPRINT',
+    usd: '$39.99',
+    btc: '₿ $35.99',
+    color: '#D4453A'
   }
 };
 
@@ -2388,7 +2443,7 @@ function payWithCard() {
 /* BTC payment — open the standalone BTC modal */
 function payWithBitcoin() {
   var scrollType = document.getElementById('email-modal').dataset.scrollType;
-  var keyMap = { 'training': 'training_scroll', 'nutrition': 'nutrition_scroll', 'peptide': 'peptide_scroll', 'bundle': 'spartan_bundle' };
+  var keyMap = { 'training': 'training_scroll', 'nutrition': 'nutrition_scroll', 'peptide': 'peptide_scroll', 'bundle': 'spartan_bundle', 'longevity': 'longevity_stack', 'physique': 'physique_blueprint' };
   closeModal();
   openBtcModal(keyMap[scrollType] || scrollType);
 }
@@ -2512,10 +2567,12 @@ document.querySelectorAll('.scroll-cta').forEach(function(el) {
 <script>
 var BTC_WALLET = 'bc1q44mawpd7dh3jyxt650nl5jcrwluzd7lrvt9fem';
 var btcProducts = {
-  'training_scroll': { name: 'The Training Scroll', price: '$49.99' },
-  'nutrition_scroll': { name: 'The Nutrition Scroll', price: '$49.99' },
-  'peptide_scroll':  { name: 'The Peptide Scroll',  price: '$49.99' },
-  'spartan_bundle':  { name: 'Spartan Bundle',      price: '$129.99' }
+  'training_scroll': { name: 'The Training Scroll', price: '$71.99' },
+  'nutrition_scroll': { name: 'The Nutrition Scroll', price: '$71.99' },
+  'peptide_scroll':  { name: 'The Peptide Scroll',  price: '$71.99' },
+  'spartan_bundle':  { name: 'Spartan Bundle',      price: '$134.99' },
+  'longevity_stack': { name: 'Annual Longevity Peptide Stack', price: '$35.99' },
+  'physique_blueprint': { name: 'Physique Blueprint', price: '$35.99' }
 };
 
 function openBtcModal(productKey) {
