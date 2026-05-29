@@ -703,7 +703,9 @@ main, footer {
    ═══════════════════════════════════════════ */
 .bundle-scroll-wrapper {
   position: relative;
-  grid-column: 2;
+  transform: scale(1.08);
+  transform-origin: center;
+  z-index: 2;
 }
 
 .bundle-scroll-wrapper .bundle-glow-ring {
@@ -1493,7 +1495,7 @@ main, footer {
     grid-template-columns: repeat(2, 1fr);
   }
   /* PHASE 2: Change 1 — Bundle wrapper centered at tablet */
-  .bundle-scroll-wrapper { grid-column: 1 / -1; max-width: 340px; margin: 0 auto; }
+  .bundle-scroll-wrapper { grid-column: 1 / -1; max-width: 420px; margin: 0 auto; }
   .tier-grid {
     grid-template-columns: 1fr;
   }
@@ -1509,7 +1511,7 @@ main, footer {
     max-width: 380px;
   }
   /* PHASE 2: Change 1 — Bundle wrapper single column on mobile */
-  .bundle-scroll-wrapper { grid-column: 1; max-width: 380px; }
+  .bundle-scroll-wrapper { grid-column: 1; max-width: 380px; transform: none; }
   .hero-stats span:not(:last-child)::after {
     display: none;
   }
@@ -1624,6 +1626,45 @@ main, footer {
     </div>
 
     <div class="scrolls-grid">
+      <!-- Free: Starter Supplement Stack (Top 5 Supplements) -->
+      <div class="scroll-card" data-accent="green" onclick="window.open('/playbook/supplement-stack.pdf','_blank','noopener')">
+        <div class="scroll-roll-top" aria-hidden="true"></div>
+        <div class="scroll-face">
+          <span class="scroll-icon" aria-hidden="true">⚕</span>
+          <h3 class="scroll-name">Top 5 Supplements</h3>
+          <p class="scroll-tagline">The 5 compounds I'd take if I started over — free</p>
+          <p class="scroll-prices"><strong>FREE</strong></p>
+          <span class="scroll-cta" role="button" tabindex="0">READ THE PDF</span>
+        </div>
+        <div class="scroll-roll-bottom" aria-hidden="true"></div>
+      </div>
+
+      <!-- Free: FFMI Playbook -->
+      <div class="scroll-card" data-accent="gold" onclick="window.open('https://spartancommandintelligence.com/playbook/ll-ffmi-playbook-yITY3zdGq00.pdf','_blank','noopener')">
+        <div class="scroll-roll-top" aria-hidden="true"></div>
+        <div class="scroll-face">
+          <span class="scroll-icon" aria-hidden="true">△</span>
+          <h3 class="scroll-name">FFMI Playbook</h3>
+          <p class="scroll-tagline">Benchmark your genetic ceiling — free</p>
+          <p class="scroll-prices"><strong>FREE</strong></p>
+          <span class="scroll-cta" role="button" tabindex="0">READ THE PDF</span>
+        </div>
+        <div class="scroll-roll-bottom" aria-hidden="true"></div>
+      </div>
+
+      <!-- Annual Longevity Peptide Stack -->
+      <div class="scroll-card" data-accent="green" data-scroll="longevity" onclick="openModal('longevity')">
+        <div class="scroll-roll-top" aria-hidden="true"></div>
+        <div class="scroll-face">
+          <span class="scroll-icon" aria-hidden="true">☤</span>
+          <h3 class="scroll-name">Annual Longevity Peptide Stack</h3>
+          <p class="scroll-tagline">Yearly longevity peptide protocol</p>
+          <p class="scroll-prices"><strong>$39.99</strong> &nbsp;/&nbsp; ₿ <strong>$35.99</strong></p>
+          <span class="scroll-cta" role="button" tabindex="0">CLAIM SCROLL</span>
+        </div>
+        <div class="scroll-roll-bottom" aria-hidden="true"></div>
+      </div>
+
       <!-- Scroll 1: Training -->
       <div class="scroll-card" data-accent="ember" data-scroll="training" onclick="openModal('training')">
         <div class="scroll-roll-top" aria-hidden="true"></div>
@@ -1663,19 +1704,6 @@ main, footer {
         <div class="scroll-roll-bottom" aria-hidden="true"></div>
       </div>
 
-      <!-- Scroll 4: Annual Longevity Peptide Stack -->
-      <div class="scroll-card" data-accent="green" data-scroll="longevity" onclick="openModal('longevity')">
-        <div class="scroll-roll-top" aria-hidden="true"></div>
-        <div class="scroll-face">
-          <span class="scroll-icon" aria-hidden="true">☤</span>
-          <h3 class="scroll-name">Annual Longevity Peptide Stack</h3>
-          <p class="scroll-tagline">Yearly longevity peptide protocol</p>
-          <p class="scroll-prices"><strong>$39.99</strong> &nbsp;/&nbsp; ₿ <strong>$35.99</strong></p>
-          <span class="scroll-cta" role="button" tabindex="0">CLAIM SCROLL</span>
-        </div>
-        <div class="scroll-roll-bottom" aria-hidden="true"></div>
-      </div>
-
       <!-- Scroll 5: Physique Blueprint -->
       <div class="scroll-card" data-accent="ember" data-scroll="physique" onclick="openModal('physique')">
         <div class="scroll-roll-top" aria-hidden="true"></div>
@@ -1689,33 +1717,20 @@ main, footer {
         <div class="scroll-roll-bottom" aria-hidden="true"></div>
       </div>
 
-      <!-- PHASE 2: Change 1 — Bundle as 4th scroll card -->
-      <div class="bundle-scroll-wrapper" role="group" aria-label="Spartan Bundle offer">
+      <!-- Bundle — The Three Sacred Scrolls (Training + Nutrition + Peptide) -->
+      <div class="bundle-scroll-wrapper" role="group" aria-label="The Three Sacred Scrolls offer">
         <div class="bundle-glow-ring" aria-hidden="true"></div>
         <div class="scroll-card bundle-scroll-card" data-accent="gold" data-scroll="bundle" onclick="openModal('bundle')">
           <div class="scroll-roll-top" aria-hidden="true"></div>
           <div class="scroll-face">
             <span class="scroll-icon" aria-hidden="true">⚔</span>
-            <h3 class="scroll-name">Spartan Bundle</h3>
-            <p class="scroll-tagline">All three scrolls. The complete arsenal.</p>
+            <h3 class="scroll-name">The Three Sacred Scrolls</h3>
+            <p class="scroll-tagline">All three together — The Training Scroll, The Nutrition Scroll &amp; The Peptide Scroll.</p>
             <p class="scroll-prices"><strong>$149.99</strong> &nbsp;/&nbsp; ₿ <strong>$134.99</strong></p>
-            <span class="scroll-cta" role="button" tabindex="0" aria-label="Claim Spartan Bundle">CLAIM BUNDLE</span>
+            <span class="scroll-cta" role="button" tabindex="0" aria-label="Claim the Three Sacred Scrolls">CLAIM BUNDLE</span>
           </div>
           <div class="scroll-roll-bottom" aria-hidden="true"></div>
         </div>
-      </div>
-
-      <!-- Free: Starter Supplement Stack (Top 5 Supplements) -->
-      <div class="scroll-card" data-accent="green" onclick="window.open('/playbook/supplement-stack.pdf','_blank','noopener')">
-        <div class="scroll-roll-top" aria-hidden="true"></div>
-        <div class="scroll-face">
-          <span class="scroll-icon" aria-hidden="true">⚕</span>
-          <h3 class="scroll-name">Top 5 Supplements</h3>
-          <p class="scroll-tagline">The 5 compounds I'd take if I started over — free</p>
-          <p class="scroll-prices"><strong>FREE</strong></p>
-          <span class="scroll-cta" role="button" tabindex="0">READ THE PDF</span>
-        </div>
-        <div class="scroll-roll-bottom" aria-hidden="true"></div>
       </div>
     </div>
   </section>
