@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Agoge · Leonidas Lifts | Best Shape of Your Life in 16 Weeks</title>
+<meta name="description" content="The Agoge: a 16-week, 1-on-1 natural transformation program for men 28 to 45. Lose 20 to 40 pounds of fat and walk into the best shape of your life. 100% natural.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&display=swap" rel="stylesheet">
+
+<!-- ════════════════════════════════════════════════════════════════
+     CTA: all 3 "DM 300 TO APPLY" buttons link to the Instagram profile
+     (@modernday_leonidas) where the ManyChat "300" keyword flow runs.
+     ════════════════════════════════════════════════════════════════ -->
+
+<style>
+/* ═══════════════════════════════════════════
+   RESET & BASE  (inherited from index.html)
+   ═══════════════════════════════════════════ */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --black: #060504;
+  --gold: #C9A84C;
+  --gold-dim: rgba(201, 168, 76, 0.3);
+  --gold-glow: rgba(201, 168, 76, 0.6);
+  --ember: #D4453A;
+  --stone: #2A2418;
+  --green: #5BA85B;
+  --parchment: #1a1610;
+  --parchment-light: #2a2318;
+  --text-primary: #e8dcc8;
+  --text-secondary: rgba(232, 220, 200, 0.7);
+  --text-muted: rgba(232, 220, 200, 0.4);
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  background: var(--black);
+  color: var(--text-primary);
+  overflow-x: hidden;
+  line-height: 1.6;
+}
+
+a { color: var(--gold); text-decoration: none; }
+a:hover { color: #dbb95e; }
+
+img { max-width: 100%; display: block; }
+
+/* ═══════════════════════════════════════════
+   SMOKE WISPS  (inherited atmosphere)
+   ═══════════════════════════════════════════ */
+.smoke-container {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  z-index: 2;
+  pointer-events: none;
+  overflow: hidden;
+}
+.smoke-wisp {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+}
+.smoke-wisp:nth-child(1) {
+  width: 600px; height: 600px;
+  background: radial-gradient(circle, rgba(201,168,76,0.05) 0%, transparent 70%);
+  top: 10%; left: -10%;
+  animation: smokeDrift1 16s ease-in-out infinite;
+}
+.smoke-wisp:nth-child(2) {
+  width: 500px; height: 500px;
+  background: radial-gradient(circle, rgba(201,168,76,0.04) 0%, transparent 70%);
+  top: 40%; right: -15%;
+  animation: smokeDrift2 20s ease-in-out infinite;
+}
+.smoke-wisp:nth-child(3) {
+  width: 700px; height: 700px;
+  background: radial-gradient(circle, rgba(201,168,76,0.03) 0%, transparent 70%);
+  bottom: 5%; left: 20%;
+  animation: smokeDrift3 14s ease-in-out infinite;
+}
+.smoke-wisp:nth-child(4) {
+  width: 400px; height: 400px;
+  background: radial-gradient(circle, rgba(212,69,58,0.04) 0%, transparent 70%);
+  top: 60%; left: 50%;
+  animation: smokeDrift4 18s ease-in-out infinite;
+}
+@keyframes smokeDrift1 { 0%,100%{transform:translate(0,0) scale(1);} 50%{transform:translate(80px,-40px) scale(1.15);} }
+@keyframes smokeDrift2 { 0%,100%{transform:translate(0,0) scale(1);} 50%{transform:translate(-60px,50px) scale(1.1);} }
+@keyframes smokeDrift3 { 0%,100%{transform:translate(0,0) scale(1);} 50%{transform:translate(50px,-60px) scale(1.2);} }
+@keyframes smokeDrift4 { 0%,100%{transform:translate(0,0) scale(1);} 50%{transform:translate(-40px,-30px) scale(1.1);} }
+
+/* ═══════════════════════════════════════════
+   FILM GRAIN + VIGNETTE  (inherited atmosphere)
+   ═══════════════════════════════════════════ */
+.film-grain {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  z-index: 4;
+  pointer-events: none;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 128px 128px;
+}
+.vignette {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  z-index: 5;
+  pointer-events: none;
+  background: radial-gradient(ellipse at center, transparent 40%, rgba(6,5,4,0.6) 100%);
+}
+
+main, footer { position: relative; z-index: 10; }
+
+/* ═══════════════════════════════════════════
+   SHARED SECTION PRIMITIVES  (inherited)
+   ═══════════════════════════════════════════ */
+.section-header { text-align: center; margin-bottom: 3rem; }
+.section-eyebrow {
+  font-family: 'Cinzel', serif;
+  font-weight: 700;
+  font-size: clamp(0.6rem, 1.3vw, 0.78rem);
+  letter-spacing: 0.3em;
+  color: var(--gold);
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+  display: block;
+}
+.section-title {
+  font-family: 'Cinzel', serif;
+  font-weight: 900;
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  letter-spacing: 0.15em;
+  color: var(--gold);
+  text-transform: uppercase;
+  margin-bottom: 0.75rem;
+}
+.section-subtitle {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(1rem, 2vw, 1.3rem);
+  font-style: italic;
+  font-weight: 300;
+  color: var(--text-secondary);
+}
+
+/* Greek key divider (inherited from .armory) */
+.greek-key-top, .greek-key-bottom {
+  position: absolute;
+  left: 0; width: 100%;
+  height: 12px;
+  z-index: 1;
+  background: repeating-linear-gradient(
+    90deg,
+    var(--gold-dim) 0px, var(--gold-dim) 8px,
+    transparent 8px, transparent 12px,
+    var(--gold-dim) 12px, var(--gold-dim) 20px,
+    transparent 20px, transparent 24px
+  );
+  opacity: 0.5;
+}
+.greek-key-top { top: 0; }
+.greek-key-bottom { bottom: 0; }
+
+/* Prose body shared by narrative sections */
+.prose {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(1.15rem, 2.1vw, 1.45rem);
+  font-weight: 300;
+  color: var(--text-secondary);
+  max-width: 760px;
+  margin: 0 auto;
+  text-align: center;
+  line-height: 1.7;
+}
+.prose strong { color: var(--text-primary); font-weight: 600; }
+
+/* ═══════════════════════════════════════════
+   PRIMARY CTA BUTTON  (built on .ig-follow-cta)
+   ═══════════════════════════════════════════ */
+.cta-book {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-family: 'Cinzel', serif;
+  font-weight: 700;
+  font-size: clamp(0.8rem, 1.5vw, 0.95rem);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--black);
+  background: linear-gradient(180deg, #d8bb63 0%, var(--gold) 100%);
+  border: 1px solid var(--gold);
+  padding: 1.1rem 3rem;
+  transition: all 0.3s;
+  min-height: 52px;
+  cursor: pointer;
+  text-decoration: none;
+  border-radius: 2px;
+  box-shadow: 0 0 24px rgba(201,168,76,0.18);
+}
+.cta-book:hover {
+  color: var(--black);
+  background: linear-gradient(180deg, #e6c870 0%, #d3b257 100%);
+  box-shadow: 0 0 36px rgba(201,168,76,0.4);
+  transform: translateY(-2px);
+}
+
+/* ═══════════════════════════════════════════
+   HERO
+   ═══════════════════════════════════════════ */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 4rem 1.5rem;
+  overflow: hidden;
+}
+.hero-bg {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: url('./assets/hero.jpg') center center / cover no-repeat;
+  z-index: -2;
+}
+.hero-bg::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: linear-gradient(to bottom,
+    rgba(6,5,4,0.72) 0%, rgba(6,5,4,0.6) 40%,
+    rgba(6,5,4,0.7) 70%, rgba(6,5,4,0.94) 100%);
+}
+.hero-content { position: relative; z-index: 1; max-width: 920px; }
+.hero-lambda {
+  font-family: 'Cinzel', serif;
+  font-weight: 900;
+  font-size: clamp(3rem, 7vw, 5.5rem);
+  color: var(--gold);
+  line-height: 1;
+  margin-bottom: 1rem;
+  display: block;
+  text-shadow: 0 0 40px rgba(201,168,76,0.4), 0 0 80px rgba(201,168,76,0.2);
+  animation: lambdaPulse 3s ease-in-out infinite;
+}
+@keyframes lambdaPulse {
+  0%,100% { text-shadow: 0 0 40px rgba(201,168,76,0.3), 0 0 80px rgba(201,168,76,0.15); }
+  50% { text-shadow: 0 0 60px rgba(201,168,76,0.5), 0 0 120px rgba(201,168,76,0.25); }
+}
+.hero-eyebrow {
+  font-family: 'Cinzel', serif;
+  font-weight: 700;
+  font-size: clamp(0.6rem, 1.4vw, 0.85rem);
+  letter-spacing: 0.28em;
+  color: var(--gold);
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+  display: block;
+}
+.hero-title {
+  font-family: 'Cinzel', serif;
+  font-weight: 900;
+  font-size: clamp(1.9rem, 5vw, 3.6rem);
+  letter-spacing: 0.04em;
+  color: var(--text-primary);
+  margin-bottom: 1.75rem;
+  text-transform: uppercase;
+  line-height: 1.18;
+}
+.hero-subhead {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(1.1rem, 2.2vw, 1.5rem);
+  font-style: italic;
+  font-weight: 300;
+  color: var(--text-secondary);
+  margin-bottom: 2.75rem;
+  max-width: 720px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.6;
+}
+
+/* ═══════════════════════════════════════════
+   GENERIC SECTION WRAPPERS
+   ═══════════════════════════════════════════ */
+.section {
+  position: relative;
+  padding: 5.5rem 1.5rem;
+  overflow: hidden;
+}
+.section--alt { background: rgba(20,16,10,0.5); }
+.section-inner { position: relative; z-index: 2; max-width: 1080px; margin: 0 auto; }
+
+/* ═══════════════════════════════════════════
+   MEET LEONIDAS  (built on .founder-section)
+   ═══════════════════════════════════════════ */
+.founder-section { position: relative; padding: 6rem 1.5rem; overflow: hidden; }
+.founder-bg {
+  position: absolute;
+  top: 0; right: 0;
+  width: 45%; height: 100%;
+  background: url('./assets/warrior.jpg') center center / cover no-repeat;
+  opacity: 0.15;
+  mask-image: linear-gradient(to left, rgba(0,0,0,0.3) 0%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to left, rgba(0,0,0,0.3) 0%, transparent 100%);
+  z-index: 0;
+}
+.founder-content { position: relative; z-index: 1; max-width: 820px; margin: 0 auto; text-align: center; }
+
+/* ═══════════════════════════════════════════
+   THE 300 STANDARD  (highlight block)
+   ═══════════════════════════════════════════ */
+.standard-bg {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: url('./assets/armory.jpg') center center / cover no-repeat;
+  z-index: 0;
+}
+.standard-bg::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(to bottom, rgba(6,5,4,0.93) 0%, rgba(6,5,4,0.86) 50%, rgba(6,5,4,0.93) 100%);
+}
+
+/* ═══════════════════════════════════════════
+   WHAT'S INSIDE  (scroll/parchment cards)
+   ═══════════════════════════════════════════ */
+.inside-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.25rem;
+  margin-top: 1rem;
+}
+.inside-card {
+  position: relative;
+  background: linear-gradient(160deg, var(--parchment-light) 0%, var(--parchment) 100%);
+  border: 1px solid var(--gold-dim);
+  border-radius: 4px;
+  padding: 2rem 1.6rem;
+  text-align: center;
+  transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s;
+}
+.inside-card:hover {
+  border-color: var(--gold);
+  box-shadow: 0 0 24px rgba(201,168,76,0.12);
+  transform: translateY(-3px);
+}
+.inside-icon {
+  font-size: 1.9rem;
+  color: var(--gold);
+  display: block;
+  margin-bottom: 1rem;
+}
+.inside-card p {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.18rem;
+  font-weight: 300;
+  color: var(--text-secondary);
+  line-height: 1.55;
+}
+.inside-card p strong { color: var(--text-primary); font-weight: 600; }
+
+/* ═══════════════════════════════════════════
+   WHO IT'S FOR  (two columns)
+   ═══════════════════════════════════════════ */
+.who-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  max-width: 860px;
+  margin: 0 auto;
+}
+.who-card {
+  background: linear-gradient(160deg, var(--parchment-light) 0%, var(--parchment) 100%);
+  border: 1px solid var(--gold-dim);
+  border-radius: 4px;
+  padding: 2.25rem 2rem;
+}
+.who-card--for { border-top: 3px solid var(--green); }
+.who-card--not { border-top: 3px solid var(--ember); }
+.who-label {
+  font-family: 'Cinzel', serif;
+  font-weight: 700;
+  font-size: 0.85rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+  display: block;
+}
+.who-card--for .who-label { color: var(--green); }
+.who-card--not .who-label { color: var(--ember); }
+.who-card p {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.2rem;
+  font-weight: 300;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+/* ═══════════════════════════════════════════
+   THE INVESTMENT  (price card)
+   ═══════════════════════════════════════════ */
+.invest-card {
+  position: relative;
+  z-index: 2;
+  max-width: 720px;
+  margin: 0 auto;
+  background: linear-gradient(160deg, var(--parchment-light) 0%, var(--parchment) 100%);
+  border: 1px solid var(--gold-dim);
+  border-radius: 6px;
+  padding: 3rem 2.25rem;
+  text-align: center;
+  box-shadow: 0 0 40px rgba(0,0,0,0.5);
+}
+.invest-price {
+  font-family: 'Cinzel', serif;
+  font-weight: 900;
+  font-size: clamp(2.5rem, 7vw, 4rem);
+  color: var(--gold);
+  line-height: 1;
+  margin-bottom: 0.5rem;
+  text-shadow: 0 0 40px rgba(201,168,76,0.25);
+}
+.invest-price-note {
+  font-family: 'Cinzel', serif;
+  font-weight: 700;
+  font-size: 0.8rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  margin-bottom: 1.75rem;
+}
+.invest-card p.prose { margin-bottom: 2rem; }
+
+/* ═══════════════════════════════════════════
+   FAQ
+   ═══════════════════════════════════════════ */
+.faq-list { max-width: 820px; margin: 0 auto; }
+.faq-item {
+  border-bottom: 1px solid rgba(201,168,76,0.12);
+  padding: 1.75rem 0;
+  text-align: left;
+}
+.faq-q {
+  font-family: 'Cinzel', serif;
+  font-weight: 700;
+  font-size: clamp(1rem, 2vw, 1.2rem);
+  letter-spacing: 0.04em;
+  color: var(--text-primary);
+  margin-bottom: 0.75rem;
+}
+.faq-a {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(1.05rem, 2vw, 1.25rem);
+  font-weight: 300;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+/* ═══════════════════════════════════════════
+   FINAL CTA
+   ═══════════════════════════════════════════ */
+.final-cta { text-align: center; }
+.final-cta .section-title { margin-bottom: 2rem; }
+
+.cta-row { text-align: center; margin-top: 2.5rem; }
+
+/* ═══════════════════════════════════════════
+   FOOTER  (inherited verbatim)
+   ═══════════════════════════════════════════ */
+.site-footer {
+  padding: 4rem 1.5rem 2rem;
+  text-align: center;
+  border-top: 1px solid rgba(201,168,76,0.1);
+}
+.footer-lambda {
+  font-family: 'Cinzel', serif;
+  font-weight: 900;
+  font-size: 2.5rem;
+  color: var(--gold);
+  margin-bottom: 1rem;
+  display: block;
+}
+.footer-brand {
+  font-family: 'Cinzel', serif;
+  font-weight: 700;
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  color: var(--text-secondary);
+  margin-bottom: 0.75rem;
+}
+.footer-tagline {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  margin-bottom: 1.5rem;
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.footer-back {
+  font-family: 'Cinzel', serif;
+  font-weight: 700;
+  font-size: 0.72rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+/* ═══════════════════════════════════════════
+   RESPONSIVE
+   ═══════════════════════════════════════════ */
+@media (max-width: 640px) {
+  .section { padding: 4rem 1.25rem; }
+  .founder-section { padding: 4.5rem 1.25rem; }
+  .founder-bg { width: 60%; opacity: 0.1; }
+  .invest-card { padding: 2.25rem 1.5rem; }
+  .cta-book { padding: 1rem 2rem; width: 100%; max-width: 360px; }
+}
+</style>
+</head>
+<body>
+
+<!-- Atmospheric layers (inherited from index.html) -->
+<div class="smoke-container" aria-hidden="true">
+  <div class="smoke-wisp"></div>
+  <div class="smoke-wisp"></div>
+  <div class="smoke-wisp"></div>
+  <div class="smoke-wisp"></div>
+</div>
+<div class="film-grain" aria-hidden="true"></div>
+<div class="vignette" aria-hidden="true"></div>
+
+<main>
+
+  <!-- ═══════════════════════════════════════
+       HERO
+       ═══════════════════════════════════════ -->
+  <header class="hero" id="hero">
+    <div class="hero-bg" aria-hidden="true"></div>
+    <div class="hero-content">
+      <span class="hero-lambda" aria-label="Lambda · Spartan shield mark">Λ</span>
+      <span class="hero-eyebrow">For Men 28 to 45 Who Let Themselves Go</span>
+      <h1 class="hero-title">Lose 20 to 40 Pounds of Fat and Walk Into the Best Shape of Your Life in 16 Weeks. 100% Natural.</h1>
+      <p class="hero-subhead">No steroids. No crash diet that strips the strength you built. The exact system I used to drop 50 pounds and get leaner at 30 than I was at 21.</p>
+      <a class="cta-book" href="https://www.instagram.com/modernday_leonidas/">DM 300 TO APPLY</a>
+    </div>
+  </header>
+
+  <!-- ═══════════════════════════════════════
+       THE MIRROR
+       ═══════════════════════════════════════ -->
+  <section class="section">
+    <div class="greek-key-top" aria-hidden="true"></div>
+    <div class="section-inner">
+      <div class="section-header">
+        <span class="section-eyebrow">The Mirror</span>
+      </div>
+      <p class="prose">You used to be the guy. Strong. Sharp. Now you catch your reflection and barely recognize it. The gut. The soft chest. The energy gone by 2pm. You tell yourself you're busy. You tell yourself you'll start Monday. Monday's been coming for three years.</p>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       THE CLOCK
+       ═══════════════════════════════════════ -->
+  <section class="section section--alt">
+    <div class="section-inner">
+      <div class="section-header">
+        <span class="section-eyebrow">The Clock</span>
+      </div>
+      <p class="prose">Here's what nobody tells you. After 40 your muscle starts walking off your body, slow and quiet, and it does not come back on its own. Every year you wait, the climb gets steeper and the obligations pile higher. This isn't about a beach body. It's about the one thing you can never buy back. Time. Years. Mornings with your kids. You take the wheel now or you watch it slip for good.</p>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       MEET LEONIDAS
+       ═══════════════════════════════════════ -->
+  <section class="founder-section" id="meet-leonidas">
+    <div class="founder-bg" aria-hidden="true"></div>
+    <div class="founder-content">
+      <div class="section-header">
+        <span class="section-eyebrow">Meet Leonidas</span>
+      </div>
+      <p class="prose">I was the skinny kid everyone clowned. 130 pounds, no power, no respect. I spent a decade building myself the hard way and beat men with better genes because I outworked every one of them. Then I made my mistakes. Broke my ankle, blew up to 225, got soft. So I went to war with myself. 50 pounds of fat gone. Best shape of my life at 30. Leaner and stronger than I was at 21. Zero steroids, ever. I'm not selling you a shortcut. I'm handing you the map and beating the softness out of you.</p>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       THE 300 STANDARD
+       ═══════════════════════════════════════ -->
+  <section class="section" id="the-300-standard">
+    <div class="standard-bg" aria-hidden="true"></div>
+    <div class="greek-key-top" aria-hidden="true"></div>
+    <div class="greek-key-bottom" aria-hidden="true"></div>
+    <div class="section-inner">
+      <div class="section-header">
+        <span class="section-eyebrow">The Method</span>
+        <h2 class="section-title">The 300 Standard</h2>
+      </div>
+      <p class="prose">Most programs starve you and strip the muscle you spent years building. The 300 Standard does the opposite. You earn the weight, you protect your joints, you feed the machine, and you keep every ounce of strength while the fat burns off. You max your natural potential before you ever think about enhancement. That's why the men who juiced first still don't look like me.</p>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       WHAT'S INSIDE
+       ═══════════════════════════════════════ -->
+  <section class="section section--alt" id="whats-inside">
+    <div class="section-inner">
+      <div class="section-header">
+        <span class="section-eyebrow">The Arsenal</span>
+        <h2 class="section-title">What's Inside</h2>
+      </div>
+      <div class="inside-grid">
+        <div class="inside-card">
+          <span class="inside-icon" aria-hidden="true">◆</span>
+          <p>A <strong>custom plan</strong> built off your FFMI diagnosis. I read your body and set the exact target.</p>
+        </div>
+        <div class="inside-card">
+          <span class="inside-icon" aria-hidden="true">⚔</span>
+          <p><strong>All three scrolls.</strong> Training, nutrition, and recovery and joint-support protocols.</p>
+        </div>
+        <div class="inside-card">
+          <span class="inside-icon" aria-hidden="true">☤</span>
+          <p><strong>Weekly 1-on-1 coaching calls.</strong> The talks that keep you in the fight.</p>
+        </div>
+        <div class="inside-card">
+          <span class="inside-icon" aria-hidden="true">✦</span>
+          <p><strong>Direct access Monday to Friday.</strong> Form checks, questions, course corrections.</p>
+        </div>
+        <div class="inside-card">
+          <span class="inside-icon" aria-hidden="true">Λ</span>
+          <p><strong>16 weeks. One mission.</strong> The best shape of your life.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       WHO IT'S FOR
+       ═══════════════════════════════════════ -->
+  <section class="section" id="who-its-for">
+    <div class="section-inner">
+      <div class="section-header">
+        <span class="section-eyebrow">Honest Filter</span>
+        <h2 class="section-title">Who It's For</h2>
+      </div>
+      <div class="who-grid">
+        <div class="who-card who-card--for">
+          <span class="who-label">For</span>
+          <p>Men 28 to 45 ready to do the work and bet on themselves.</p>
+        </div>
+        <div class="who-card who-card--not">
+          <span class="who-label">Not For</span>
+          <p>Men hunting a pill, a shortcut, or someone to do it for them.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       THE HONEST TRUTH
+       ═══════════════════════════════════════ -->
+  <section class="section section--alt" id="honest-truth">
+    <div class="section-inner">
+      <div class="section-header">
+        <span class="section-eyebrow">The Honest Truth</span>
+      </div>
+      <p class="prose">Most men drop 20 to 40 pounds of fat and 5 to 10 points of body fat in 16 weeks, with strength held or climbing. Your result depends on you. Your effort, your consistency, your starting point. I give you the map and the fire. You do the marching.</p>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       THE INVESTMENT
+       ═══════════════════════════════════════ -->
+  <section class="section" id="the-investment">
+    <div class="standard-bg" aria-hidden="true"></div>
+    <div class="greek-key-top" aria-hidden="true"></div>
+    <div class="greek-key-bottom" aria-hidden="true"></div>
+    <div class="section-inner">
+      <div class="section-header">
+        <span class="section-eyebrow">The Investment</span>
+        <h2 class="section-title">The Agoge</h2>
+      </div>
+      <div class="invest-card">
+        <div class="invest-price">$3,000</div>
+        <div class="invest-price-note">Pay in Full or Split in Two</div>
+        <p class="prose">The Agoge is $3,000. Pay in full or split it in two. A local trainer charges 4 to 7 thousand for 16 weeks and gives you a fraction of this. This is your body, your strength, your years. Book a 20 minute call. I'll tell you straight if you're a fit.</p>
+        <a class="cta-book" href="https://www.instagram.com/modernday_leonidas/">DM 300 TO APPLY</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       FAQ
+       ═══════════════════════════════════════ -->
+  <section class="section section--alt" id="faq">
+    <div class="section-inner">
+      <div class="section-header">
+        <span class="section-eyebrow">Straight Answers</span>
+        <h2 class="section-title">FAQ</h2>
+      </div>
+      <div class="faq-list">
+        <div class="faq-item">
+          <p class="faq-q">Will this work at my age?</p>
+          <p class="faq-a">You're exactly who I built it for. The window closes after 40. That's the reason to start now, not wait.</p>
+        </div>
+        <div class="faq-item">
+          <p class="faq-q">Do I need a gym?</p>
+          <p class="faq-a">Yes, basic equipment. We build around what you can access.</p>
+        </div>
+        <div class="faq-item">
+          <p class="faq-q">Is it natural?</p>
+          <p class="faq-a">100%. No steroids, ever.</p>
+        </div>
+        <div class="faq-item">
+          <p class="faq-q">I'm too busy.</p>
+          <p class="faq-a">I have a full time job too. This is built for busy men. You have a priority problem, not a time problem.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       FINAL CTA
+       ═══════════════════════════════════════ -->
+  <section class="section final-cta" id="final-cta">
+    <div class="standard-bg" aria-hidden="true"></div>
+    <div class="greek-key-top" aria-hidden="true"></div>
+    <div class="section-inner">
+      <div class="section-header">
+        <span class="section-eyebrow">One Decision Away</span>
+        <h2 class="section-title">Take the Wheel</h2>
+      </div>
+      <p class="prose">16 weeks. One mission. The best shape of your life. Book a 20 minute call and I'll tell you straight if you're a fit.</p>
+      <div class="cta-row">
+        <a class="cta-book" href="https://www.instagram.com/modernday_leonidas/">DM 300 TO APPLY</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ═══════════════════════════════════════════
+     FOOTER  (inherited from index.html)
+     ═══════════════════════════════════════════ -->
+<footer class="site-footer">
+  <span class="footer-lambda" aria-hidden="true">Λ</span>
+  <p class="footer-brand">LEONIDAS LIFTS · @MODERNDAY_LEONIDAS</p>
+  <p class="footer-tagline">Built on 18 years of iron · Governed by discipline · Executed with purpose</p>
+  <a class="footer-back" href="./index.html">Return to the Armory</a>
+</footer>
+
+</body>
+</html>
