@@ -535,6 +535,159 @@ main, footer { position: relative; z-index: 10; }
   .invest-card { padding: 2.25rem 1.5rem; }
   .cta-book { padding: 1rem 2rem; width: 100%; max-width: 360px; }
 }
+
+/* ═══════════════════════════════════════════
+   SECONDARY ENROLL CTA  (secondary to IG)
+   ═══════════════════════════════════════════ */
+.enroll-alt { margin-top: 1.75rem; }
+.enroll-or {
+  display: block;
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  margin-bottom: 0.9rem;
+}
+.cta-enroll {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Cinzel', serif;
+  font-weight: 700;
+  font-size: clamp(0.72rem, 1.4vw, 0.88rem);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  background: transparent;
+  border: 1px solid var(--gold-dim);
+  padding: 0.95rem 2.4rem;
+  min-height: 48px;
+  cursor: pointer;
+  border-radius: 2px;
+  transition: all 0.3s;
+}
+.cta-enroll:hover {
+  border-color: var(--gold);
+  background: rgba(201,168,76,0.08);
+  color: #dbb95e;
+  box-shadow: 0 0 20px rgba(201,168,76,0.15);
+}
+
+/* ═══════════════════════════════════════════
+   EMAIL CAPTURE MODAL  (ported from index.html)
+   ═══════════════════════════════════════════ */
+.modal-overlay {
+  display: none;
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(6,5,4,0.85);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 1000;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+}
+.modal-overlay.active { display: flex; }
+.modal-card {
+  position: relative;
+  background: var(--parchment);
+  border: 1px solid var(--gold-dim);
+  border-radius: 12px;
+  padding: 3rem 2.5rem;
+  max-width: 460px;
+  width: 100%;
+  text-align: center;
+  overflow: hidden;
+}
+.modal-card::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--ember), var(--gold), var(--ember));
+}
+.modal-close {
+  position: absolute;
+  top: 1rem; right: 1rem;
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-size: 1.5rem;
+  cursor: pointer;
+  min-width: 44px;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.3s;
+}
+.modal-close:hover { color: var(--text-primary); }
+.modal-icon { font-size: 2.5rem; margin-bottom: 1rem; display: block; }
+.modal-plan-name {
+  font-family: 'Cinzel', serif;
+  font-weight: 900;
+  font-size: 1.1rem;
+  letter-spacing: 0.15em;
+  margin-bottom: 0.75rem;
+}
+.modal-prices {
+  font-family: 'Cinzel', serif;
+  font-size: 0.85rem;
+  letter-spacing: 0.1em;
+  color: var(--text-secondary);
+  margin-bottom: 2rem;
+}
+.modal-email-input {
+  width: 100%;
+  background: rgba(6,5,4,0.6);
+  border: 1px solid var(--gold-dim);
+  padding: 0.85rem 1rem;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.05rem;
+  color: var(--text-primary);
+  border-radius: 6px;
+  margin-bottom: 1rem;
+  outline: none;
+  min-height: 44px;
+}
+.modal-email-input::placeholder { color: var(--text-muted); }
+.modal-email-input:focus { border-color: var(--gold); }
+.modal-submit {
+  width: 100%;
+  background: var(--gold);
+  border: none;
+  color: var(--black);
+  font-family: 'Cinzel', serif;
+  font-weight: 900;
+  font-size: 0.8rem;
+  letter-spacing: 0.2em;
+  padding: 1rem;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: background 0.3s;
+  min-height: 44px;
+}
+.modal-submit:hover { background: #dbb95e; }
+.modal-success { display: none; }
+.modal-success.active { display: block; }
+.modal-form-state { display: block; }
+.modal-form-state.hidden { display: none; }
+.modal-success-icon { font-size: 3rem; margin-bottom: 1rem; display: block; }
+.modal-success-title {
+  font-family: 'Cinzel', serif;
+  font-weight: 900;
+  font-size: 1.3rem;
+  letter-spacing: 0.15em;
+  color: var(--gold);
+  margin-bottom: 0.5rem;
+}
+.modal-success-sub {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  color: var(--text-secondary);
+}
 </style>
 </head>
 <body>
@@ -704,6 +857,10 @@ main, footer { position: relative; z-index: 10; }
         <div class="invest-price-note">Pay in Full or Split in Two</div>
         <p class="prose">The Agoge is $3,000. Pay in full or split it in two. A local trainer charges 4 to 7 thousand for 16 weeks and gives you a fraction of this. This is your body, your strength, your years. Book a 20 minute call. I'll tell you straight if you're a fit.</p>
         <a class="cta-book" href="https://www.instagram.com/modernday_leonidas/">DM 300 TO APPLY</a>
+        <div class="enroll-alt">
+          <span class="enroll-or">already know it's you? enroll directly</span>
+          <button type="button" class="cta-enroll" onclick="openModal('agoge')" aria-label="Enroll now in The Agoge for $3,000">ENROLL NOW - $3,000</button>
+        </div>
       </div>
     </div>
   </section>
@@ -767,6 +924,117 @@ main, footer { position: relative; z-index: 10; }
   <p class="footer-tagline">Built on 18 years of iron · Governed by discipline · Executed with purpose</p>
   <a class="footer-back" href="./index.html">Return to the Armory</a>
 </footer>
+
+<!-- ═══════════════════════════════════════════
+     EMAIL CAPTURE MODAL  (ported from index.html)
+     ═══════════════════════════════════════════ -->
+<div class="modal-overlay" id="email-modal" role="dialog" aria-modal="true" aria-label="Enroll in The Agoge">
+  <div class="modal-card">
+    <button class="modal-close" onclick="closeModal()" aria-label="Close modal">&times;</button>
+
+    <div class="modal-form-state" id="modal-form-state">
+      <span class="modal-icon" id="modal-icon" aria-hidden="true"></span>
+      <h3 class="modal-plan-name" id="modal-plan-name"></h3>
+      <p class="modal-prices" id="modal-prices"></p>
+      <form onsubmit="handleModalSubmit(event)">
+        <input type="email" class="modal-email-input" placeholder="warrior@email.com" required aria-label="Your email address" id="modal-email">
+        <button type="submit" class="modal-submit">ENROLL NOW - $3,000</button>
+      </form>
+    </div>
+
+    <div class="modal-success" id="modal-success">
+      <span class="modal-success-icon" aria-hidden="true">⚔️</span>
+      <h3 class="modal-success-title">YOUR SEAT AWAITS</h3>
+      <p class="modal-success-sub">A secure checkout tab just opened. Complete your enrollment there to lock your place.</p>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ═══════════════════════════════════════════
+   CHECKOUT  (ported from index.html: PAYMENT_LINKS + email modal + payWithCard)
+   The Agoge $3,000 one-time. Stripe Payment Link (card + Klarna + Afterpay).
+   ═══════════════════════════════════════════ */
+var PAYMENT_LINKS = {
+  'THE AGOGE': 'https://buy.stripe.com/4gM7sLe6JcNueP61ABafS0k'
+};
+
+var scrollData = {
+  agoge: {
+    icon: 'Λ',
+    name: 'THE AGOGE',
+    usd: '$3,000',
+    note: 'Pay in full or finance over time',
+    color: '#C9A84C'
+  }
+};
+
+function openModal(scrollType) {
+  var data = scrollData[scrollType];
+  if (!data) return;
+  document.getElementById('modal-icon').textContent = data.icon;
+  document.getElementById('modal-icon').style.color = data.color;
+  document.getElementById('modal-plan-name').textContent = data.name;
+  document.getElementById('modal-plan-name').style.color = data.color;
+  document.getElementById('modal-prices').innerHTML = data.usd + ' &nbsp;·&nbsp; ' + data.note;
+  document.getElementById('modal-form-state').classList.remove('hidden');
+  document.getElementById('modal-success').classList.remove('active');
+  document.getElementById('modal-email').value = '';
+  document.getElementById('email-modal').dataset.scrollType = scrollType;
+  document.getElementById('email-modal').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+  document.getElementById('email-modal').classList.remove('active');
+  document.body.style.overflow = '';
+}
+
+/* Push lead to server-side webhook (no API keys in client) - mirrors index.html */
+function pushLead(email, product) {
+  fetch('https://webhook.leonidaslifts.com/webhook/lead', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ email: email, product: product })
+  }).catch(function() {});
+}
+
+/* On submit: capture email, push lead, open the payment link with prefilled email */
+function handleModalSubmit(e) {
+  e.preventDefault();
+  var email = document.getElementById('modal-email').value;
+  if (!email) return;
+  window._checkoutEmail = email;
+  try { localStorage.setItem('ll_email', email); } catch(e) {}
+  var scrollType = document.getElementById('email-modal').dataset.scrollType;
+  try { localStorage.setItem('ll_product', scrollType); } catch(e) {}
+  pushLead(email, scrollType);
+  payWithCard();
+  document.getElementById('modal-form-state').classList.add('hidden');
+  document.getElementById('modal-success').classList.add('active');
+}
+
+/* Stripe card/BNPL payment via Payment Link - mirrors index.html exactly */
+function payWithCard() {
+  var scrollType = document.getElementById('email-modal').dataset.scrollType;
+  var data = scrollData[scrollType];
+  var email = window._checkoutEmail;
+  var paymentUrl = PAYMENT_LINKS[data.name];
+  if (paymentUrl) {
+    var url = paymentUrl + '?prefilled_email=' + encodeURIComponent(email);
+    window.open(url, '_blank');
+  } else {
+    alert('Payment not available for this product.');
+  }
+}
+
+document.getElementById('email-modal').addEventListener('click', function(e) {
+  if (e.target === this) closeModal();
+});
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') closeModal();
+});
+</script>
 
 </body>
 </html>
