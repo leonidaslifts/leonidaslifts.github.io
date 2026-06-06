@@ -12,8 +12,6 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&display=swap" rel="stylesheet">
 
-<!-- Stripe payments handled via Payment Links — no frontend JS needed -->
-
 <style>
 /* ═══════════════════════════════════════════
    RESET & BASE
@@ -659,6 +657,61 @@ main, footer {
   font-weight: 700;
 }
 
+/* Free-library product description */
+.scroll-desc {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300;
+  font-size: 0.95rem;
+  line-height: 1.55;
+  color: var(--text-secondary);
+  margin-bottom: 1.25rem;
+  text-align: left;
+}
+
+/* Founder manifesto */
+.manifesto {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 5rem 1.5rem 1rem;
+  position: relative;
+  z-index: 2;
+}
+.manifesto-title {
+  font-family: 'Cinzel', serif;
+  font-weight: 700;
+  font-size: clamp(1.5rem, 3.5vw, 2.1rem);
+  letter-spacing: 0.12em;
+  color: var(--gold);
+  text-align: center;
+  margin-bottom: 2rem;
+}
+.manifesto p {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.15rem;
+  line-height: 1.75;
+  color: var(--text-primary);
+  margin-bottom: 1.25rem;
+}
+.manifesto-signoff {
+  font-family: 'Cinzel', serif;
+  letter-spacing: 0.15em;
+  color: var(--gold);
+  text-align: right;
+}
+
+/* Compliance disclaimers */
+.armory-disclaimer, .footer-disclaimer {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: var(--text-secondary);
+  max-width: 720px;
+  margin: 2.5rem auto 0;
+  text-align: center;
+  font-style: italic;
+}
+.footer-disclaimer { margin-top: 1.5rem; opacity: 0.85; }
+
 .scroll-cta {
   display: inline-block;
   font-family: 'Cinzel', serif;
@@ -763,110 +816,6 @@ main, footer {
 }
 .scroll-card.unrolling .scroll-face {
   animation: scrollExpand 0.6s ease-out forwards, goldenFlash 0.6s ease-out forwards;
-}
-
-/* ═══════════════════════════════════════════
-   INSTAGRAM SECTION
-   ═══════════════════════════════════════════ */
-.instagram-section {
-  position: relative;
-  padding: 6rem 1.5rem;
-  background: linear-gradient(to bottom, var(--black), rgba(42,36,24,0.15), var(--black));
-}
-
-.ig-header {
-  text-align: center;
-  margin-bottom: 3rem;
-}
-
-.ig-header .section-title {
-  margin-bottom: 0.5rem;
-}
-
-.ig-handle {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-family: 'Cinzel', serif;
-  font-weight: 700;
-  font-size: 0.85rem;
-  letter-spacing: 0.2em;
-  color: var(--gold);
-  transition: color 0.3s;
-  min-height: 44px;
-}
-
-.ig-handle:hover { color: #dbb95e; }
-
-.ig-handle svg {
-  width: 20px;
-  height: 20px;
-  fill: currentColor;
-}
-
-.ig-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 0.75rem;
-  max-width: 900px;
-  margin: 0 auto 3rem;
-}
-
-.ig-thumb {
-  position: relative;
-  aspect-ratio: 1;
-  overflow: hidden;
-  border-radius: 4px;
-  cursor: pointer;
-  border: 1px solid transparent;
-  transition: border-color 0.3s, transform 0.3s;
-}
-
-.ig-thumb:hover {
-  border-color: var(--gold-dim);
-  transform: scale(1.03);
-}
-
-.ig-thumb img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.4s;
-}
-
-.ig-thumb:hover img {
-  transform: scale(1.08);
-}
-
-.ig-follow-cta {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  font-family: 'Cinzel', serif;
-  font-weight: 700;
-  font-size: 0.8rem;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--gold);
-  border: 1px solid var(--gold-dim);
-  padding: 0.85rem 2.5rem;
-  transition: all 0.3s;
-  min-height: 44px;
-  cursor: pointer;
-  text-decoration: none;
-  background: transparent;
-}
-
-.ig-follow-cta:hover {
-  border-color: var(--gold);
-  background: rgba(201,168,76,0.08);
-  color: #dbb95e;
-  box-shadow: 0 0 20px rgba(201,168,76,0.15);
-}
-
-.ig-cta-wrap {
-  text-align: center;
 }
 
 /* ═══════════════════════════════════════════
@@ -1382,58 +1331,6 @@ main, footer {
   color: var(--text-secondary);
 }
 
-/* ═══════════════════════════════════════════
-   PHASE 2: Change 7 — Payment step + BTC step styles
-   ═══════════════════════════════════════════ */
-.modal-payment-step {
-  display: none;
-}
-.modal-payment-step.active {
-  display: block;
-  animation: fadeInUp 0.4s ease;
-}
-.payment-buttons {
-  display: flex;
-  gap: 1rem;
-}
-.pay-btn {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 1.25rem 1rem;
-  border-radius: 8px;
-  cursor: pointer;
-  font-family: 'Cinzel', serif;
-  font-weight: 700;
-  font-size: 0.65rem;
-  letter-spacing: 0.15em;
-  transition: all 0.3s;
-  min-height: 44px;
-}
-.pay-btn-icon {
-  font-size: 1.5rem;
-}
-.pay-btn-card {
-  background: transparent;
-  border: 1px solid var(--gold);
-  color: var(--gold);
-}
-.pay-btn-card:hover {
-  background: rgba(201,168,76,0.1);
-  box-shadow: 0 0 20px rgba(201,168,76,0.2);
-}
-.pay-btn-btc {
-  background: transparent;
-  border: 1px solid #F7931A;
-  color: #F7931A;
-}
-.pay-btn-btc:hover {
-  background: rgba(247,147,26,0.1);
-  box-shadow: 0 0 20px rgba(247,147,26,0.2);
-}
-/* Old BTC modal CSS removed — new BTC modal uses inline styles */
 
 /* ═══════════════════════════════════════════
    FOOTER
@@ -1518,9 +1415,6 @@ main, footer {
   .hero-stats {
     gap: 0.5rem 1.5rem;
   }
-  .ig-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
   .founder-bg {
     display: none;
   }
@@ -1545,10 +1439,6 @@ main, footer {
   }
   .modal-card {
     padding: 2rem 1.5rem;
-  }
-  /* PHASE 2: Change 7 — Payment buttons stack on mobile */
-  .payment-buttons {
-    flex-direction: column;
   }
 }
 </style>
@@ -1593,6 +1483,18 @@ main, footer {
   </header>
 
   <!-- ═══════════════════════════════════════
+       SECTION 1.5: FOUNDER MANIFESTO
+       ═══════════════════════════════════════ -->
+  <section class="manifesto" id="manifesto">
+    <h2 class="manifesto-title">I'm anonymous. On purpose.</h2>
+    <p>This is my story without my name on it, and everything I've ever built is now free on this page.</p>
+    <p>Here is why I stay anonymous and why I don't sell any of it. The fitness industry is a rigged table. Most of the people selling you programs, supplements, and "natural" transformations are on steroids and lying about it. I won't teach blackjack at a table where everyone else is counting cards and pretending they aren't. So I left the game. No products. No upsells. No supplement deals.</p>
+    <p>I trained naturally for nearly two decades before I touched a peptide. My father started training me at 13, when I was 130 pounds at five foot seven. At my biggest I hit 225 pounds at five foot ten. Around 200 pounds bodyweight I benched 405 and put up 225 for 25+ reps at roughly 16 to 18 percent body fat. Leaned out to about 8 percent, I sat between 175 and 180.</p>
+    <p>At 30 I added peptides and used them to drop 50+ pounds of fat in six months while holding my strength. I run blood work on a regular schedule. My labs and my mobility have stayed clean. By the end of that cut I was 10 pounds leaner with a six pack and stronger than I was at 21.</p>
+    <p>Everything I learned is below, for free. Read it, use it, share it. That's the whole point.</p>
+  </section>
+
+  <!-- ═══════════════════════════════════════
        SECTION 2: ARMORY — THE SACRED SCROLLS
        ═══════════════════════════════════════ -->
   <section class="armory" id="armory">
@@ -1626,127 +1528,115 @@ main, footer {
     </div>
 
     <div class="scrolls-grid">
-      <!-- Free: Starter Supplement Stack (Top 5 Supplements) -->
-      <div class="scroll-card" data-accent="green" onclick="window.open('/playbook/supplement-stack.pdf','_blank','noopener')">
-        <div class="scroll-roll-top" aria-hidden="true"></div>
-        <div class="scroll-face">
-          <span class="scroll-icon" aria-hidden="true">⚕</span>
-          <h3 class="scroll-name">Top 5 Supplements</h3>
-          <p class="scroll-tagline">The 5 compounds I'd take if I started over — free</p>
-          <p class="scroll-prices"><strong>FREE</strong></p>
-          <span class="scroll-cta" role="button" tabindex="0">READ THE PDF</span>
-        </div>
-        <div class="scroll-roll-bottom" aria-hidden="true"></div>
-      </div>
-
-      <!-- Free: FFMI Playbook -->
-      <div class="scroll-card" data-accent="gold" onclick="window.open('https://spartancommandintelligence.com/playbook/ll-ffmi-playbook-yITY3zdGq00.pdf','_blank','noopener')">
-        <div class="scroll-roll-top" aria-hidden="true"></div>
-        <div class="scroll-face">
-          <span class="scroll-icon" aria-hidden="true">△</span>
-          <h3 class="scroll-name">FFMI Playbook</h3>
-          <p class="scroll-tagline">Benchmark your genetic ceiling — free</p>
-          <p class="scroll-prices"><strong>FREE</strong></p>
-          <span class="scroll-cta" role="button" tabindex="0">READ THE PDF</span>
-        </div>
-        <div class="scroll-roll-bottom" aria-hidden="true"></div>
-      </div>
-
-      <!-- Annual Longevity Peptide Stack -->
-      <div class="scroll-card" data-accent="green" data-scroll="longevity" onclick="openModal('longevity')">
-        <div class="scroll-roll-top" aria-hidden="true"></div>
-        <div class="scroll-face">
-          <span class="scroll-icon" aria-hidden="true">☤</span>
-          <h3 class="scroll-name">Annual Longevity Peptide Stack</h3>
-          <p class="scroll-tagline">Yearly longevity peptide protocol</p>
-          <p class="scroll-prices"><strong>$39.99</strong> &nbsp;/&nbsp; ₿ <strong>$35.99</strong></p>
-          <span class="scroll-cta" role="button" tabindex="0">CLAIM SCROLL</span>
-        </div>
-        <div class="scroll-roll-bottom" aria-hidden="true"></div>
-      </div>
-
       <!-- Scroll 1: Training -->
-      <div class="scroll-card" data-accent="ember" data-scroll="training" onclick="openModal('training')">
+      <div class="scroll-card" data-accent="ember" data-scroll="training" onclick="window.open('pdfs/training-scroll.pdf','_blank','noopener')">
         <div class="scroll-roll-top" aria-hidden="true"></div>
         <div class="scroll-face">
           <span class="scroll-icon" aria-hidden="true">⚔</span>
           <h3 class="scroll-name">The Training Scroll</h3>
-          <p class="scroll-tagline">18 years forged into one program</p>
-          <p class="scroll-prices"><strong>$79.99</strong> &nbsp;/&nbsp; ₿ <strong>$71.99</strong></p>
-          <span class="scroll-cta" role="button" tabindex="0">CLAIM SCROLL</span>
+          <p class="scroll-desc">Two decades of training knowledge in one place. My father started training me at 13, at 130 pounds and five foot seven. At my biggest I reached 225 pounds at five foot ten, benching 405 and hitting 225 for 25+ reps around 200 pounds bodyweight at 16 to 18 percent body fat. These are the exact principles that got me there.</p>
+          <p class="scroll-prices"><strong>FREE</strong></p>
+          <span class="scroll-cta" role="button" tabindex="0">READ / DOWNLOAD</span>
         </div>
         <div class="scroll-roll-bottom" aria-hidden="true"></div>
       </div>
 
       <!-- Scroll 2: Nutrition -->
-      <div class="scroll-card" data-accent="gold" data-scroll="nutrition" onclick="openModal('nutrition')">
+      <div class="scroll-card" data-accent="gold" data-scroll="nutrition" onclick="window.open('pdfs/nutrition-scroll.pdf','_blank','noopener')">
         <div class="scroll-roll-top" aria-hidden="true"></div>
         <div class="scroll-face">
           <span class="scroll-icon" aria-hidden="true">◆</span>
           <h3 class="scroll-name">The Nutrition Scroll</h3>
-          <p class="scroll-tagline">Preserve 95% of your strength while losing 40lbs</p>
-          <p class="scroll-prices"><strong>$79.99</strong> &nbsp;/&nbsp; ₿ <strong>$71.99</strong></p>
-          <span class="scroll-cta" role="button" tabindex="0">CLAIM SCROLL</span>
+          <p class="scroll-desc">The diet strategy I used to drop 50 pounds of fat without losing the strength I spent two decades building. How I structured the deficit, what I actually ate, and how I stayed consistent the whole way.</p>
+          <p class="scroll-prices"><strong>FREE</strong></p>
+          <span class="scroll-cta" role="button" tabindex="0">READ / DOWNLOAD</span>
         </div>
         <div class="scroll-roll-bottom" aria-hidden="true"></div>
       </div>
 
       <!-- Scroll 3: Peptide -->
-      <div class="scroll-card" data-accent="green" data-scroll="peptide" onclick="openModal('peptide')">
+      <div class="scroll-card" data-accent="green" data-scroll="peptide" onclick="window.open('pdfs/peptide-scroll.pdf','_blank','noopener')">
         <div class="scroll-roll-top" aria-hidden="true"></div>
         <div class="scroll-face">
           <span class="scroll-icon" aria-hidden="true">☤</span>
           <h3 class="scroll-name">The Peptide Scroll</h3>
-          <p class="scroll-tagline">The Leonidas Peptide Stack</p>
-          <p class="scroll-prices"><strong>$79.99</strong> &nbsp;/&nbsp; ₿ <strong>$71.99</strong></p>
-          <span class="scroll-cta" role="button" tabindex="0">CLAIM SCROLL</span>
+          <p class="scroll-desc">The 10+ peptides I used over six months to lose 50+ pounds of fat while holding my strength through a long calorie deficit, between age 30 and 31. Every compound, why I used it, and how it fit the cut. By the end I was 10 pounds leaner with a six pack and stronger than I was at 21. Personal documentation, not medical advice.</p>
+          <p class="scroll-prices"><strong>FREE</strong></p>
+          <span class="scroll-cta" role="button" tabindex="0">READ / DOWNLOAD</span>
+        </div>
+        <div class="scroll-roll-bottom" aria-hidden="true"></div>
+      </div>
+
+      <!-- Scroll 4: Longevity Stack -->
+      <div class="scroll-card" data-accent="green" data-scroll="longevity" onclick="window.open('pdfs/longevity-stack.pdf','_blank','noopener')">
+        <div class="scroll-roll-top" aria-hidden="true"></div>
+        <div class="scroll-face">
+          <span class="scroll-icon" aria-hidden="true">☤</span>
+          <h3 class="scroll-name">Longevity Stack</h3>
+          <p class="scroll-desc">The exact peptide stack I run year round for recovery and longevity. I get blood work done on a regular schedule and have had no issues in my labs, mobility, or overall health while running it. Documented openly. This is personal documentation, not medical advice.</p>
+          <p class="scroll-prices"><strong>FREE</strong></p>
+          <span class="scroll-cta" role="button" tabindex="0">READ / DOWNLOAD</span>
         </div>
         <div class="scroll-roll-bottom" aria-hidden="true"></div>
       </div>
 
       <!-- Scroll 5: Physique Blueprint -->
-      <div class="scroll-card" data-accent="ember" data-scroll="physique" onclick="openModal('physique')">
+      <div class="scroll-card" data-accent="ember" data-scroll="physique" onclick="window.open('pdfs/physique-blueprint.pdf','_blank','noopener')">
         <div class="scroll-roll-top" aria-hidden="true"></div>
         <div class="scroll-face">
           <span class="scroll-icon" aria-hidden="true">◆</span>
           <h3 class="scroll-name">Physique Blueprint</h3>
-          <p class="scroll-tagline">Proportions, symmetry, conditioning roadmap</p>
-          <p class="scroll-prices"><strong>$39.99</strong> &nbsp;/&nbsp; ₿ <strong>$35.99</strong></p>
-          <span class="scroll-cta" role="button" tabindex="0">CLAIM SCROLL</span>
+          <p class="scroll-desc">A roadmap for proportions, symmetry, and conditioning. How I think about building a balanced physique and bringing it into peak condition, drawn from two decades under the bar.</p>
+          <p class="scroll-prices"><strong>FREE</strong></p>
+          <span class="scroll-cta" role="button" tabindex="0">READ / DOWNLOAD</span>
         </div>
         <div class="scroll-roll-bottom" aria-hidden="true"></div>
       </div>
 
-      <!-- Bundle — The Three Sacred Scrolls (Training + Nutrition + Peptide) -->
-      <div class="bundle-scroll-wrapper" role="group" aria-label="The Three Sacred Scrolls offer">
+      <!-- Full Library (formerly The Three Sacred Scrolls bundle) -->
+      <div class="bundle-scroll-wrapper" role="group" aria-label="Full Library">
         <div class="bundle-glow-ring" aria-hidden="true"></div>
-        <div class="scroll-card bundle-scroll-card" data-accent="gold" data-scroll="bundle" onclick="openModal('bundle')">
+        <div class="scroll-card bundle-scroll-card" data-accent="gold" data-scroll="full-library" onclick="window.open('pdfs/full-library.pdf','_blank','noopener')">
           <div class="scroll-roll-top" aria-hidden="true"></div>
           <div class="scroll-face">
             <span class="scroll-icon" aria-hidden="true">⚔</span>
-            <h3 class="scroll-name">The Three Sacred Scrolls</h3>
-            <p class="scroll-tagline">All three together — The Training Scroll, The Nutrition Scroll &amp; The Peptide Scroll.</p>
-            <p class="scroll-prices"><strong>$149.99</strong> &nbsp;/&nbsp; ₿ <strong>$134.99</strong></p>
-            <span class="scroll-cta" role="button" tabindex="0" aria-label="Claim the Three Sacred Scrolls">CLAIM BUNDLE</span>
+            <h3 class="scroll-name">Full Library</h3>
+            <p class="scroll-desc">Every scroll, free, in one place. Start anywhere.</p>
+            <p class="scroll-prices"><strong>FREE</strong></p>
+            <span class="scroll-cta" role="button" tabindex="0" aria-label="Read or download the Full Library">READ / DOWNLOAD</span>
           </div>
           <div class="scroll-roll-bottom" aria-hidden="true"></div>
         </div>
       </div>
-    </div>
-  </section>
 
-  <!-- ═══════════════════════════════════════
-       SECTION 3: INSTAGRAM LINK
-       ═══════════════════════════════════════ -->
-  <section class="instagram-section" id="instagram">
-    <div class="ig-cta-wrap" style="padding: 2rem 0;">
-      <a href="https://www.instagram.com/modernday_leonidas/" target="_blank" rel="noopener noreferrer" class="ig-handle" aria-label="Follow @modernday_leonidas on Instagram" style="margin-bottom: 1.5rem; display: inline-flex;">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-        @MODERNDAY_LEONIDAS
-      </a>
-      <br>
-      <a href="https://www.instagram.com/modernday_leonidas/" target="_blank" rel="noopener noreferrer" class="ig-follow-cta">FOLLOW THE WARRIOR</a>
+      <!-- Free: Top 5 Supplements -->
+      <div class="scroll-card" data-accent="green" onclick="window.open('/playbook/supplement-stack.pdf','_blank','noopener')">
+        <div class="scroll-roll-top" aria-hidden="true"></div>
+        <div class="scroll-face">
+          <span class="scroll-icon" aria-hidden="true">⚕</span>
+          <h3 class="scroll-name">Top 5 Supplements</h3>
+          <p class="scroll-desc">The 5 compounds I'd take if I started over. The basics that actually earn their place, with no hype and nothing to sell you.</p>
+          <p class="scroll-prices"><strong>FREE</strong></p>
+          <span class="scroll-cta" role="button" tabindex="0">READ / DOWNLOAD</span>
+        </div>
+        <div class="scroll-roll-bottom" aria-hidden="true"></div>
+      </div>
+
+      <!-- Free: FFMI Playbook -->
+      <div class="scroll-card" data-accent="gold" onclick="window.open('/playbook/ffmi-playbook.pdf','_blank','noopener')">
+        <div class="scroll-roll-top" aria-hidden="true"></div>
+        <div class="scroll-face">
+          <span class="scroll-icon" aria-hidden="true">△</span>
+          <h3 class="scroll-name">FFMI Playbook</h3>
+          <p class="scroll-desc">Benchmark your genetic ceiling and see how much natural muscle you can actually carry. Use it with the calculator below.</p>
+          <p class="scroll-prices"><strong>FREE</strong></p>
+          <span class="scroll-cta" role="button" tabindex="0">READ / DOWNLOAD</span>
+        </div>
+        <div class="scroll-roll-bottom" aria-hidden="true"></div>
+      </div>
     </div>
+
+    <p class="armory-disclaimer">This is personal documentation, not medical advice. Get regular blood work and consult a licensed professional before using any peptide or protocol.</p>
   </section>
 
   <!-- ═══════════════════════════════════════
@@ -1759,7 +1649,7 @@ main, footer {
       <blockquote class="founder-quote">
         I trained naturally for seventeen years before I ever touched a peptide. Your ceiling is higher than you think.
       </blockquote>
-      <cite class="founder-attribution">— @MODERNDAY_LEONIDAS</cite>
+      <cite class="founder-attribution">Leonidas</cite>
     </div>
   </section>
 
@@ -1815,49 +1705,7 @@ main, footer {
 
 </main>
 
-<!-- ═══════════════════════════════════════
-     EMAIL CAPTURE MODAL
-     ═══════════════════════════════════════ -->
-<div class="modal-overlay" id="email-modal" role="dialog" aria-modal="true" aria-label="Claim your scroll">
-  <div class="modal-card">
-    <button class="modal-close" onclick="closeModal()" aria-label="Close modal">&times;</button>
-    
-    <div class="modal-form-state" id="modal-form-state">
-      <span class="modal-icon" id="modal-icon" aria-hidden="true"></span>
-      <h3 class="modal-plan-name" id="modal-plan-name"></h3>
-      <p class="modal-prices" id="modal-prices"></p>
-      <form onsubmit="handleModalSubmit(event)">
-        <input type="email" class="modal-email-input" placeholder="warrior@email.com" required aria-label="Your email address" id="modal-email">
-        <button type="submit" class="modal-submit">CLAIM YOUR SCROLL</button>
-      </form>
-    </div>
-
-    <div class="modal-success" id="modal-success">
-      <span class="modal-success-icon" aria-hidden="true">⚔️</span>
-      <h3 class="modal-success-title">THE SCROLL IS YOURS</h3>
-      <p class="modal-success-sub">Check your inbox, warrior. The path begins now.</p>
-    </div>
-
-    <!-- PHASE 2: Change 7 — Payment step (after email) -->
-    <div class="modal-payment-step" id="modal-payment-step" role="region" aria-label="Payment options">
-      <span class="modal-icon" id="modal-pay-icon" aria-hidden="true"></span>
-      <h3 class="modal-plan-name" id="modal-pay-name" style="margin-bottom:0.5rem;"></h3>
-      <p class="modal-prices" id="modal-pay-prices" style="margin-bottom:2rem;"></p>
-      <div class="payment-buttons">
-        <button class="pay-btn pay-btn-card" onclick="payWithCard()" aria-label="Pay with credit card">
-          <span class="pay-btn-icon">💳</span>
-          PAY WITH CARD
-        </button>
-        <button class="pay-btn pay-btn-btc" onclick="payWithBitcoin()" aria-label="Pay with Bitcoin">
-          <span class="pay-btn-icon">₿</span>
-          PAY WITH BITCOIN
-        </button>
-      </div>
-    </div>
-
-
-  </div>
-</div>
+<!-- Email-capture + payment modal removed: scrolls are now free direct downloads -->
 
 <!-- ═══════════════════════════════════════
      FFMI CALCULATOR + CALORIC GUIDE
@@ -1903,7 +1751,7 @@ main, footer {
         <div style="grid-column:1/-1;">
           <label style="font-family:'Cormorant Garamond',serif;color:#8A8070;font-size:13px;letter-spacing:1px;display:block;margin-bottom:6px;">BODY FAT % <span style="color:#5A5548;font-size:11px;">(optional)</span></label>
           <input type="number" id="ffmi-bf" placeholder="15" min="3" max="50" step="0.5" style="width:100%;max-width:200px;background:#1a1918;border:1px solid rgba(201,168,76,0.15);border-radius:4px;padding:12px;color:#EDE5D0;font-family:'Cormorant Garamond',serif;font-size:16px;text-align:center;box-sizing:border-box;" oninput="calcFFMI()">
-          <p id="ffmi-bf-hint" style="display:none;margin:8px 0 0;font-family:'Cormorant Garamond',serif;color:#8A8070;font-size:14px;">Don't know your body fat %? <a href="javascript:void(0)" onclick="openModal('nutrition')" style="color:#C9A84C;text-decoration:none;font-weight:700;">Start with our Nutrition Scroll</a> for a guided approach.</p>
+          <p id="ffmi-bf-hint" style="display:none;margin:8px 0 0;font-family:'Cormorant Garamond',serif;color:#8A8070;font-size:14px;">Don't know your body fat %? <a href="pdfs/nutrition-scroll.pdf" target="_blank" rel="noopener" style="color:#C9A84C;text-decoration:none;font-weight:700;">Start with the free Nutrition Scroll</a> for a guided approach.</p>
         </div>
 
         <!-- Gender for BMR -->
@@ -2018,7 +1866,7 @@ main, footer {
       <!-- CTA -->
       <div style="background:linear-gradient(135deg,#111110,#1a1510);border:1px solid rgba(201,168,76,0.2);border-radius:8px;padding:2rem;text-align:center;margin-bottom:1.5rem;">
         <p style="font-family:'Cormorant Garamond',serif;color:#EDE5D0;font-size:1.05rem;line-height:1.6;margin:0 0 1.2rem;">Get the complete system — macros, meal timing, supplement stack, and 18 years of nutrition research.</p>
-        <button onclick="openModal('nutrition')" style="background:#C9A84C;color:#0a0908;font-family:'Cinzel',serif;font-size:12px;letter-spacing:2px;padding:14px 32px;border:none;border-radius:4px;cursor:pointer;font-weight:700;min-height:44px;">CLAIM THE NUTRITION SCROLL</button>
+        <button onclick="window.open('pdfs/nutrition-scroll.pdf','_blank','noopener')" style="background:#C9A84C;color:#0a0908;font-family:'Cinzel',serif;font-size:12px;letter-spacing:2px;padding:14px 32px;border:none;border-radius:4px;cursor:pointer;font-weight:700;min-height:44px;">READ THE NUTRITION SCROLL · FREE</button>
       </div>
 
       <!-- Disclaimer -->
@@ -2208,28 +2056,16 @@ main, footer {
      ═══════════════════════════════════════ -->
 <footer class="site-footer">
   <span class="footer-lambda" aria-hidden="true">Λ</span>
-  <p class="footer-brand">LEONIDAS LIFTS · @MODERNDAY_LEONIDAS</p>
+  <p class="footer-brand">LEONIDAS LIFTS</p>
   <p class="footer-tagline">Built on 18 years of iron · Governed by discipline · Executed with purpose</p>
-
+  <p class="footer-disclaimer">This is personal documentation, not medical advice. Get regular blood work and consult a licensed professional before using any peptide or protocol.</p>
 </footer>
 
 <script>
 /* ═══════════════════════════════════════════
    BACKEND API
    ═══════════════════════════════════════════ */
-var API_BASE = '';  // Email capture handled via Stripe customer creation
-
-// Stripe Payment Links (direct checkout — no backend needed)
-var PAYMENT_LINKS = {
-  'THE TRAINING SCROLL': 'https://buy.stripe.com/aFa8wObv253DfdW5Y9bMQ01',
-  'THE NUTRITION SCROLL': 'https://buy.stripe.com/cNi9ASaqYcw53ve9albMQ03',
-  'THE PEPTIDE SCROLL': 'https://buy.stripe.com/fZu5kCeHe3Zz5DmcmxbMQ06',
-  'SPARTAN BUNDLE': 'https://buy.stripe.com/3cIcN456E2Vvgi00DPbMQ07',
-  'ANNUAL LONGEVITY PEPTIDE STACK': 'https://buy.stripe.com/5kQ14n7IleVCbCU1ABafS01',
-  'PHYSIQUE BLUEPRINT': 'https://buy.stripe.com/00w14naUxfZGfTadjjafS0g'
-};
-
-/* Stripe Payment Links handle checkout directly — no publishable key needed in frontend */
+/* Payments removed: all scrolls are now free direct PDF downloads. */
 
 /* ═══════════════════════════════════════════
    FIRE PARTICLE SYSTEM (Canvas 2D)
@@ -2311,103 +2147,7 @@ var PAYMENT_LINKS = {
   animate();
 })();
 
-/* ═══════════════════════════════════════════
-   MODAL LOGIC
-   ═══════════════════════════════════════════ */
-const scrollData = {
-  training: {
-    icon: '⚔',
-    name: 'THE TRAINING SCROLL',
-    usd: '$79.99',
-    btc: '₿ $71.99',
-    color: '#D4453A'
-  },
-  nutrition: {
-    icon: '◆',
-    name: 'THE NUTRITION SCROLL',
-    usd: '$79.99',
-    btc: '₿ $71.99',
-    color: '#C9A84C'
-  },
-  peptide: {
-    icon: '☤',
-    name: 'THE PEPTIDE SCROLL',
-    usd: '$79.99',
-    btc: '₿ $71.99',
-    color: '#5BA85B'
-  },
-  bundle: {
-    icon: '⚔',
-    name: 'SPARTAN BUNDLE',
-    usd: '$149.99',
-    btc: '₿ $134.99',
-    color: '#C9A84C'
-  },
-  longevity: {
-    icon: '☤',
-    name: 'ANNUAL LONGEVITY PEPTIDE STACK',
-    usd: '$39.99',
-    btc: '₿ $35.99',
-    color: '#5BA85B'
-  },
-  physique: {
-    icon: '◆',
-    name: 'PHYSIQUE BLUEPRINT',
-    usd: '$39.99',
-    btc: '₿ $35.99',
-    color: '#D4453A'
-  }
-};
-
-/* PHASE 2: Change 3 — Scroll unroll animation before opening modal */
-function openModal(scrollType) {
-  const data = scrollData[scrollType];
-  if (!data) return;
-  
-  // Find the clicked scroll card
-  const card = document.querySelector('.scroll-card[data-scroll="' + scrollType + '"]')
-    || document.querySelector('.bundle-scroll-card');
-  
-  if (card) {
-    card.classList.add('unrolling');
-    setTimeout(function() {
-      card.classList.remove('unrolling');
-      showModal(scrollType, data);
-    }, 600);
-  } else {
-    showModal(scrollType, data);
-  }
-}
-
-function showModal(scrollType, data) {
-  document.getElementById('modal-icon').textContent = data.icon;
-  document.getElementById('modal-icon').style.color = data.color;
-  document.getElementById('modal-plan-name').textContent = data.name;
-  document.getElementById('modal-plan-name').style.color = data.color;
-  document.getElementById('modal-prices').innerHTML = data.usd + ' &nbsp;/&nbsp; ' + data.btc;
-  
-  // Reset states
-  document.getElementById('modal-form-state').classList.remove('hidden');
-  document.getElementById('modal-success').classList.remove('active');
-  document.getElementById('modal-payment-step').classList.remove('active');
-  document.getElementById('modal-email').value = '';
-  
-  // Store current scroll type for payment
-  document.getElementById('email-modal').dataset.scrollType = scrollType;
-
-  document.getElementById('email-modal').classList.add('active');
-  document.body.style.overflow = 'hidden';
-}
-
-/* PHASE 2: Change 7 — Updated closeModal to reset payment steps */
-function closeModal() {
-  document.getElementById('email-modal').classList.remove('active');
-  document.body.style.overflow = '';
-  // Reset all steps
-  document.getElementById('modal-payment-step').classList.remove('active');
-}
-
-/* Push lead to server-side webhook (no API keys in client) */
+/* Push lead to server-side webhook (no API keys in client). Used by the Spartan Command waitlist form. */
 function pushLead(email, product) {
   fetch('https://webhook.leonidaslifts.com/webhook/lead', {
     method: 'POST',
@@ -2415,63 +2155,6 @@ function pushLead(email, product) {
     body: JSON.stringify({ email: email, product: product })
   }).catch(function() {});
 }
-
-/* handleModalSubmit — capture email, push to Brevo, transition to payment */
-function handleModalSubmit(e) {
-  e.preventDefault();
-  var email = document.getElementById('modal-email').value;
-  if (!email) return;
-  
-  window._checkoutEmail = email;
-  try { localStorage.setItem('ll_email', email); } catch(e) {}
-  var scrollType = document.getElementById('email-modal').dataset.scrollType;
-  try { localStorage.setItem('ll_product', scrollType); } catch(e) {}
-  var data = scrollData[scrollType];
-  
-  pushLead(email, scrollType);
-  
-  document.getElementById('modal-form-state').classList.add('hidden');
-  document.getElementById('modal-pay-icon').textContent = data.icon;
-  document.getElementById('modal-pay-icon').style.color = data.color;
-  document.getElementById('modal-pay-name').textContent = data.name;
-  document.getElementById('modal-pay-name').style.color = data.color;
-  document.getElementById('modal-pay-prices').innerHTML = data.usd + ' &nbsp;/&nbsp; ' + data.btc;
-  document.getElementById('modal-payment-step').classList.add('active');
-}
-
-/* PHASE 2: Change 7 — Stripe card payment via Payment Links */
-function payWithCard() {
-  var scrollType = document.getElementById('email-modal').dataset.scrollType;
-  var data = scrollData[scrollType];
-  var email = window._checkoutEmail;
-  var paymentUrl = PAYMENT_LINKS[data.name];
-  
-  if (paymentUrl) {
-    // Append email as prefill
-    var url = paymentUrl + '?prefilled_email=' + encodeURIComponent(email);
-    window.open(url, '_blank');
-  } else {
-    alert('Payment not available for this product.');
-  }
-}
-
-/* BTC payment — open the standalone BTC modal */
-function payWithBitcoin() {
-  var scrollType = document.getElementById('email-modal').dataset.scrollType;
-  var keyMap = { 'training': 'training_scroll', 'nutrition': 'nutrition_scroll', 'peptide': 'peptide_scroll', 'bundle': 'spartan_bundle', 'longevity': 'longevity_stack', 'physique': 'physique_blueprint' };
-  closeModal();
-  openBtcModal(keyMap[scrollType] || scrollType);
-}
-
-// Close modal on overlay click
-document.getElementById('email-modal').addEventListener('click', function(e) {
-  if (e.target === this) closeModal();
-});
-
-// Close modal on Escape
-document.addEventListener('keydown', function(e) {
-  if (e.key === 'Escape') closeModal();
-});
 
 /* ═══════════════════════════════════════════
    SPARTAN COMMAND INTELLIGENCE TOGGLE
@@ -2508,112 +2191,6 @@ document.querySelectorAll('.scroll-cta').forEach(function(el) {
       el.click();
     }
   });
-});
-</script>
-
-<!-- Post-purchase confirmation handler -->
-<script>
-(function() {
-  var params = new URLSearchParams(window.location.search);
-  if (params.get('purchase') === 'success') {
-    var productKey = params.get('product') || '';
-    var productNames = {
-      'training_scroll': 'The Training Scroll',
-      'nutrition_scroll': 'The Nutrition Scroll',
-      'peptide_scroll': 'The Peptide Scroll',
-      'spartan_bundle': 'Spartan Bundle'
-    };
-    var productName = productNames[productKey] || 'Your Scroll';
-    
-    /* === POST-PURCHASE: Tag contact in Brevo === */
-    var purchaseEmail = '';
-    try { purchaseEmail = localStorage.getItem('ll_email') || ''; } catch(e) {}
-    if (purchaseEmail && productKey) {
-      var purchaseListMap = {
-        'training_scroll': 'purchase:training_scroll',
-        'nutrition_scroll': 'purchase:nutrition_scroll',
-        'peptide_scroll': 'purchase:peptide_scroll',
-        'spartan_bundle': 'purchase:spartan_bundle'
-      };
-      // REMOVED: Post-purchase Brevo contact tagging and email sending moved to Sparta webhook server — April 12, 2026
-      /* Clean up localStorage */
-      try { localStorage.removeItem('ll_email'); localStorage.removeItem('ll_product'); } catch(e) {}
-    }
-    
-    var overlay = document.createElement('div');
-    overlay.style.cssText = 'position:fixed;inset:0;background:rgba(6,5,4,0.95);display:flex;align-items:center;justify-content:center;z-index:10000;';
-    
-    overlay.innerHTML = '<div style="text-align:center;max-width:480px;padding:40px;font-family:Cormorant Garamond,Georgia,serif;">'
-      + '<div style="font-size:64px;margin-bottom:16px;">\u2694\uFE0F</div>'
-      + '<h2 style="color:#C9A84C;font-family:Cinzel,serif;font-size:24px;letter-spacing:3px;margin-bottom:16px;">SCROLL CLAIMED</h2>'
-      + '<p style="color:#EDE5D0;font-size:18px;line-height:1.6;margin-bottom:8px;"><strong style="color:#C9A84C;">' + productName + '</strong> is yours.</p>'
-      + '<p style="color:#8A8070;font-size:15px;line-height:1.6;margin-bottom:32px;">Check your email \u2014 your PDF will arrive within minutes.<br>If you don\'t see it, check your spam folder.</p>'
-      + '<div style="border-top:1px solid #2A2418;padding-top:20px;"><a href="https://leonidaslifts.com" style="color:#C9A84C;text-decoration:none;font-size:14px;letter-spacing:2px;font-weight:bold;">\u2190 RETURN TO THE ARMORY</a></div>'
-      + '<p style="color:#5A5548;font-size:11px;letter-spacing:2px;margin-top:24px;">NO STEROIDS \u00B7 NO SHORTCUTS \u00B7 NO EXCUSES</p>'
-      + '</div>';
-    
-    document.body.appendChild(overlay);
-    window.history.replaceState({}, '', window.location.pathname);
-  }
-})();
-</script>
-
-<!-- BTC Payment Modal -->
-<div id="btcModal" style="display:none;position:fixed;inset:0;background:rgba(6,5,4,0.95);z-index:10000;align-items:center;justify-content:center;">
-  <div style="background:#12110E;border:1px solid #2A2418;border-radius:8px;max-width:480px;width:90%;padding:32px;text-align:center;position:relative;">
-    <button onclick="closeBtcModal()" style="position:absolute;top:12px;right:16px;background:none;border:none;color:#5A5548;font-size:20px;cursor:pointer;min-height:44px;min-width:44px;">✕</button>
-    <div style="font-size:36px;margin-bottom:12px;">₿</div>
-    <h3 id="btcProductName" style="color:#C9A84C;font-family:'Cinzel',serif;font-size:18px;letter-spacing:3px;margin-bottom:8px;"></h3>
-    <div id="btcPrice" style="color:#EDE5D0;font-size:28px;font-weight:700;font-family:'Cormorant Garamond',serif;margin-bottom:20px;"></div>
-    <p style="color:#8A8070;font-size:13px;margin-bottom:12px;letter-spacing:1px;">SEND TO THIS WALLET ADDRESS</p>
-    <div style="background:#1A1710;border:1px solid rgba(201,168,76,0.2);border-radius:6px;padding:12px 16px;margin-bottom:12px;">
-      <code id="btcWallet" style="color:#EDE5D0;font-family:'Courier New',monospace;font-size:13px;word-break:break-all;line-height:1.6;"></code>
-    </div>
-    <button id="btcCopyBtn" onclick="copyBtcAddress()" style="background:rgba(201,168,76,0.07);border:1px solid rgba(201,168,76,0.25);color:#C9A84C;font-family:'Cinzel',serif;font-size:12px;letter-spacing:2px;padding:12px 28px;border-radius:4px;cursor:pointer;min-height:44px;width:100%;max-width:220px;margin-bottom:20px;">
-      COPY ADDRESS
-    </button>
-    <p style="color:#8A8070;font-size:13px;line-height:1.7;margin-bottom:8px;">
-      Send the exact BTC equivalent of the amount shown to this wallet address. Your PDF will be delivered within 24 hours once payment is verified.
-    </p>
-    <p style="color:#5A5548;font-size:12px;">Questions? DM <a href="https://instagram.com/modernday_leonidas" target="_blank" style="color:#C9A84C;text-decoration:none;">@Modernday_Leonidas</a> on Instagram.</p>
-  </div>
-</div>
-
-<script>
-var BTC_WALLET = 'bc1q44mawpd7dh3jyxt650nl5jcrwluzd7lrvt9fem';
-var btcProducts = {
-  'training_scroll': { name: 'The Training Scroll', price: '$71.99' },
-  'nutrition_scroll': { name: 'The Nutrition Scroll', price: '$71.99' },
-  'peptide_scroll':  { name: 'The Peptide Scroll',  price: '$71.99' },
-  'spartan_bundle':  { name: 'Spartan Bundle',      price: '$134.99' },
-  'longevity_stack': { name: 'Annual Longevity Peptide Stack', price: '$35.99' },
-  'physique_blueprint': { name: 'Physique Blueprint', price: '$35.99' }
-};
-
-function openBtcModal(productKey) {
-  var product = btcProducts[productKey];
-  if (!product) return;
-  document.getElementById('btcProductName').textContent = product.name;
-  document.getElementById('btcPrice').textContent = '\u20bf ' + product.price;
-  document.getElementById('btcWallet').textContent = BTC_WALLET;
-  document.getElementById('btcCopyBtn').textContent = 'COPY ADDRESS';
-  document.getElementById('btcModal').style.display = 'flex';
-}
-
-function closeBtcModal() {
-  document.getElementById('btcModal').style.display = 'none';
-}
-
-function copyBtcAddress() {
-  navigator.clipboard.writeText(BTC_WALLET).then(function() {
-    var btn = document.getElementById('btcCopyBtn');
-    btn.textContent = '\u2713 COPIED';
-    setTimeout(function() { btn.textContent = 'COPY ADDRESS'; }, 2000);
-  });
-}
-
-document.getElementById('btcModal').addEventListener('click', function(e) {
-  if (e.target === this) closeBtcModal();
 });
 </script>
 

@@ -5,3 +5,6 @@ package.json
 package-lock.json
 .surgeignore
 200.html
+
+# Local safety backups (never publish)
+*.bak.*
