@@ -1792,5 +1792,87 @@ document.querySelectorAll('.scroll-cta').forEach(function(el) {
 });
 </script>
 
+
+<!--
+  ════════════════════════════════════════════════════════════════════════
+  LEONIDAS LIFTS — PDF EMAIL GATE  →  Chappie courier
+  Paste this whole block once, just before </body> in the LIVE index.html
+  (repo: leonidaslifts/leonidaslifts.github.io, branch main).
+
+  What it does: intercepts any click that opens a pdfs/*.pdf, asks for an
+  email FIRST, POSTs it to the capture Worker (which writes the lead into
+  Brevo list 26 with SOURCE=ll_pdf_download + LL_PRODUCT + LL_OPTIN_DATE),
+  then delivers the free PDF. Chappy's 4am courier picks it up → Bishop.
+  Captures once per browser (localStorage) so repeat downloads don't re-prompt
+  but still log which PDF was taken. Never blocks the free download on a
+  network error (the Worker has a Telegram-to-Bishop fallback for that).
+  Endpoint: https://ll-lead-capture.spartancommandintelligence.workers.dev
+  ════════════════════════════════════════════════════════════════════════
+-->
+<style>
+  #llGate{position:fixed;inset:0;z-index:99999;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,.80)}
+  #llGate.on{display:flex}
+  #llGate .box{position:relative;background:#14110c;border:1px solid #b9893f;border-radius:14px;max-width:420px;width:90%;padding:32px 26px;color:#efe7d6;font-family:inherit;text-align:center;box-shadow:0 24px 70px rgba(0,0,0,.65)}
+  #llGate h3{margin:0 0 8px;font-size:1.3rem;color:#e8c87a}
+  #llGate p{margin:0 0 18px;font-size:.92rem;opacity:.85;line-height:1.5}
+  #llGate input{width:100%;box-sizing:border-box;padding:13px 14px;border-radius:9px;border:1px solid #5a4a2a;background:#0c0a07;color:#fff;font-size:1rem;margin-bottom:10px}
+  #llGate button.go{width:100%;padding:13px;border:0;border-radius:9px;background:linear-gradient(90deg,#c8972f,#e8c87a);color:#1a1206;font-weight:700;font-size:1rem;cursor:pointer}
+  #llGate .x{position:absolute;top:12px;right:16px;color:#aaa;font-size:1.7rem;line-height:1;cursor:pointer;background:none;border:0;width:auto;padding:0}
+  #llGate .err{color:#ff8a7a;font-size:.82rem;min-height:1em;margin:0 0 8px}
+</style>
+<div id="llGate" role="dialog" aria-modal="true" aria-label="Email to download">
+  <div class="box">
+    <button class="x" type="button" aria-label="Close" data-llclose>×</button>
+    <h3>One step before your download</h3>
+    <p>Drop your email and the scroll is yours — free. No spam, just the good stuff.</p>
+    <div class="err" id="llGateErr"></div>
+    <input id="llGateEmail" type="email" placeholder="you@email.com" autocomplete="email" inputmode="email">
+    <button type="button" class="go" id="llGateGo">Get the scroll →</button>
+  </div>
+</div>
+<script>
+(function(){
+  var ENDPOINT='https://ll-lead-capture.spartancommandintelligence.workers.dev';
+  var LSKEY='ll_lead_email', pending=null;
+  var g=document.getElementById('llGate'), inp=document.getElementById('llGateEmail'), err=document.getElementById('llGateErr');
+  function send(email,product){try{fetch(ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:email,product:product||'',ts:new Date().toISOString()})}).catch(function(){});}catch(e){}}
+  function go(p){ if(p) window.open(p.url,'_blank','noopener'); }
+  function close(){ g.classList.remove('on'); }
+  function gate(url,product){
+    var saved=null; try{saved=localStorage.getItem(LSKEY);}catch(e){}
+    if(saved){ send(saved,product); go({url:url}); return; }
+    pending={url:url,product:product}; err.textContent=''; inp.value='';
+    g.classList.add('on'); setTimeout(function(){inp.focus();},50);
+  }
+  function submit(){
+    var v=(inp.value||'').trim();
+    if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(v)){err.textContent='Enter a valid email.';return;}
+    try{localStorage.setItem(LSKEY,v);}catch(e){}
+    send(v,pending?pending.product:''); close(); go(pending); pending=null;
+  }
+  document.getElementById('llGateGo').addEventListener('click',submit);
+  inp.addEventListener('keydown',function(e){if(e.key==='Enter')submit();});
+  g.addEventListener('click',function(e){ if(e.target===g||e.target.hasAttribute('data-llclose')) close(); });
+  function pdfFrom(el){
+    if(!el.getAttribute) return null;
+    var oc=el.getAttribute('onclick')||''; var m=oc.match(/['"]([^'"]*pdfs\/[^'"]+\.pdf)['"]/i);
+    if(m) return m[1];
+    if(el.tagName==='A'){var h=el.getAttribute('href')||''; if(/pdfs\/.+\.pdf/i.test(h)) return h;}
+    return null;
+  }
+  document.addEventListener('click',function(e){
+    var el=e.target;
+    while(el && el!==document.body){
+      var url=pdfFrom(el);
+      if(url){ e.preventDefault(); e.stopPropagation();
+        var product=(el.getAttribute&&el.getAttribute('data-scroll'))||url.split('/').pop().replace(/\.pdf$/i,'');
+        gate(url,product); return; }
+      el=el.parentElement;
+    }
+  },true); // capture phase: runs before the cards' inline onclick
+})();
+</script>
+<!-- ════════════════════ /LL PDF EMAIL GATE ════════════════════ -->
+
 </body>
 </html>
