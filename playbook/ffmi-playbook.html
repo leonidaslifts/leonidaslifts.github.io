@@ -3,11 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The FFMI Playbook — Leonidas Lifts</title>
-<meta name="description" content="Fat-Free Mass Index — the number that actually tells you where you stand. Free.">
+<title>The FFMI Playbook · Leonidas Lifts</title>
+<meta name="description" content="Fat-Free Mass Index, the number that tells you where you actually stand. Free.">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://leonidaslifts.com/playbook/ffmi-playbook.html">
-<meta property="og:title" content="The FFMI Playbook — Leonidas Lifts">
+<meta property="og:title" content="The FFMI Playbook · Leonidas Lifts">
 <meta property="og:description" content="The number that actually tells you where you stand. Free.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://leonidaslifts.com/playbook/ffmi-playbook.html">
@@ -99,18 +99,18 @@ p.subhead { font-family: 'Cormorant Garamond', serif; font-style: italic; font-s
 
   <div class="eyebrow">Free Playbook · Free Calculator</div>
   <h1 class="headline">The <span class="accent">FFMI</span> Playbook</h1>
-  <p class="subhead">Fat-Free Mass Index &mdash; the number that actually tells you where you stand.</p>
+  <p class="subhead">Fat-Free Mass Index, the one number that tells you where you actually stand.</p>
 
   <div class="divider"><span class="divider-mark">☤</span></div>
 
-  <p class="hook">BMI lies. <strong>FFMI doesn&rsquo;t.</strong> Know the number, then set the target.</p>
+  <p class="hook">BMI lies. <strong>FFMI doesn&rsquo;t.</strong> You manage your own health. Learn the number, run it yourself, and take what you find to your doctor.</p>
 
   <ul class="bullet-list">
-    <li>FFMI vs BMI &mdash; why one is honest, the other is noise</li>
-    <li>Read your number against natural ceilings</li>
-    <li>Where your physique sits today &mdash; in one score</li>
-    <li>Pick a target physique with numbers, not vibes</li>
-    <li>The training-and-nutrition path to move the score</li>
+    <li>Read your FFMI against the natural ceiling, so your goals stay honest</li>
+    <li>Use the calculator for your calorie and macro targets, the daily intake to start from</li>
+    <li>Track the number over time to guide weight management, a bulk or a cut</li>
+    <li>See your genetic potential, how much natural muscle your frame can carry</li>
+    <li>Understand the limitless question. What the research says about going past the ceiling, and why that is a conversation for you and your physician</li>
   </ul>
 
   <div class="disclaimer">
@@ -162,10 +162,10 @@ p.subhead { font-family: 'Cormorant Garamond', serif; font-style: italic; font-s
       return;
     }
     setStatus('Sending…');
-    fetch('https://webhook.leonidaslifts.com/webhook/lead', {
+    fetch('https://ll-lead-capture.spartancommandintelligence.workers.dev', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email: email, product: 'FFMI_PLAYBOOK' })
+      body: JSON.stringify({ email: email, product: 'FFMI', ts: new Date().toISOString() })
     }).then(function (r) {
       if (r.ok) {
         setStatus('Sent. Check your inbox in a minute.', 'success');
