@@ -80,6 +80,7 @@ p.subhead { font-style: italic; font-size: clamp(1.05rem, 2vw, 1.3rem); color: v
       <button type="submit" class="cta-btn">Send the scroll</button>
     </form>
     <p id="lead-status" class="lead-status" role="status" aria-live="polite"></p>
+    <a id="lead-dl" class="cta-btn" style="display:none; margin-top:14px; text-decoration:none;" href="#" target="_blank" rel="noopener">Open your free guide →</a>
     <a class="secondary-cta" href="https://spartanpeps.com">Or explore the rest of the free library →</a>
   </div>
   <div class="divider"><span class="divider-mark">⚔</span></div>
@@ -101,15 +102,17 @@ p.subhead { font-style: italic; font-size: clamp(1.05rem, 2vw, 1.3rem); color: v
   var status = document.getElementById('lead-status');
   if (!form) return;
   function setStatus(msg, kind) { status.textContent = msg || ''; status.classList.remove('is-error','is-success'); if (kind) status.classList.add('is-' + kind); }
-  function send(email) { try { fetch(ENDPOINT, { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({ email: email, product: KEYWORD, ts: new Date().toISOString() }) }).catch(function(){}); } catch (e) {} }
+  function send(email) { try { fetch(ENDPOINT, { method:'POST', headers:{'Content-Type':'application/json'}, keepalive: true, body: JSON.stringify({ email: email, product: KEYWORD, ts: new Date().toISOString() }) }).catch(function(){}); } catch (e) {} }
   form.addEventListener('submit', function (e) {
     e.preventDefault();
     var email = (input.value || '').trim().toLowerCase();
     if (!EMAIL_RX.test(email)) { setStatus('Enter a valid email and try again.', 'error'); input.focus(); return; }
     try { localStorage.setItem(LSKEY, email); } catch (e2) {}
     send(email);
-    setStatus('Sent. Your scroll is opening now.', 'success');
-    window.open(PDF, '_blank', 'noopener');
+    var dl = document.getElementById('lead-dl');
+    if (dl) { dl.href = PDF; dl.style.display = 'inline-block'; }
+    setStatus('Success. Your guide is opening. If it does not open, tap the button below.', 'success');
+    window.location.href = PDF;
   });
 })();
 </script>

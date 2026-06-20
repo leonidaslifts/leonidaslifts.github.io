@@ -95,7 +95,7 @@ p.subhead { font-family: 'Cormorant Garamond', serif; font-style: italic; font-s
     <a href="https://spartanpeps.com" aria-label="Spartan Peps home">⚔ &nbsp; SPARTAN PEPS</a>
   </div>
 
-  <div class="eyebrow">Free Playbook · Free Calculator</div>
+  <div class="eyebrow">Free Playbook</div>
   <h1 class="headline">The <span class="accent">FFMI</span> Playbook</h1>
   <p class="subhead">Fat-Free Mass Index, the one number that tells you where you actually stand.</p>
 
@@ -118,14 +118,14 @@ p.subhead { font-family: 'Cormorant Garamond', serif; font-style: italic; font-s
 
   <div class="cta-box">
     <div class="cta-price">FREE</div>
-    <div class="cta-price-note">Use The Calculator · Get The Playbook</div>
+    <div class="cta-price-note">Get The Playbook</div>
     <form id="ffmi-lead-form" class="lead-form" novalidate>
       <label for="ffmi-lead-email">Send the playbook to:</label>
       <input type="email" id="ffmi-lead-email" name="email" required autocomplete="email" placeholder="your@email.com">
       <button type="submit" class="cta-btn" style="width: 100%;">Send The Playbook</button>
     </form>
     <p id="ffmi-lead-status" class="lead-status" role="status" aria-live="polite"></p>
-    <a class="secondary-cta" href="/#ffmi-calculator">Or jump straight to the calculator →</a>
+    <a id="ffmi-dl" class="cta-btn" style="display:none; margin-top:14px; text-decoration:none;" href="#" target="_blank" rel="noopener">Open your free guide →</a>
   </div>
 
   <div class="divider"><span class="divider-mark">⚔</span></div>
@@ -159,22 +159,17 @@ p.subhead { font-family: 'Cormorant Garamond', serif; font-style: italic; font-s
       input.focus();
       return;
     }
-    setStatus('Sending…');
-    fetch('https://ll-lead-capture.spartancommandintelligence.workers.dev', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email: email, product: 'FFMI', ts: new Date().toISOString() })
-    }).then(function (r) {
-      if (r.ok) {
-        setStatus('Sent. Check your inbox in a minute.', 'success');
-        // Bridge to the on-site calculator after a brief beat.
-        setTimeout(function () { window.location.href = '/#ffmi-calculator'; }, 1100);
-      } else {
-        setStatus('Something hiccupped. Try again or use the calculator below.', 'error');
-      }
-    }).catch(function () {
-      setStatus('Network error. Try again or use the calculator below.', 'error');
-    });
+    var PDF = '/playbook/ffmi-playbook.pdf';
+    try {
+      fetch('https://ll-lead-capture.spartancommandintelligence.workers.dev', {
+        method: 'POST', headers: { 'Content-Type': 'application/json' }, keepalive: true,
+        body: JSON.stringify({ email: email, product: 'FFMI', ts: new Date().toISOString() })
+      }).catch(function () {});
+    } catch (e2) {}
+    var dl = document.getElementById('ffmi-dl');
+    if (dl) { dl.href = PDF; dl.style.display = 'inline-block'; }
+    setStatus('Success. Your guide is opening. If it does not open, tap the button below.', 'success');
+    window.location.href = PDF;
   });
 })();
 </script>
