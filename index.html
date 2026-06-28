@@ -1840,8 +1840,7 @@ document.querySelectorAll('.scroll-cta').forEach(function(el) {
   function close(){ g.classList.remove('on'); }
   function gate(url,product){
     var saved=null; try{saved=localStorage.getItem(LSKEY);}catch(e){}
-    if(saved){ send(saved,product); go({url:url}); return; }
-    pending={url:url,product:product}; err.textContent=''; inp.value='';
+    pending={url:url,product:product}; err.textContent=''; inp.value=saved||'';
     g.classList.add('on'); setTimeout(function(){inp.focus();},50);
   }
   function submit(){
