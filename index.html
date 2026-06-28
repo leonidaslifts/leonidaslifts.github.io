@@ -1207,6 +1207,33 @@ main, footer {
       <p class="section-subtitle">Choose your weapon. Claim your path.</p>
     </div>
 
+<section class="ll-signup-band" style="padding:54px 20px;background:#0c0a07;border-top:1px solid #5a4a2a;text-align:center;color:#efe7d6">
+  <h2 style="font-family:'Cinzel',serif;color:#e8c87a;font-size:1.6rem;margin:0 0 8px">Join the Phalanx</h2>
+  <p style="opacity:.85;max-width:520px;margin:0 auto 18px;line-height:1.5">Drop your email for the free scrolls and new drops. No spam, just the good stuff.</p>
+  <form class="ll-capture-form" novalidate style="display:flex;gap:10px;max-width:440px;margin:0 auto;flex-wrap:wrap;justify-content:center">
+    <input type="email" name="email" required placeholder="you@email.com" autocomplete="email" inputmode="email" style="flex:1 1 220px;min-width:200px;box-sizing:border-box;padding:13px 14px;border-radius:9px;border:1px solid #5a4a2a;background:#14110c;color:#fff;font-size:1rem">
+    <button type="submit" style="flex:0 0 auto;padding:13px 22px;border:0;border-radius:9px;background:linear-gradient(90deg,#c8972f,#e8c87a);color:#1a1206;font-weight:700;font-size:1rem;cursor:pointer">Join &rarr;</button>
+    <div class="ll-capture-msg" aria-live="polite" style="flex:1 0 100%;min-height:1.1em;font-size:.85rem;margin-top:4px"></div>
+  </form>
+</section>
+<script>
+(function(){
+  var ENDPOINT='https://ll-lead-capture.spartancommandintelligence.workers.dev';
+  var LSKEY='ll_lead_email';
+  function bind(f){
+    var msg=f.querySelector('.ll-capture-msg');
+    f.addEventListener('submit',function(e){
+      e.preventDefault();
+      var inp=f.querySelector('input[name=email]'), v=(inp.value||'').trim();
+      if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(v)){ msg.style.color='#ff8a7a'; msg.textContent='Enter a valid email.'; return; }
+      try{localStorage.setItem(LSKEY,v);}catch(_){}
+      try{ fetch(ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:v,product:'site-signup',ts:new Date().toISOString()})}).catch(function(){}); }catch(_){}
+      msg.style.color='#9bdd9b'; msg.textContent='You’re in. Check your inbox.'; f.reset();
+    });
+  }
+  document.querySelectorAll('.ll-capture-form').forEach(bind);
+})();
+</script>
     <div class="scrolls-grid">
       <!-- Scroll 1: Training -->
       <div class="scroll-card" data-accent="ember" data-scroll="training" onclick="window.open('pdfs/training-scroll.pdf','_blank','noopener')">
