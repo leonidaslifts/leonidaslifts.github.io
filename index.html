@@ -1855,9 +1855,9 @@ document.querySelectorAll('.scroll-cta').forEach(function(el) {
   g.addEventListener('click',function(e){ if(e.target===g||e.target.hasAttribute('data-llclose')) close(); });
   function pdfFrom(el){
     if(!el.getAttribute) return null;
-    var oc=el.getAttribute('onclick')||''; var m=oc.match(/['"]([^'"]*pdfs\/[^'"]+\.pdf)['"]/i);
+    var oc=el.getAttribute('onclick')||''; var m=oc.match(/['"]([^'"]*\.pdf)['"]/i);
     if(m) return m[1];
-    if(el.tagName==='A'){var h=el.getAttribute('href')||''; if(/pdfs\/.+\.pdf/i.test(h)) return h;}
+    if(el.tagName==='A'){var h=el.getAttribute('href')||''; if(/\.pdf(\?|#|$)/i.test(h)) return h;}
     return null;
   }
   document.addEventListener('click',function(e){
